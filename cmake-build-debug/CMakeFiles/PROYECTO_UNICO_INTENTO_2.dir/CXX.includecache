@@ -1,0 +1,32 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/BRAYAN/Desktop/SEGUNDO SEMESTRE 2021/LABORATORIO DE ESTRUCTURA DE DATOS/PROYECTO UNICO INTENTO 2/CircularDoble.h
+iostream
+-
+String
+-
+NodoCircularDoble.h
+C:/Users/BRAYAN/Desktop/SEGUNDO SEMESTRE 2021/LABORATORIO DE ESTRUCTURA DE DATOS/PROYECTO UNICO INTENTO 2/NodoCircularDoble.h
+
+C:/Users/BRAYAN/Desktop/SEGUNDO SEMESTRE 2021/LABORATORIO DE ESTRUCTURA DE DATOS/PROYECTO UNICO INTENTO 2/NodoCircularDoble.h
+string
+-
+iostream
+-
+
+C:/Users/BRAYAN/Desktop/SEGUNDO SEMESTRE 2021/LABORATORIO DE ESTRUCTURA DE DATOS/PROYECTO UNICO INTENTO 2/main.cpp
+iostream
+-
+String
+-
+conio.h
+-
+CircularDoble.h
+C:/Users/BRAYAN/Desktop/SEGUNDO SEMESTRE 2021/LABORATORIO DE ESTRUCTURA DE DATOS/PROYECTO UNICO INTENTO 2/CircularDoble.h
+
