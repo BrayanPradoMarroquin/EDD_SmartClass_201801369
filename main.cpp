@@ -7,14 +7,15 @@
 #include "CircularDoble.h"
 #include "Analizadores.h"
 using namespace std;
+
 //Area de Declaraciones Globales
-ListaCircularDoble Alumnos;
 string ruta_Alumno;
 string ruta_Tareas;
 ifstream Archivo_Alumno;
 ifstream Archivo_Tarea;
 string Entrada_Alumno;
 string Entrada_Tarea;
+
 //Carga de Metodos
 int cargaUsuario(){
     bool Menu_Usuario=true;
@@ -158,7 +159,7 @@ int Reportes(){
 }
 
 string Ruta_Alumnos_Abrir(string ruta){
-    string text;
+    string text, concatenado;
     Archivo_Alumno.open(ruta.c_str(), ios::in);
 
     if (Archivo_Alumno.fail()){
@@ -168,8 +169,9 @@ string Ruta_Alumnos_Abrir(string ruta){
 
     while (!Archivo_Alumno.eof()){
         getline(Archivo_Alumno, text);
+        concatenado = concatenado + text + "\n";
     }
-    return text;
+    return concatenado;
 }
 
 int main(){
@@ -195,7 +197,7 @@ int main(){
                 cout<<"Ingrese la ruta de los Alumnos: "<<endl;
                 cin>>ruta_Alumno;
                 Entrada_Alumno = Ruta_Alumnos_Abrir(ruta_Alumno);
-
+                Analizador_Alumnos(Entrada_Alumno);
                 break;
                 case 2:
                     //menu1=false;
