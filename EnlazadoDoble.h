@@ -15,14 +15,14 @@ class EnlazadoDoble{
         NodoEnlazadoDoble* ultimo;
 
     public:
-    void InsertarNodoDoble(int&, string&, string&, string&, string&, string&);
+    void InsertarNodoDoble(string&, string&, string&, string&, string&, string&);
     void DesplegarListaDoble();
-    void BuscarListaDoble(int&);
-    void ModificarListaDoble(int&);
-    void EliminarListaDoble(int&);
+    void BuscarListaDoble(string&);
+    void ModificarListaDoble(string &);
+    void EliminarListaDoble(string&);
 };
 
-void EnlazadoDoble::InsertarNodoDoble(int& carnet, string& nombre, string& descripcion, string& fecha, string& hora, string& estado){
+void EnlazadoDoble::InsertarNodoDoble(string& carnet, string& nombre, string& descripcion, string& fecha, string& hora, string& estado){
     NodoEnlazadoDoble* nuevo = new NodoEnlazadoDoble();
     nuevo->carnet = carnet;
     nuevo->Nombre = nombre;
@@ -58,7 +58,7 @@ void EnlazadoDoble::DesplegarListaDoble(){
     }
 }
 
-void EnlazadoDoble::BuscarListaDoble(int& carnet){
+void EnlazadoDoble::BuscarListaDoble(string & carnet){
     NodoEnlazadoDoble* actual = new NodoEnlazadoDoble();
     actual = primero;
     bool encontrado = false;
@@ -78,7 +78,7 @@ void EnlazadoDoble::BuscarListaDoble(int& carnet){
     }
 }
 
-void EnlazadoDoble::ModificarListaDoble(int& carnet){
+void EnlazadoDoble::ModificarListaDoble(string& carnet){
     NodoEnlazadoDoble* actual = new NodoEnlazadoDoble();
     actual = primero;
     bool encontrado = false;
@@ -100,7 +100,7 @@ void EnlazadoDoble::ModificarListaDoble(int& carnet){
     }
 }
 
-void EnlazadoDoble::EliminarListaDoble(int& carnet){
+void EnlazadoDoble::EliminarListaDoble(string & carnet){
     NodoEnlazadoDoble* actual = new NodoEnlazadoDoble();
     actual = primero;
     nodo* anterior = new nodo();

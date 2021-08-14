@@ -14,14 +14,14 @@ private:
     NodoCircularDoble* primero;
     NodoCircularDoble* ultimo;
 public:
-    void insertarNodo(int& carnet, string& DPI, string& Nombre, string& Carrera, string& Contra, int& Creditos, int& Edad, string& Correo);
+    void insertarNodo(string& carnet, string& DPI, string& Nombre, string& Carrera, string& Contra, string& Creditos, string& Edad, string& Correo);
     void desplegarLista();
-    void buscarNodo(int& carnet);
-    void modificarNodo(int& carnet);
-    void EliminarNodo(int&);
+    void buscarNodo(string& carnet);
+    void modificarNodo(string& carnet);
+    void EliminarNodo(string&);
 };
 
-void ListaCircularDoble::insertarNodo(int& carnet, string& DPI, string& Nombre, string& Carrera, string& Contra, int& Creditos, int& Edad, string& Correo){
+void ListaCircularDoble::insertarNodo(string& carnet, string& DPI, string& Nombre, string& Carrera, string& Contra, string& Creditos, string& Edad, string& Correo){
     NodoCircularDoble* nuevo = new NodoCircularDoble();
     nuevo->carnet = carnet;
     nuevo->DPI = DPI;
@@ -62,7 +62,7 @@ void ListaCircularDoble::desplegarLista(){
     }
 }
 
-void ListaCircularDoble::buscarNodo(int& carnet){
+void ListaCircularDoble::buscarNodo(string& carnet){
     NodoCircularDoble* actual = new NodoCircularDoble();
     actual = primero;
     bool encontrado = false;
@@ -83,7 +83,7 @@ void ListaCircularDoble::buscarNodo(int& carnet){
     }
 }
 
-void ListaCircularDoble::modificarNodo(int& carnet){
+void ListaCircularDoble::modificarNodo(string& carnet){
     NodoCircularDoble* actual = new NodoCircularDoble();
     actual = primero;
     bool encontrado = false;
@@ -91,9 +91,22 @@ void ListaCircularDoble::modificarNodo(int& carnet){
         do{
             if(actual->carnet==carnet){
                 cout<<"\n Nodo con el dato: "<<carnet<<" Encontrado\n";
-
-                cout<<"\n Ingrese el nuevo dato: \n";
+                cout<<"\n Ingrese el carnet: \n";
                 cin>>actual->carnet;
+                cout<<"\n Ingrese el DPI: \n";
+                cin>>actual->DPI;
+                cout<<"\n Ingrese el Nombre: \n";
+                cin>>actual->Nombre;
+                cout<<"\n Ingrese la Carrera: \n";
+                cin>>actual->Carrera;
+                cout<<"\n Ingrese la Contraseña: \n";
+                cin>>actual->Password;
+                cout<<"\n Ingrese los Creditos: \n";
+                cin>>actual->Creditos;
+                cout<<"\n Ingrese la Edad: \n";
+                cin>>actual->Edad;
+                cout<<"\n Ingrese el Correo electronico: \n";
+                cin>>actual->Correo;
                 cout<<"\n nodo Modificado";
                 encontrado=true;
             }
@@ -108,7 +121,7 @@ void ListaCircularDoble::modificarNodo(int& carnet){
     }
 }
 
-void ListaCircularDoble::EliminarNodo(int& carnet){
+void ListaCircularDoble::EliminarNodo(string& carnet){
     NodoCircularDoble* actual = new NodoCircularDoble();
     actual = primero;
     NodoCircularDoble* anterior = new NodoCircularDoble();

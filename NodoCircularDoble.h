@@ -10,14 +10,14 @@ using namespace std;
 
 class NodoCircularDoble{
 public:
-    int carnet;
+    string carnet;
     string DPI;
     string Nombre;
     string Carrera;
     string Correo;
     string Password;
-    int Creditos;
-    int Edad;
+    string Creditos;
+    string Edad;
 
     NodoCircularDoble* siguiente;
     NodoCircularDoble* atras;

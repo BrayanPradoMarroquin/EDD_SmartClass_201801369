@@ -4,7 +4,6 @@
 #include <fstream>
 #include <locale.h>
 #include <windows.h>
-#include "CircularDoble.h"
 #include "Analizadores.h"
 using namespace std;
 
@@ -20,8 +19,7 @@ string Entrada_Tarea;
 int cargaUsuario(){
     bool Menu_Usuario=true;
     int eleccion;
-    int carnet, Creditos, Edad;
-    string Nombre, Carrera, Correo, Contra, DPI;
+    string Nombre, Carrera, Correo, Contra, DPI, carnet, Creditos, Edad, eliminacion;
 
     while (Menu_Usuario==true){
         cout<<"\n************** Usuario **************"<<endl;
@@ -47,9 +45,19 @@ int cargaUsuario(){
                 break;
                 case 2:
                     cout<<"Modificar Datos"<<endl;
+                    cin>>carnet;
+                    Alumnos.modificarNodo(carnet);
                     break;
                     case 3:
                         cout<<"Eliminar Datos"<<endl;
+                        cin>>carnet;
+                        cout<<"¿Esta seguro que desea eliminar el dato con carnet: "<<carnet<<", elija SI o NO"<<endl;
+                        cin>>eliminacion;
+                        if(eliminacion=="SI"){
+                            Alumnos.EliminarNodo(carnet);
+                        }else if(eliminacion=="NO"){
+                            cout<<"\n El dato no a sido eliminado "<<endl;
+                        }
                         break;
                         case 4:
                             Menu_Usuario = false;
@@ -164,11 +172,25 @@ string Ruta_Alumnos_Abrir(string ruta){
 
     if (Archivo_Alumno.fail()){
         cout<<"Archivo no Valido, ingrese otro"<<endl;
-        Ruta_Alumnos_Abrir(ruta);
     }
 
     while (!Archivo_Alumno.eof()){
         getline(Archivo_Alumno, text);
+        concatenado = concatenado + text + "\n";
+    }
+    return concatenado;
+}
+
+string Ruta_Tareas_Abrir(string ruta){
+    string text, concatenado;
+    Archivo_Tarea.open(ruta.c_str(), ios::in);
+
+    if (Archivo_Tarea.fail()){
+        cout<<"Archivo no Valido, ingrese otro"<<endl;
+    }
+
+    while (!Archivo_Tarea.eof()){
+        getline(Archivo_Tarea, text);
         concatenado = concatenado + text + "\n";
     }
     return concatenado;
@@ -202,6 +224,10 @@ int main(){
                 case 2:
                     //menu1=false;
                     cout<<"TAREAS"<<endl;
+                    cout<<"Ingrese la ruta de las Tareas: "<<endl;
+                    cin>>ruta_Tareas;
+                    Entrada_Tarea = Ruta_Tareas_Abrir(ruta_Tareas);
+                    Analizador_Tarea(Entrada_Tarea);
                     break;
                     case 3:
                         menu1=false;
