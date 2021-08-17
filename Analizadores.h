@@ -10,6 +10,7 @@ using namespace std;
 #ifndef PROYECTO_UNICO_INTENTO_2_ANALIZADORES_H
 #define PROYECTO_UNICO_INTENTO_2_ANALIZADORES_H
 ListaCircularDoble Alumnos;
+
 string Cont = "";
 int Estado=0, EstadoTarea=0, EstadoTareaAuxiliar=0;
 int contador = 0; //activa el contador
@@ -20,7 +21,7 @@ string DatoTarea[9];
 //ANALIZADOR DE ALUMNOS
 void Analisis_Alumno(char &i);
 
-void Analisis_Tarea(char &i);
+int Analisis_Tarea(char &i, int& conta);
 
 char Fechador(char &i);
 
@@ -46,7 +47,7 @@ void Analisis_Alumno(char &caracter) {
                     Estado = 0;
                     Cont = "";
                 }
-        }else if(Assci==44){
+        }else if(Assci==44 && contador==9){
             Datos[0] = Cont;
             contador = 0;
             Cont = "";
@@ -63,7 +64,7 @@ void Analisis_Alumno(char &caracter) {
                 Cont = "";
                 contador = 0;
             }
-        }else if(Assci==44){
+        }else if(Assci==44 && contador==13){
             Datos[1] = Cont;
             Cont = "";
             contador = 0;
@@ -155,47 +156,39 @@ void Analisis_Alumno(char &caracter) {
 
 //ANALIZADOR DE LAS TAREAS
 void Analizador_Tarea(string entrada){
+    int contadorID = 0;
     for (int i=0; i<entrada.size(); i++){
         int Assci = entrada[i];
         if(Assci == 10 && EstadoTarea==0){
             Estado = 1;
         }else if(Estado>0){
-            Analisis_Tarea(entrada[i]);
+            contadorID = Analisis_Tarea(entrada[i], contadorID);
+
         }
     }
 }
 //MES, DIA, HORA
-void Analisis_Tarea(char &caracter) {
+int Analisis_Tarea(char &caracter, int& contadorID) {
     int Assci = caracter;
     if(EstadoTarea==1){ //MES
-        if (Assci>=55 && Assci<=57){ //7,8,9
-            Cont = caracter;
-            EstadoTarea = 2;
-        }else if(Assci==49){ //1
-            Cont +=caracter;
-            EstadoTarea = 1;
-        } else if(Assci>=48 && Assci<=49){ //0, 1
-            Cont +=caracter;
+        if (Assci>=48 && Assci<=57){ //0-9
+            Cont += caracter;
         } else if(Assci==44){
             EstadoTarea = 2;
             DatoTarea[0] = Cont;
             Cont = "";
         }
     } else if (EstadoTarea==2){ //DIA
-        if (Assci>=48 && Assci<=51){ //0,1,2,3
+        if (Assci>=48 && Assci<=57){ //0,1,2,3
             Cont +=caracter;
-        } else if(Assci>=48 && Assci<=57){
-            Cont += caracter;
         }else if(Assci==44){
             EstadoTarea = 3;
             DatoTarea[1] = Cont;
             Cont = "";
         }
     } else if (EstadoTarea==3){ //HORAS
-        if (Assci>=48 && Assci<=49){ //0,1
+        if (Assci>=48 && Assci<=57){ //0,1
             Cont +=caracter;
-        } else if((Assci>=48 && Assci<=52) && (Assci>=56 && Assci<=57)){ //0{48},1{49},2{50},3{51},4{52} - 8,9
-            Cont += caracter;
         }else if(Assci==44){
             EstadoTarea = 4;
             DatoTarea[2] = Cont;
@@ -210,13 +203,13 @@ void Analisis_Tarea(char &caracter) {
                 EstadoTarea = 0;
                 Cont = "";
             }
-        }else if(Assci==44){
+        }else if(Assci==44 && contador==9){
             DatoTarea[3] = Cont;
             contador = 0;
             Cont = "";
             EstadoTarea=5;
         }
-    } else if(EstadoTarea==5){ //nombre, descripcion, materia
+    } else if(EstadoTarea==5){ //nombre
         if(Assci==44){
             DatoTarea[4] = Cont;
             Cont = "";
@@ -257,30 +250,74 @@ void Analisis_Tarea(char &caracter) {
         if((Assci>=65 && Assci<=90) && (Assci>=97 && Assci<=122)){
             Cont +=caracter;
         } else if(Assci==10){
-            int Posh, Posm;
+            int Posm,Posh,Posd;
+            string Descripcion;
             DatoTarea[8]=Cont;
             Cont="";
             contador=0;
             EstadoTarea = 1;
-            if (DatoTarea[0]=="7"){
+
+            if (DatoTarea[0]=="7"){ //Mes
                 Posm=0;
-            } else if(DatoTarea[0]=="8"){
+            }else if(DatoTarea[0]=="8"){
                 Posm=1;
+            }else if(DatoTarea[0]=="9"){
+                Posm=2;
+            }else if(DatoTarea[0]=="10"){
+                Posm=3;
+            }else if(DatoTarea[0]=="11"){
+                Posm=4;
+            }else {
+                Posm=-1;
+                Descripcion = "Se encontro un error en el mes ingresado [fuera de rango]";
             }
-            if (DatoTarea[2]=="8"){
+
+            if (DatoTarea[2]=="8"){ //Hora
                 Posh=0;
-            } else if(DatoTarea[2]=="9"){
+            }else if(DatoTarea[2]=="9"){
                 Posh=1;
+            }else if(DatoTarea[2]=="10"){
+                Posh=2;
+            }else if(DatoTarea[2]=="11"){
+                Posh=3;
+            }else if(DatoTarea[2]=="12"){
+                Posh=4;
+            }else if(DatoTarea[2]=="13"){
+                Posh=5;
+            }else if(DatoTarea[2]=="14"){
+                Posh=6;
+            }else if(DatoTarea[2]=="15"){
+                Posh=7;
+            }else if(DatoTarea[2]=="16"){
+                Posh=8;
+            }else {
+                Posh=-1;
+                Descripcion = "Se encontro un error en la hora ingresado [fuera de rango]";
             }
-            Matriz[Posm][atoi(DatoTarea[1].c_str())-1][Posh]->carnet = DatoTarea[3];
-            Matriz[Posm][atoi(DatoTarea[1].c_str())-1][Posh]->Nombre = DatoTarea[4];
-            Matriz[Posm][atoi(DatoTarea[1].c_str())-1][Posh]->Descripcion = DatoTarea[5];
-            Matriz[Posm][atoi(DatoTarea[1].c_str())-1][Posh]->Hora = DatoTarea[6];
-            Matriz[Posm][atoi(DatoTarea[1].c_str())-1][Posh]->Fecha = DatoTarea[7];
-            Matriz[Posm][atoi(DatoTarea[1].c_str())-1][Posh]->Estado = DatoTarea[8];
+
+            if(atoi(DatoTarea[1].c_str())>0 && atoi(DatoTarea[1].c_str())<=30){ //dia
+                Posd=1;
+            }else{
+                Posd=-1;
+                Descripcion = "Se encontro un error en el dia ingresado [fuera de rango]";
+            }
+
+            if (Posm==-1 || Posh==-1 || Posd==-1){
+                //ListaErrores.insert();
+                cout<<"ERRORES "<<endl;
+            }else{
+                Matriz[Posm][atoi(DatoTarea[1].c_str())-1][Posh]->Id = contadorID++;
+                Matriz[Posm][atoi(DatoTarea[1].c_str())-1][Posh]->carnet = DatoTarea[3];
+                Matriz[Posm][atoi(DatoTarea[1].c_str())-1][Posh]->Nombre = DatoTarea[4];
+                Matriz[Posm][atoi(DatoTarea[1].c_str())-1][Posh]->Descripcion = DatoTarea[5];
+                Matriz[Posm][atoi(DatoTarea[1].c_str())-1][Posh]->Hora = DatoTarea[6];
+                Matriz[Posm][atoi(DatoTarea[1].c_str())-1][Posh]->Fecha = DatoTarea[7];
+                Matriz[Posm][atoi(DatoTarea[1].c_str())-1][Posh]->Estado = DatoTarea[8];
+            }
         }
     }
 }
+
 
 char Fechador(char &caracter){ // YYYY/MM/DD
     int Assci = caracter;
@@ -293,7 +330,7 @@ char Fechador(char &caracter){ // YYYY/MM/DD
                 Estado = 0;
                 Cont = "";
             }
-        } else if(Assci==47){
+        } else if(Assci==47 && contador==4){
             EstadoTareaAuxiliar=1;
             return caracter;
         }
@@ -306,7 +343,7 @@ char Fechador(char &caracter){ // YYYY/MM/DD
                 Estado = 0;
                 Cont = "";
             }
-        } else if(Assci==47){
+        } else if(Assci==47 && contador==2){
             EstadoTareaAuxiliar=2;
             return caracter;
         }

@@ -15,15 +15,16 @@ class EnlazadoDoble{
         NodoEnlazadoDoble* ultimo;
 
     public:
-    void InsertarNodoDoble(string&, string&, string&, string&, string&, string&);
+    void InsertarNodoDoble(string&, string&, string&, string&, string&, string&, string&);
     void DesplegarListaDoble();
     void BuscarListaDoble(string&);
     void ModificarListaDoble(string &);
     void EliminarListaDoble(string&);
 };
 
-void EnlazadoDoble::InsertarNodoDoble(string& carnet, string& nombre, string& descripcion, string& fecha, string& hora, string& estado){
+void EnlazadoDoble::InsertarNodoDoble(string& carnet, string& nombre, string& descripcion, string& fecha, string& hora, string& estado, string& ID){
     NodoEnlazadoDoble* nuevo = new NodoEnlazadoDoble();
+    nuevo->Id = ID;
     nuevo->carnet = carnet;
     nuevo->Nombre = nombre;
     nuevo->Descripcion = descripcion;

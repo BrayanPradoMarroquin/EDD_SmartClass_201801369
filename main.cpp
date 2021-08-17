@@ -178,6 +178,7 @@ string Ruta_Alumnos_Abrir(string ruta){
         getline(Archivo_Alumno, text);
         concatenado = concatenado + text + "\n";
     }
+    Archivo_Alumno.close();
     return concatenado;
 }
 
@@ -193,6 +194,7 @@ string Ruta_Tareas_Abrir(string ruta){
         getline(Archivo_Tarea, text);
         concatenado = concatenado + text + "\n";
     }
+    Archivo_Tarea.close();
     return concatenado;
 }
 

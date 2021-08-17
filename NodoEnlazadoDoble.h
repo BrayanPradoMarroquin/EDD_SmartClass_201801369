@@ -10,6 +10,7 @@ using namespace std;
 
 class NodoEnlazadoDoble{
     public:
+        string Id;
         string carnet;
         string Nombre;
         string Descripcion;

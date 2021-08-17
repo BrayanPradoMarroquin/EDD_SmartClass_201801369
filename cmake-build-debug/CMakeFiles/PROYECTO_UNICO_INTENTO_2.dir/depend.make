@@ -5,4 +5,5 @@ CMakeFiles/PROYECTO_UNICO_INTENTO_2.dir/main.cpp.obj: \
  ../Analizadores.h \
  ../CircularDoble.h \
  ../NodoCircularDoble.h \
+ ../NodoEnlazadoDoble.h \
  ../main.cpp
