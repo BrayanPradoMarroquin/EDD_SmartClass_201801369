@@ -17,10 +17,16 @@ class EnlazadoDoble{
     public:
     void InsertarNodoDoble(string&, string&, string&, string&, string&, string&, string&);
     void DesplegarListaDoble();
-    void BuscarListaDoble(string&);
+    bool BuscarListaDoble(string&);
     void ModificarListaDoble(string &);
     void EliminarListaDoble(string&);
+    EnlazadoDoble();
 };
+
+EnlazadoDoble::EnlazadoDoble(){
+    this->primero = NULL;
+    this->ultimo = NULL;
+}
 
 void EnlazadoDoble::InsertarNodoDoble(string& carnet, string& nombre, string& descripcion, string& fecha, string& hora, string& estado, string& ID){
     NodoEnlazadoDoble* nuevo = new NodoEnlazadoDoble();
@@ -59,7 +65,7 @@ void EnlazadoDoble::DesplegarListaDoble(){
     }
 }
 
-void EnlazadoDoble::BuscarListaDoble(string & carnet){
+bool EnlazadoDoble::BuscarListaDoble(string & carnet){
     NodoEnlazadoDoble* actual = new NodoEnlazadoDoble();
     actual = primero;
     bool encontrado = false;
@@ -67,7 +73,7 @@ void EnlazadoDoble::BuscarListaDoble(string & carnet){
         while (actual!=NULL){
             if(actual->carnet==carnet){
                 cout<<"Nodo encontrado :"<<actual->carnet<<endl;
-                encontrado = true;
+                return true;
             }
             actual = actual->siguiente;
         }

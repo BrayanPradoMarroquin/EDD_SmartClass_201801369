@@ -5,18 +5,21 @@
 #include <string>
 #include "CircularDoble.h"
 #include "NodoEnlazadoDoble.h"
+#include "EnlazadoDoble.h"
 using namespace std;
 
 #ifndef PROYECTO_UNICO_INTENTO_2_ANALIZADORES_H
 #define PROYECTO_UNICO_INTENTO_2_ANALIZADORES_H
-ListaCircularDoble Alumnos;
+ListaCircularDoble *Alumnos = new ListaCircularDoble();
+EnlazadoDoble *TareasLinealizadas = new EnlazadoDoble();
 
 string Cont = "";
 int Estado=0, EstadoTarea=0, EstadoTareaAuxiliar=0;
 int contador = 0; //activa el contador
-string Datos[8];
+string Datos[8], DatoTarea[9];
 NodoEnlazadoDoble* Matriz[5][30][8];
-string DatoTarea[9];
+
+//[0][0][0] = NULL pero es del tipo NodoEnlazadoDoble
 
 //ANALIZADOR DE ALUMNOS
 void Analisis_Alumno(char &i);
@@ -147,7 +150,7 @@ void Analisis_Alumno(char &caracter) {
             Cont = "";
             contador = 0;
             Estado=1;
-            Alumnos.insertarNodo(Datos[0], Datos[1], Datos[2], Datos[3], Datos[4], Datos[5],Datos[6], Datos[7]);
+            Alumnos->insertarNodo(Datos[0], Datos[1], Datos[2], Datos[3], Datos[4], Datos[5],Datos[6], Datos[7]);
         }else{
             Cont = Cont + caracter;
         }
@@ -160,8 +163,8 @@ void Analizador_Tarea(string entrada){
     for (int i=0; i<entrada.size(); i++){
         int Assci = entrada[i];
         if(Assci == 10 && EstadoTarea==0){
-            Estado = 1;
-        }else if(Estado>0){
+            EstadoTarea = 1;
+        }else if(EstadoTarea>0){
             contadorID = Analisis_Tarea(entrada[i], contadorID);
 
         }
@@ -306,18 +309,31 @@ int Analisis_Tarea(char &caracter, int& contadorID) {
                 //ListaErrores.insert();
                 cout<<"ERRORES "<<endl;
             }else{
-                Matriz[Posm][atoi(DatoTarea[1].c_str())-1][Posh]->Id = contadorID++;
-                Matriz[Posm][atoi(DatoTarea[1].c_str())-1][Posh]->carnet = DatoTarea[3];
-                Matriz[Posm][atoi(DatoTarea[1].c_str())-1][Posh]->Nombre = DatoTarea[4];
-                Matriz[Posm][atoi(DatoTarea[1].c_str())-1][Posh]->Descripcion = DatoTarea[5];
-                Matriz[Posm][atoi(DatoTarea[1].c_str())-1][Posh]->Hora = DatoTarea[6];
-                Matriz[Posm][atoi(DatoTarea[1].c_str())-1][Posh]->Fecha = DatoTarea[7];
-                Matriz[Posm][atoi(DatoTarea[1].c_str())-1][Posh]->Estado = DatoTarea[8];
+                //cout<<DatoTarea[3]<<" "<<DatoTarea[4]<<DatoTarea[5]<<" "<<DatoTarea[6]<<endl;
+                NodoEnlazadoDoble *aux = new NodoEnlazadoDoble();
+                aux->Id = contadorID++;
+                aux->carnet = DatoTarea[3];
+                aux->Nombre = DatoTarea[4];
+                aux->Descripcion = DatoTarea[5];
+                aux->Hora = DatoTarea[6];
+                aux->Fecha = DatoTarea[7];
+                aux->Estado = DatoTarea[8];
+                //remplazar el NULL por el auxiliar
+                Matriz[Posm][atoi(DatoTarea[1].c_str())-1][Posh] = aux;
             }
         }
     }
 }
 
+void llenadomatriz(){
+    for (int i=0; i<5; i++){
+        for (int j = 0; j < 30; ++j) {
+            for (int k = 0; k < 8; ++k) {
+
+            }
+        }
+    }
+}
 
 char Fechador(char &caracter){ // YYYY/MM/DD
     int Assci = caracter;

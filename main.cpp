@@ -8,12 +8,10 @@
 using namespace std;
 
 //Area de Declaraciones Globales
-string ruta_Alumno;
-string ruta_Tareas;
+string ruta_Alumno, ruta_Tareas;
 ifstream Archivo_Alumno;
 ifstream Archivo_Tarea;
-string Entrada_Alumno;
-string Entrada_Tarea;
+string Entrada_Alumno, Entrada_Tarea;
 
 //Carga de Metodos
 int cargaUsuario(){
@@ -41,12 +39,12 @@ int cargaUsuario(){
                 cin>>Contra;
                 cin>>Creditos;
                 cin>>Edad;
-                Alumnos.insertarNodo(carnet, DPI, Nombre, Carrera, Contra, Creditos, Edad, Correo);
+                Alumnos->insertarNodo(carnet, DPI, Nombre, Carrera, Contra, Creditos, Edad, Correo);
                 break;
                 case 2:
                     cout<<"Modificar Datos"<<endl;
                     cin>>carnet;
-                    Alumnos.modificarNodo(carnet);
+                    Alumnos->modificarNodo(carnet);
                     break;
                     case 3:
                         cout<<"Eliminar Datos"<<endl;
@@ -54,7 +52,7 @@ int cargaUsuario(){
                         cout<<"¿Esta seguro que desea eliminar el dato con carnet: "<<carnet<<", elija SI o NO"<<endl;
                         cin>>eliminacion;
                         if(eliminacion=="SI"){
-                            Alumnos.EliminarNodo(carnet);
+                            Alumnos->EliminarNodo(carnet);
                         }else if(eliminacion=="NO"){
                             cout<<"\n El dato no a sido eliminado "<<endl;
                         }

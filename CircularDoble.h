@@ -20,7 +20,12 @@ public:
     void modificarNodo(string& carnet);
     void EliminarNodo(string&);
     void GraficarLista();
+    ListaCircularDoble();
 };
+ListaCircularDoble::ListaCircularDoble() {
+    this->primero = NULL;
+    this->ultimo = NULL;
+}
 
 void ListaCircularDoble::insertarNodo(string& carnet, string& DPI, string& Nombre, string& Carrera, string& Contra, string& Creditos, string& Edad, string& Correo){
     NodoCircularDoble* nuevo = new NodoCircularDoble();
@@ -32,6 +37,8 @@ void ListaCircularDoble::insertarNodo(string& carnet, string& DPI, string& Nombr
     nuevo->Creditos = Creditos;
     nuevo->Edad = Edad;
     nuevo->Correo = Correo;
+
+    cout<<nuevo->carnet;
 
     if (primero==NULL){
         primero = nuevo;
@@ -46,6 +53,10 @@ void ListaCircularDoble::insertarNodo(string& carnet, string& DPI, string& Nombr
         primero->atras = ultimo;
     }
     cout<<"\n Nodo Ingresado \n";
+}
+
+void ListaCircularDoble::desplegarLista(){
+
 }
 
 /*void ListaCircularDoble::desplegarLista(){
@@ -183,5 +194,6 @@ void ListaCircularDoble::EliminarNodo(string& carnet){
 
     }
 }
+
 
 #endif //PROYECTO_CIRCULARDOBLE_H
