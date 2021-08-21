@@ -15,7 +15,7 @@ class EnlazadoDoble{
         NodoEnlazadoDoble* ultimo;
 
     public:
-    void InsertarNodoDoble(string&, string&, string&, string&, string&, string&, string&);
+    void InsertarNodoDoble(string&, string&, string&, string&, string&, string&, int&);
     void DesplegarListaDoble();
     bool BuscarListaDoble(string&);
     void ModificarListaDoble(string &);
@@ -28,14 +28,14 @@ EnlazadoDoble::EnlazadoDoble(){
     this->ultimo = NULL;
 }
 
-void EnlazadoDoble::InsertarNodoDoble(string& carnet, string& nombre, string& descripcion, string& fecha, string& hora, string& estado, string& ID){
+void EnlazadoDoble::InsertarNodoDoble(string& carnet, string& nombre, string& descripcion, string& fecha, string& hora, string& estado, int& ID){
     NodoEnlazadoDoble* nuevo = new NodoEnlazadoDoble();
     nuevo->Id = ID;
     nuevo->carnet = carnet;
     nuevo->Nombre = nombre;
     nuevo->Descripcion = descripcion;
     nuevo->Fecha = fecha;
-    nuevo->Hora = hora;
+    nuevo->Materia = hora;
     nuevo->Estado = estado;
 
     if (primero==NULL){
@@ -56,8 +56,8 @@ void EnlazadoDoble::DesplegarListaDoble(){
     actual = primero;
     if (primero!=NULL){
         while (actual!=NULL){
-            cout<<actual->carnet<<" la Tarea es: "<<actual->Nombre<<" y descripcion: "<<actual->Descripcion<<endl;
-            cout<<actual->Fecha<<" a las. "<<actual->Hora<<" y el estado es: "<<actual->Estado<<endl;
+            cout<<actual->Id<<" --> "<<actual->carnet<<" la Tarea es: "<<actual->Nombre<<" y descripcion: "<<actual->Descripcion<<endl;
+            cout<<actual->Fecha<<" del curso: "<<actual->Materia<<" y el estado es: "<<actual->Estado<<endl;
             actual = actual->siguiente;
         }
     }else{
@@ -110,7 +110,8 @@ void EnlazadoDoble::ModificarListaDoble(string& carnet){
 void EnlazadoDoble::EliminarListaDoble(string & carnet){
     NodoEnlazadoDoble* actual = new NodoEnlazadoDoble();
     actual = primero;
-    nodo* anterior = new nodo();
+    NodoEnlazadoDoble* anterior = new NodoEnlazadoDoble();
+    NodoEnlazadoDoble* borrador = new NodoEnlazadoDoble();
     anterior = NULL;
     bool encontrado = false;
     if (primero!=NULL){
@@ -118,14 +119,20 @@ void EnlazadoDoble::EliminarListaDoble(string & carnet){
             if(actual->carnet==carnet){
                 cout<<actual->carnet<<endl;
                 if (actual==primero){
+                    borrador = actual;
                     primero = primero->siguiente;
                     primero->atras = NULL;
+                    delete borrador;
                 }else if (actual==ultimo){
+                    borrador = actual;
                     anterior->siguiente = NULL;
                     ultimo = anterior;
+                    delete borrador;
                 }else{
+                    borrador = actual;
                     anterior->siguiente = actual->siguiente;
                     actual->siguiente->atras = anterior;
+                    delete borrador;
                 }
                 cout<<"Dato eliminado \n";
                 encontrado = true;

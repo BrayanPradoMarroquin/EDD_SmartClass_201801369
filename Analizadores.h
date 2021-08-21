@@ -17,7 +17,7 @@ string Cont = "";
 int Estado=0, EstadoTarea=0, EstadoTareaAuxiliar=0;
 int contador = 0; //activa el contador
 string Datos[8], DatoTarea[9];
-NodoEnlazadoDoble* Matriz[5][30][8];
+NodoEnlazadoDoble* Matriz[5][30][9];
 
 //[0][0][0] = NULL pero es del tipo NodoEnlazadoDoble
 
@@ -166,9 +166,9 @@ void Analizador_Tarea(string entrada){
             EstadoTarea = 1;
         }else if(EstadoTarea>0){
             contadorID = Analisis_Tarea(entrada[i], contadorID);
-
         }
     }
+
 }
 //MES, DIA, HORA
 int Analisis_Tarea(char &caracter, int& contadorID) {
@@ -305,6 +305,7 @@ int Analisis_Tarea(char &caracter, int& contadorID) {
                 Descripcion = "Se encontro un error en el dia ingresado [fuera de rango]";
             }
 
+            cout<<Posm<<" - "<<atoi(DatoTarea[1].c_str())-1<<" - "<<Posh<<endl;
             if (Posm==-1 || Posh==-1 || Posd==-1){
                 //ListaErrores.insert();
                 cout<<"ERRORES "<<endl;
@@ -315,7 +316,7 @@ int Analisis_Tarea(char &caracter, int& contadorID) {
                 aux->carnet = DatoTarea[3];
                 aux->Nombre = DatoTarea[4];
                 aux->Descripcion = DatoTarea[5];
-                aux->Hora = DatoTarea[6];
+                aux->Materia = DatoTarea[6];
                 aux->Fecha = DatoTarea[7];
                 aux->Estado = DatoTarea[8];
                 //remplazar el NULL por el auxiliar
@@ -326,13 +327,34 @@ int Analisis_Tarea(char &caracter, int& contadorID) {
 }
 
 void llenadomatriz(){
+
+    NodoEnlazadoDoble *aux = new NodoEnlazadoDoble();
+    aux->carnet = "-1";
     for (int i=0; i<5; i++){
         for (int j = 0; j < 30; ++j) {
-            for (int k = 0; k < 8; ++k) {
-
+            for (int k = 0; k < 9; ++k) {
+                if (Matriz[i][j][k]==NULL){
+                    Matriz[i][j][k] = aux;
+                }
             }
         }
     }
+}
+
+void Linealizar(){
+
+    for (int i = 0; i < 5; ++i) {
+        for (int j = 0; j < 30; ++j) {
+            for (int k = 0; k < 9; ++k) {
+                int Id;
+                Id= i+5*(j+30*k);
+                TareasLinealizadas->InsertarNodoDoble(Matriz[i][j][k]->carnet, Matriz[i][j][k]->Nombre, Matriz[i][j][k]->Descripcion, Matriz[i][j][k]->Fecha, Matriz[i][j][k]->Materia, Matriz[i][j][k]->Estado,
+                                                      Id);
+                //cout<<"Tarea Ingresada"<<endl;
+            }
+        }
+    }
+    TareasLinealizadas->DesplegarListaDoble();
 }
 
 char Fechador(char &caracter){ // YYYY/MM/DD

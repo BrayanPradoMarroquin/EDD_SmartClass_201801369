@@ -56,7 +56,38 @@ void ListaCircularDoble::insertarNodo(string& carnet, string& DPI, string& Nombr
 }
 
 void ListaCircularDoble::desplegarLista(){
+    NodoCircularDoble *actual = new NodoCircularDoble();
+    actual = primero;
+    string datos = "", puntero = "";
+    string grafico = "digraph List {\nrankdir=LR;\nnode [shape = circle, color=black , style=filled, fillcolor=gray93];\n";
+    while (actual->siguiente!=primero){
+        datos += "Nodo" + actual->DPI + "[label=\"" + actual->Nombre +"\"];\n";
+        if (actual!=primero ){
+            puntero += "Nodo"+actual->atras->DPI+ "->Node" + actual->DPI + ";\n";
+            puntero += "Nodo"+actual->DPI+ "->Node" + actual->atras->DPI + ";\n";
+        }
+        actual = actual->siguiente;
+    }
+    grafico += datos;
+    grafico += puntero;
+    grafico += "\n}";
+    try {
+        ofstream file;
+        file.open("Graph.dot",std::ios::out);
 
+        if(file.fail()){
+            exit(1);
+        }
+
+        file<<grafico;
+        file.close();
+        string command = "dot -Tpng  Graph.dot -o  Graph.png";
+        system(command.c_str());
+    }catch (exception e){
+        cout << "Nel no se pudo :)";
+    }
+
+    delete actual;
 }
 
 /*void ListaCircularDoble::desplegarLista(){
@@ -194,6 +225,5 @@ void ListaCircularDoble::EliminarNodo(string& carnet){
 
     }
 }
-
 
 #endif //PROYECTO_CIRCULARDOBLE_H

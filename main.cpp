@@ -43,11 +43,13 @@ int cargaUsuario(){
                 break;
                 case 2:
                     cout<<"Modificar Datos"<<endl;
+                    cout<<"Ingrese en DPI del alumno: "<<endl;
                     cin>>carnet;
                     Alumnos->modificarNodo(carnet);
                     break;
                     case 3:
                         cout<<"Eliminar Datos"<<endl;
+                        cout<<"Ingrese en DPI del alumno: "<<endl;
                         cin>>carnet;
                         cout<<"¿Esta seguro que desea eliminar el dato con carnet: "<<carnet<<", elija SI o NO"<<endl;
                         cin>>eliminacion;
@@ -148,9 +150,11 @@ int Reportes(){
         {
             case 1:
                 //Menu_Usuario=false;
+                Alumnos->desplegarLista();
                 cout<<"Listado Generado"<<endl;
                 break;
                 case 2:
+                    TareasLinealizadas->DesplegarListaDoble();
                     cout<<"Tareas Creadas"<<endl;
                     break;
                     case 3:
@@ -186,6 +190,7 @@ string Ruta_Tareas_Abrir(string ruta){
 
     if (Archivo_Tarea.fail()){
         cout<<"Archivo no Valido, ingrese otro"<<endl;
+        return "ERROR";
     }
 
     while (!Archivo_Tarea.eof()){
@@ -227,7 +232,11 @@ int main(){
                     cout<<"Ingrese la ruta de las Tareas: "<<endl;
                     cin>>ruta_Tareas;
                     Entrada_Tarea = Ruta_Tareas_Abrir(ruta_Tareas);
-                    Analizador_Tarea(Entrada_Tarea);
+                    if (Entrada_Tarea!="ERROR"){
+                    	Analizador_Tarea(Entrada_Tarea);	
+                    }
+                    llenadomatriz();
+                    Linealizar();
                     break;
                     case 3:
                         menu1=false;

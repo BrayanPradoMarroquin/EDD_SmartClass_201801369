@@ -10,12 +10,12 @@ using namespace std;
 
 class NodoEnlazadoDoble{
     public:
-        string Id;
+        int Id;
         string carnet;
         string Nombre;
         string Descripcion;
         string Fecha;
-        string Hora;
+        string Materia; //Materia
         string Estado;
 
         NodoEnlazadoDoble* siguiente;
@@ -23,29 +23,30 @@ class NodoEnlazadoDoble{
 
     public:
         NodoEnlazadoDoble();
-        NodoEnlazadoDoble(string Id, string carnet, string Nombre, string Descripcion, string Fecha, string Hora, string Estado);
+        NodoEnlazadoDoble(int Id, string carnet, string Nombre, string Descripcion, string Fecha, string Hora, string Estado);
 };
 
 NodoEnlazadoDoble::NodoEnlazadoDoble() {
-    this->Id = "";
+    this->Id = 0;
     this->carnet ="";
     this->Nombre="";
     this->Descripcion="";
+
     this->Fecha="";
-    this->Hora="";
+    this->Materia="";
     this->Estado="";
     this->siguiente=NULL;
     this->atras=NULL;
 }
 
-NodoEnlazadoDoble::NodoEnlazadoDoble(string Id, string carnet, string Nombre, string Descripcion, string Fecha,
+NodoEnlazadoDoble::NodoEnlazadoDoble(int Id, string carnet, string Nombre, string Descripcion, string Fecha,
                                      string Hora, string Estado) {
     this->Id = Id;
     this->carnet =carnet;
     this->Nombre=Nombre;
     this->Descripcion=Descripcion;
     this->Fecha=Fecha;
-    this->Hora=Hora;
+    this->Materia=Hora;
     this->Estado=Estado;
 
     this->siguiente=NULL;
