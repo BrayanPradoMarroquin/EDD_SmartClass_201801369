@@ -412,8 +412,9 @@ void Linealizar(){
     for (int i = 0; i < 5; ++i) {
         for (int j = 0; j < 30; ++j) {
             for (int k = 0; k < 9; ++k) {
+                //identificador = Parseodia(dia)+30*(ParseoHora(hora)+9*ParseoMes(mes));
                 int Id;
-                Id= i+5*(j+30*k);
+                Id= j+30*(k+9*i);
                 TareasLinealizadas->InsertarNodoDoble(Matriz[i][j][k]->carnet, Matriz[i][j][k]->Nombre, Matriz[i][j][k]->Descripcion, Matriz[i][j][k]->Fecha, Matriz[i][j][k]->Materia, Matriz[i][j][k]->Estado,
                                                       Id);
                 //cout<<"Tarea Ingresada"<<endl;

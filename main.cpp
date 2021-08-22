@@ -153,7 +153,7 @@ int cargaTareas(){
                 cin>>Dia;
                 cout<<"Ingrese la Hora: "<<endl;
                 cin>>Hora;
-                Identificador = ParseoMes(Mes)+5*(Parseodia(Dia)+30*ParseoHora(Hora));
+                Identificador = Parseodia(Dia)+30*(ParseoHora(Hora)+9*ParseoMes(Mes));
                 Actividad = "NUEVO";
                 TareasLinealizadas->ModificarListaDoble(Identificador, Actividad);
                 break;
@@ -251,7 +251,7 @@ int Reportes(){
                         cin>>dia;
                         cout<<"Hora";
                         cin>>hora;
-                        identificador = ParseoMes(mes)+5*(Parseodia(dia)+30*ParseoHora(hora));
+                        identificador = Parseodia(dia)+30*(ParseoHora(hora)+9*ParseoMes(mes));
                         Actividad = "TERCERO";
                         TareasLinealizadas->BuscarListaDoble(identificador, Actividad);
                         Menu_Usuario = false;
@@ -264,7 +264,8 @@ int Reportes(){
                             cin>>dia;
                             cout<<"Hora: "<<endl;
                             cin>>hora;
-                            identificador = ParseoMes(mes)+5*(Parseodia(dia)+30*ParseoHora(hora));
+                            identificador = Parseodia(dia)+30*(ParseoHora(hora)+9*ParseoMes(mes));
+                            //identificador = ParseoMes(mes)+5*(Parseodia(dia)+30*ParseoHora(hora));
                             Actividad = "CUARTO";
                             TareasLinealizadas->BuscarListaDoble(identificador, Actividad);
                             Menu_Usuario = false;
