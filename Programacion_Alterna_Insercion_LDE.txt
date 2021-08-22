@@ -1,0 +1,15 @@
+if (nuevo->id < actual->id){
+	if (actual->anterior== NULL){
+		nuevo->siguiente = actual;
+		actual->anterior = nuevo;
+		nuevo->anterior = NULL;
+	}else{
+		actual->anterior->siguiente = nuevo;
+		nuevo->siguiente = actual;
+		nuevo->anterior = actual->anterior;
+		actual->anterior = nuevo;
+}else{
+	actual->siguiente = nuevo;
+	nuevo->anterior = actual;
+	nuevo->siguiente = NULL;
+}
