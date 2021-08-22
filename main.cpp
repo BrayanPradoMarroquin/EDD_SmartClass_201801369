@@ -80,6 +80,7 @@ int cargaUsuario(){
     return true;
 }
 
+//Paarseo de Meses
 int ParseoMes(int mes){
     if (mes==7){ //Mes
         return 0;
@@ -95,7 +96,7 @@ int ParseoMes(int mes){
         return -1;
     }
 }
-
+//Paarseo de de dias
 int Parseodia(int dia){
     if(dia>0 && dia<=30){ //dia
         return dia-1;
@@ -103,7 +104,7 @@ int Parseodia(int dia){
         return -1;
     }
 }
-
+//Paarseo de horas
 int ParseoHora(int hora){
     if (hora==8){ //Hora
         return 0;
@@ -234,7 +235,7 @@ int Reportes(){
         {
             case 1:
                 Menu_Usuario=false;
-                //Alumnos->desplegarLista();
+                Alumnos->desplegarLista();
                 cout<<"Listado Generado"<<endl;
                 break;
                 case 2:
@@ -268,9 +269,17 @@ int Reportes(){
                             TareasLinealizadas->BuscarListaDoble(identificador, Actividad);
                             Menu_Usuario = false;
                             break;
-                            case 5:
-                                cout<<"SE GENERO UN ARCHIVO"<<endl;
-                                case 6:
+            case 5:
+                Errores->DesplegarListaDoble();
+                break;
+                            case 6:
+                                if (Errores->vacio()){
+                                    cout<<"SE GENERO UN ARCHIVO"<<endl;
+                                } else{
+                                    cout<<"NO SE PUEDE GENERAR EL ARCHIVO, EXISTEN ERRORES"<<endl;
+                                }
+                                break;
+                                case 7:
                                     Menu_Usuario = false;
                                     break;
                                     default:

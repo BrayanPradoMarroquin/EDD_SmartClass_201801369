@@ -58,30 +58,39 @@ void ListaCircularDoble::insertarNodo(string& carnet, string& DPI, string& Nombr
 void ListaCircularDoble::desplegarLista(){
     NodoCircularDoble *actual = new NodoCircularDoble();
     actual = primero;
-    string datos = "", puntero = "";
-    string grafico = "digraph List {\nrankdir=LR;\nnode [shape = circle, color=black , style=filled, fillcolor=gray93];\n";
-    while (actual->siguiente!=primero){
-        datos += "Nodo" + actual->DPI + "[label=\"" + actual->Nombre +"\"];\n";
-        if (actual!=primero ){
-            puntero += "Nodo"+actual->atras->DPI+ "->Node" + actual->DPI + ";\n";
-            puntero += "Nodo"+actual->DPI+ "->Node" + actual->atras->DPI + ";\n";
+    string data = "";
+    string pointer = "";
+    int counter = 1;
+    string graph = "digraph List {\nrankdir=LR;\nnode [shape = circle, color=black , style=filled, fillcolor=gray93];\n";
+    do{
+        data += "Node" + to_string(counter) + "[label=\"" + actual->Nombre +"\"];\n";
+        if (actual != primero){
+            pointer += "Node" + to_string(counter-1) + "->Node" + to_string(counter) + ";\n";
+            pointer += "Node" + to_string(counter) + "->Node" + to_string(counter-1) + ";\n";
         }
+        counter ++;
         actual = actual->siguiente;
-    }
-    grafico += datos;
-    grafico += puntero;
-    grafico += "\n}";
+    }while(actual != primero);
+    pointer += "Node" + to_string(counter-1) + "->Node1" + ";\n";
+    pointer += "Node1->Node" + to_string(counter-1) + ";\n";
+
+    graph += data;
+    graph += pointer;
+    graph += "\n}";
+
     try {
+        string path = "Student";
+
         ofstream file;
-        file.open("Graph.dot",std::ios::out);
+        file.open(path + "Graph.dot",std::ios::out);
 
         if(file.fail()){
             exit(1);
         }
 
-        file<<grafico;
+        file<<graph;
         file.close();
-        string command = "dot -Tpng  Graph.dot -o  Graph.png";
+        string command = "dot -Tpng " + path + "Graph.dot -o  " + path + "Graph.png";
         system(command.c_str());
     }catch (exception e){
         cout << "Nel no se pudo :)";

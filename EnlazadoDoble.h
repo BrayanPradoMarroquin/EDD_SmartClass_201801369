@@ -19,12 +19,21 @@ public:
     void DesplegarListaDoble();
     void BuscarListaDoble(int&, string&);
     void ModificarListaDoble(int&, string&);
+    bool vacio();
     EnlazadoDoble();
 };
 
 EnlazadoDoble::EnlazadoDoble(){
     this->primero = NULL;
     this->ultimo = NULL;
+}
+
+bool EnlazadoDoble::vacio(){
+    if(primero==NULL){
+        return true;
+    } else{
+        return false;
+    }
 }
 
 //METODO INTERNO DE INGRESO DE DATOS
@@ -74,30 +83,8 @@ void EnlazadoDoble::BuscarListaDoble(int& identificador, string& Reporte){
     if (primero!=NULL){
         while (actual!=NULL){
             if(actual->Id==identificador){
-                cout<<"Tarea encontrada con Id:"<<actual->Id<<endl<<endl;
                 if(Reporte=="TERCERO"){
-                    string grafico = "digraph List {\nrankdir=LR;\nnode [shape = circle, color=black , style=filled, fillcolor=gray93];\n";
-                    string datos = "Node"+ to_string(actual->Id)  + "[label=\"Identificador: " + to_string(actual->Id) + "\\n Nombre: "+actual->Nombre+"\\n Descripcion: "+actual->Descripcion+"\\n Estado de ejecucion: "+actual->Estado+"\"];\n";
-                    grafico += datos;
-                    grafico +="\n}";
-                    try {
-                        ofstream file;
-                        file.open("Consulta.dot",std::ios::out);
-
-                        if(file.fail()){
-                            exit(1);
-                        }
-
-                        file<<grafico;
-                        file.close();
-                        string command = "dot -Tpng  Consulta.dot -o  Consulta.png";
-                        system(command.c_str());
-                        cout<<"Se genero la Tarea"<<endl;
-                        encontrado = true;
-                    }catch (exception e){
-                        cout << "Nel no se pudo :)";
-                    }
-
+                    cout<<"Identificador de la tarea: "<<actual->Id<<endl;
                 }else if(Reporte=="CUARTO"){
                     cout<<"Identificador: "<<actual->Id<<endl;
                     cout<<"Estudiante: "<<actual->carnet<<endl;

@@ -12,14 +12,14 @@ using namespace std;
 #define PROYECTO_UNICO_INTENTO_2_ANALIZADORES_H
 ListaCircularDoble *Alumnos = new ListaCircularDoble();
 EnlazadoDoble *TareasLinealizadas = new EnlazadoDoble();
+EnlazadoDoble *Errores = new EnlazadoDoble();
 
-string Cont = "";
+string Cont = "", Tipo="", Descripcion="", vacio="";
 int Estado=0, EstadoTarea=0, EstadoTareaAuxiliar=0;
-int contador = 0; //activa el contador
+int contador = 0, ContadorErrores = 0; //activa el contador
 string Datos[8], DatoTarea[9];
 NodoEnlazadoDoble* Matriz[5][30][9];
 
-//[0][0][0] = NULL pero es del tipo NodoEnlazadoDoble
 
 //ANALIZADOR DE ALUMNOS
 void Analisis_Alumno(char &i);
@@ -47,6 +47,10 @@ void Analisis_Alumno(char &caracter) {
             if (contador<=9){ //concatena y aumenta 1
                 Cont = Cont + caracter;
             }else{
+                Tipo="Alumno";
+                Descripcion = "carnet no valido";
+                ContadorErrores++;
+                Errores->InsertarNodoDoble(vacio, Tipo, Descripcion, vacio, vacio,vacio, ContadorErrores);
                 Estado = 0;
                 Cont = "";
             }
@@ -55,6 +59,13 @@ void Analisis_Alumno(char &caracter) {
             contador = 0;
             Cont = "";
             Estado=2;
+        } else{
+            Tipo="Alumno";
+            Descripcion = "carnet no valido";
+            ContadorErrores++;
+            Errores->InsertarNodoDoble(vacio, Tipo, Descripcion, vacio, vacio,vacio, ContadorErrores);
+            Estado = 0;
+            Cont = "";
         }
     }else if(Estado==2){ // para el DPI
         int Assci = caracter; //pasar a Ascci
@@ -63,6 +74,10 @@ void Analisis_Alumno(char &caracter) {
             if (contador<=13){ //concatena y aumenta 1
                 Cont = Cont + caracter;
             }else{
+                Tipo="Alumno";
+                Descripcion = "DPI no valido";
+                ContadorErrores++;
+                Errores->InsertarNodoDoble(vacio, Tipo, Descripcion, vacio, vacio,vacio, ContadorErrores);
                 Estado = 0;
                 Cont = "";
                 contador = 0;
@@ -73,11 +88,15 @@ void Analisis_Alumno(char &caracter) {
             contador = 0;
             Estado=3;
         }else{
+            Tipo="Alumno";
+            Descripcion = "DPI no valido";
+            ContadorErrores++;
+            Errores->InsertarNodoDoble(vacio, Tipo, Descripcion, vacio, vacio,vacio, ContadorErrores);
             Estado = 0;
             Cont = "";
             contador = 0;
         }
-    }else if(Estado==3){
+    }else if(Estado==3){ //NOMBRE DEL ISHTO
         int Assci = caracter; //pasar a Ascci
         if ((Assci>=97 && Assci<=122) || (Assci>=65 && Assci<=90) || (Assci==32)){ //Letras y espacios
             Cont = Cont + caracter;
@@ -87,11 +106,15 @@ void Analisis_Alumno(char &caracter) {
             contador = 0;
             Estado=4;
         }else{
+            Tipo="Alumno";
+            Descripcion = "Nombre no valido";
+            ContadorErrores++;
+            Errores->InsertarNodoDoble(vacio, Tipo, Descripcion, vacio, vacio,vacio, ContadorErrores);
             Estado = 0;
             Cont = "";
             contador = 0;
         }
-    }else if(Estado == 4){
+    }else if(Estado == 4){ //Carrera del patojo
         int Assci = caracter; //pasar a Ascci
         if ((Assci>=97 && Assci<=122) || (Assci>=65 && Assci<=90) || (Assci==32)){ //Letras y espacios
             Cont = Cont + caracter;
@@ -101,11 +124,15 @@ void Analisis_Alumno(char &caracter) {
             contador = 0;
             Estado=5;
         }else{
+            Tipo="Alumno";
+            Descripcion = "la Carrera contiene simbolos anormales";
+            ContadorErrores++;
+            Errores->InsertarNodoDoble(vacio, Tipo, Descripcion, vacio, vacio,vacio, ContadorErrores);
             Estado = 0;
             Cont = "";
             contador = 0;
         }
-    }else if(Estado==5){
+    }else if(Estado==5){ //Contraseña
         int Assci = caracter; //pasar a Ascci
         if(Assci==44){
             Datos[4] = Cont;
@@ -115,7 +142,7 @@ void Analisis_Alumno(char &caracter) {
         }else{
             Cont = Cont + caracter;
         }
-    }else if(Estado==6){
+    }else if(Estado==6){ //Creditos
         int Assci = caracter; //pasar a Ascci
         if (Assci >= 48 && Assci<=57){ //validar si es un numero
             Cont = Cont + caracter;
@@ -125,6 +152,10 @@ void Analisis_Alumno(char &caracter) {
             contador = 0;
             Estado=7;
         }else{
+            Tipo="Alumno";
+            Descripcion = "Los creditos solo aceptan solo digitos";
+            ContadorErrores++;
+            Errores->InsertarNodoDoble(vacio, Tipo, Descripcion, vacio, vacio,vacio, ContadorErrores);
             Estado = 0;
             Cont = "";
             contador = 0;
@@ -139,6 +170,10 @@ void Analisis_Alumno(char &caracter) {
             contador = 0;
             Estado=8;
         }else{
+            Tipo="Alumno";
+            Descripcion = "Las edades solo aceptan solo digitos";
+            ContadorErrores++;
+            Errores->InsertarNodoDoble(vacio, Tipo, Descripcion, vacio, vacio,vacio, ContadorErrores);
             Estado = 0;
             Cont = "";
             contador = 0;
@@ -180,6 +215,12 @@ int Analisis_Tarea(char &caracter, int& contadorID) {
             EstadoTarea = 2;
             DatoTarea[0] = Cont;
             Cont = "";
+        }else{
+            Tipo="Tarea";
+            Descripcion = "Los meses no son en letras -> [7-11]";
+            ContadorErrores++;
+            Errores->InsertarNodoDoble(vacio, Tipo, Descripcion, vacio, vacio,vacio, ContadorErrores);
+
         }
     } else if (EstadoTarea==2){ //DIA
         if (Assci>=48 && Assci<=57){ //0,1,2,3
@@ -188,6 +229,11 @@ int Analisis_Tarea(char &caracter, int& contadorID) {
             EstadoTarea = 3;
             DatoTarea[1] = Cont;
             Cont = "";
+        }else{
+            Tipo="Tarea";
+            Descripcion = "Los dias no son en letras -> [1-30]";
+            ContadorErrores++;
+            Errores->InsertarNodoDoble(vacio, Tipo, Descripcion, vacio, vacio,vacio, ContadorErrores);
         }
     } else if (EstadoTarea==3){ //HORAS
         if (Assci>=48 && Assci<=57){ //0,1
@@ -196,6 +242,11 @@ int Analisis_Tarea(char &caracter, int& contadorID) {
             EstadoTarea = 4;
             DatoTarea[2] = Cont;
             Cont = "";
+        }else{
+            Tipo="Tarea";
+            Descripcion = "Las horas no son en letras -> [8-16]";
+            ContadorErrores++;
+            Errores->InsertarNodoDoble(vacio, Tipo, Descripcion, vacio, vacio,vacio, ContadorErrores);
         }
     } else if(EstadoTarea==4){ //CARNET'S
         if (Assci >= 48 && Assci<=57){ //validar si es un numero
@@ -203,6 +254,10 @@ int Analisis_Tarea(char &caracter, int& contadorID) {
             if (contador<=9){ //concatena y aumenta 1
                 Cont = Cont + caracter;
             }else{
+                Tipo="Tarea";
+                Descripcion = "El carnet no es valido";
+                ContadorErrores++;
+                Errores->InsertarNodoDoble(vacio, Tipo, Descripcion, vacio, vacio,vacio, ContadorErrores);
                 EstadoTarea = 0;
                 Cont = "";
             }
@@ -211,6 +266,13 @@ int Analisis_Tarea(char &caracter, int& contadorID) {
             contador = 0;
             Cont = "";
             EstadoTarea=5;
+        }else{
+            Tipo="Tarea";
+            Descripcion = "Los meses no son en letras -> [7-11]";
+            ContadorErrores++;
+            Errores->InsertarNodoDoble(vacio, Tipo, Descripcion, vacio, vacio,vacio, ContadorErrores);
+            EstadoTarea = 0;
+            Cont = "";
         }
     } else if(EstadoTarea==5){ //nombre
         if(Assci==44){
@@ -308,9 +370,13 @@ int Analisis_Tarea(char &caracter, int& contadorID) {
             cout<<Posm<<" - "<<atoi(DatoTarea[1].c_str())-1<<" - "<<Posh<<endl;
             if (Posm==-1 || Posh==-1 || Posd==-1){
                 //ListaErrores.insert();
-                cout<<"ERRORES "<<endl;
+                cout<<"ERRORES";
+                Tipo="Tarea";
+                ContadorErrores++;
+                Errores->InsertarNodoDoble(vacio, Tipo, Descripcion, vacio, vacio,vacio, ContadorErrores);
             }else{
                 //cout<<DatoTarea[3]<<" "<<DatoTarea[4]<<DatoTarea[5]<<" "<<DatoTarea[6]<<endl;
+                cout<<DatoTarea[7];
                 NodoEnlazadoDoble *aux = new NodoEnlazadoDoble();
                 aux->Id = contadorID++;
                 aux->carnet = DatoTarea[3];
@@ -366,6 +432,10 @@ char Fechador(char &caracter){ // YYYY/MM/DD
             if (contador<=4){ //concatena y aumenta 1
                 return caracter;
             }else{
+                Tipo="Tarea";
+                Descripcion = "Los años son 4 digitos, revise";
+                ContadorErrores++;
+                Errores->InsertarNodoDoble(vacio, Tipo, Descripcion, vacio, vacio,vacio, ContadorErrores);
                 Estado = 0;
                 Cont = "";
             }
@@ -379,6 +449,10 @@ char Fechador(char &caracter){ // YYYY/MM/DD
             if (contador<=2){ //concatena y aumenta 1
                 return caracter;
             }else{
+                Tipo="Tarea";
+                Descripcion = "Los meses son 2 digitos, revise";
+                ContadorErrores++;
+                Errores->InsertarNodoDoble(vacio, Tipo, Descripcion, vacio, vacio,vacio, ContadorErrores);
                 Estado = 0;
                 Cont = "";
             }
@@ -392,6 +466,10 @@ char Fechador(char &caracter){ // YYYY/MM/DD
             if (contador<=2){ //concatena y aumenta 1
                 return caracter;
             }else{
+                Tipo="Tarea";
+                Descripcion = "Los dias son 2 digitos, revise";
+                ContadorErrores++;
+                Errores->InsertarNodoDoble(vacio, Tipo, Descripcion, vacio, vacio,vacio, ContadorErrores);
                 Estado = 0;
                 Cont = "";
             }

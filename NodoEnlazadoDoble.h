@@ -10,13 +10,13 @@ using namespace std;
 
 class NodoEnlazadoDoble{
 public:
-    int Id;
-    string carnet;
-    string Nombre;
-    string Descripcion;
-    string Fecha;
-    string Materia; //Materia
-    string Estado;
+    int Id; //Identificador de Errores
+    string carnet; //Tipo
+    string Nombre; //Descripcion
+    string Descripcion; //""
+    string Fecha; //""
+    string Materia; //Materia -> ""
+    string Estado; //""
 
     NodoEnlazadoDoble* siguiente;
     NodoEnlazadoDoble* atras;
