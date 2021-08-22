@@ -14,6 +14,8 @@ ifstream Archivo_Tarea;
 string Entrada_Alumno, Entrada_Tarea;
 
 //Carga de Metodos
+
+//Ingreso Manual de los Alumnos
 int cargaUsuario(){
     bool Menu_Usuario=true;
     int eleccion;
@@ -31,13 +33,21 @@ int cargaUsuario(){
                 Menu_Usuario=false;
                 cout<<"Ingresar Datos"<<endl;
                 cout<<"Ingrese los datos que contendra el nuevo Nodo: \n";
+                cout<<"Carnet: "<<endl;
                 cin>>carnet;
+                cout<<"DPI: "<<endl;
                 cin>>DPI;
-                cin>>Nombre;
-                cin>>Carrera;
-                cin>>Correo;
-                cin>>Contra;
+                cout<<"Nombre Completo: "<<endl;
+                getline(cin>>ws, Nombre);
+                cout<<"Carrera: "<<endl;
+                getline(cin>>ws, Carrera);
+                cout<<"Correo Electronico: "<<endl;
+                cin>> Correo;
+                cout<<"Contrasenia: "<<endl;
+                getline(cin>>ws, Contra);
+                cout<<"Creditos: "<<endl;
                 cin>>Creditos;
+                cout<<"Edad: "<<endl;
                 cin>>Edad;
                 Alumnos->insertarNodo(carnet, DPI, Nombre, Carrera, Contra, Creditos, Edad, Correo);
                 break;
@@ -70,9 +80,59 @@ int cargaUsuario(){
     return true;
 }
 
+int ParseoMes(int mes){
+    if (mes==7){ //Mes
+        return 0;
+    }else if(mes==8){
+        return 1;
+    }else if(mes==9){
+        return  2;
+    }else if(mes==10){
+        return  3;
+    }else if(mes==11){
+        return 4;
+    }else {
+        return -1;
+    }
+}
+
+int Parseodia(int dia){
+    if(atoi(DatoTarea[1].c_str())>0 && atoi(DatoTarea[1].c_str())<=30){ //dia
+        return dia-1;
+    }else{
+        return -1;
+    }
+}
+
+int ParseoHora(int hora){
+    if (hora==8){ //Hora
+        return 0;
+    }else if(hora==9){
+        return 1;
+    }else if(hora==10){
+        return 2;
+    }else if(hora==11){
+        return 3;
+    }else if(hora==12){
+        return 4;
+    }else if(hora==13){
+        return 5;
+    }else if(hora==14){
+        return 6;
+    }else if(hora==15){
+        return 7;
+    }else if(hora==16){
+        return 8;
+    }else {
+        return -1;
+    }
+}
+
+//Ingreso Manual de las Tareas
 int cargaTareas(){
     bool Menu_Usuario=true;
-    int eleccion;
+    int eleccion, Mes, Dia, Hora, Identificador;
+    string Actividad;
 
     while (Menu_Usuario==true){
         cout<<"\n************** Tareas ***************"<<endl;
@@ -86,12 +146,30 @@ int cargaTareas(){
             case 1:
                 Menu_Usuario=false;
                 cout<<"Ingresar Datos"<<endl;
+                cout<<"Ingrese el Numero del Mes"<<endl;
+                cin>>Mes;
+                cout<<"Ingrese el dia: "<<endl;
+                cin>>Dia;
+                cout<<"Ingrese la Hora: "<<endl;
+                cin>>Hora;
+                Identificador = ParseoMes(Mes)+5*(Parseodia(Dia)+30*ParseoHora(Hora));
+                Actividad = "NUEVO";
+                TareasLinealizadas->ModificarListaDoble(Identificador, Actividad);
                 break;
                 case 2:
                     cout<<"Modificar Datos"<<endl;
+                    cout<<"ingrese el Identificador de la Tarea: "<<endl;
+                    cin>>Identificador;
+                    Actividad = "MODIFICAR";
+                    TareasLinealizadas->ModificarListaDoble(Identificador, Actividad);
                     break;
                     case 3:
                         cout<<"Eliminar Datos"<<endl;
+
+                        cout<<"ingrese el Identificador de la Tarea: "<<endl;
+                        cin>>Identificador;
+                        Actividad = "ELIMINAR";
+                        TareasLinealizadas->ModificarListaDoble(Identificador, Actividad);
                         break;
                         case 4:
                             Menu_Usuario = false;
@@ -105,6 +183,7 @@ int cargaTareas(){
     return true;
 }
 
+//Menu de los Ingresos Manuales
 int Manual(){
     bool Menu_Usuario=true;
     int eleccion;
@@ -136,28 +215,62 @@ int Manual(){
     return true;
 }
 
+//Menu de los Resportes (INACTIVO POR EL MOMENTO)
 int Reportes(){
     bool Menu_Usuario=true;
-    int eleccion;
+    int eleccion, mes, dia, hora, identificador;
+    string Actividad;
 
     while (Menu_Usuario==true){
         cout<<"\n************** Reportes **************"<<endl;
         cout<<"**** 1- Lista de Usuarios ************"<<endl;
         cout<<"**** 2- Linealizacion de Tareas ******"<<endl;
-        cout<<"**** 3- Salir ************************"<<endl;
+        cout<<"**** 3- Busqueda Linealizada *********"<<endl;
+        cout<<"**** 4- Busqueda de Posicion *********"<<endl;
+        cout<<"**** 5- Generar Archivo **************"<<endl;
+        cout<<"**** 6- Salir ************************"<<endl;
         cout<<"Ingrese un una opcion: "; cin>>eleccion;
         switch (eleccion)
         {
             case 1:
-                //Menu_Usuario=false;
-                Alumnos->desplegarLista();
+                Menu_Usuario=false;
+                //Alumnos->desplegarLista();
                 cout<<"Listado Generado"<<endl;
                 break;
                 case 2:
                     TareasLinealizadas->DesplegarListaDoble();
                     cout<<"Tareas Creadas"<<endl;
+                    Menu_Usuario = false;
                     break;
-                    case 3:
+            case 3:
+                cout<<"Ingrese los datos que se Solicitan"<<endl;
+                cout<<"Numero del Mes";
+                cin>>mes;
+                cout<<"Dia";
+                cin>>dia;
+                cout<<"Hora";
+                cin>>hora;
+                identificador = ParseoMes(mes)+5*(Parseodia(dia)+30*ParseoHora(hora));
+                Actividad = "TERCERO";
+                TareasLinealizadas->BuscarListaDoble(identificador, Actividad);
+                Menu_Usuario = false;
+                break;
+            case 4:
+                cout<<"Ingrese los datos que se Solicitan"<<endl;
+                cout<<"Numero del Mes: "<<endl;
+                cin>>mes;
+                cout<<"Dia: "<<endl;
+                cin>>dia;
+                cout<<"Hora: "<<endl;
+                cin>>hora;
+                identificador = ParseoMes(mes)+5*(Parseodia(dia)+30*ParseoHora(hora));
+                Actividad = "CUARTO";
+                TareasLinealizadas->BuscarListaDoble(identificador, Actividad);
+                Menu_Usuario = false;
+                break;
+            case 5:
+                cout<<"SE GENERO UN ARCHIVO"<<endl;
+                    case 6:
                         Menu_Usuario = false;
                         break;
                         default:
@@ -168,12 +281,14 @@ int Reportes(){
     return true;
 }
 
+//Entrada del Archivo de Alumnos
 string Ruta_Alumnos_Abrir(string ruta){
     string text, concatenado;
     Archivo_Alumno.open(ruta.c_str(), ios::in);
 
     if (Archivo_Alumno.fail()){
         cout<<"Archivo no Valido, ingrese otro"<<endl;
+        concatenado = "NO";
     }
 
     while (!Archivo_Alumno.eof()){
@@ -184,13 +299,14 @@ string Ruta_Alumnos_Abrir(string ruta){
     return concatenado;
 }
 
+//Entrada del Archivo de Tareas
 string Ruta_Tareas_Abrir(string ruta){
     string text, concatenado;
     Archivo_Tarea.open(ruta.c_str(), ios::in);
 
     if (Archivo_Tarea.fail()){
         cout<<"Archivo no Valido, ingrese otro"<<endl;
-        return "ERROR";
+        concatenado = "NO";
     }
 
     while (!Archivo_Tarea.eof()){
@@ -201,6 +317,7 @@ string Ruta_Tareas_Abrir(string ruta){
     return concatenado;
 }
 
+//Menu Principal
 int main(){
     bool menu1=true;
     int eleccion;
@@ -224,7 +341,9 @@ int main(){
                 cout<<"Ingrese la ruta de los Alumnos: "<<endl;
                 cin>>ruta_Alumno;
                 Entrada_Alumno = Ruta_Alumnos_Abrir(ruta_Alumno);
-                Analizador_Alumnos(Entrada_Alumno);
+                if (Entrada_Tarea!="NO"){
+                    Analizador_Alumnos(Entrada_Alumno);
+                }
                 break;
                 case 2:
                     //menu1=false;
@@ -232,11 +351,11 @@ int main(){
                     cout<<"Ingrese la ruta de las Tareas: "<<endl;
                     cin>>ruta_Tareas;
                     Entrada_Tarea = Ruta_Tareas_Abrir(ruta_Tareas);
-                    if (Entrada_Tarea!="ERROR"){
-                    	Analizador_Tarea(Entrada_Tarea);	
+                    if (Entrada_Tarea!="NO"){
+                    	Analizador_Tarea(Entrada_Tarea);
+                        llenadomatriz();
+                        Linealizar();
                     }
-                    llenadomatriz();
-                    Linealizar();
                     break;
                     case 3:
                         menu1=false;

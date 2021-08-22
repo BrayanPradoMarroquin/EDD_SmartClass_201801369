@@ -19,7 +19,6 @@ public:
     bool buscarNodo(string& carnet);
     void modificarNodo(string& carnet);
     void EliminarNodo(string&);
-    void GraficarLista();
     ListaCircularDoble();
 };
 ListaCircularDoble::ListaCircularDoble() {
@@ -90,46 +89,6 @@ void ListaCircularDoble::desplegarLista(){
     delete actual;
 }
 
-/*void ListaCircularDoble::desplegarLista(){
-    NodoCircularDoble* actual = new NodoCircularDoble();
-    actual = primero;
-    FILE *Archivo;
-    Archivo = fopen("grafo.dot","w+");
-    fprintf(Archivo, "digraph G { \\n");
-    string cont ="";
-    string rec = "";
-    if(primero!=NULL){
-        do{
-            if(actual==primero){
-                cont = cont +actual->carnet+"[label=\""+"Carnet: "+ actual->carnet+"\\n Nombre: "+ actual->Nombre+" \\n DPI: "+actual->DPI+"\\n";
-                cont = cont +" Carrera: "+ actual->Carrera+"\\n Password: "+actual->Password+"\\n Creditos: "+actual->Creditos+"\\n Edad: "+actual->Edad+" \\n Correo: "+actual->Correo+"\"] \\n";
-                actual = actual->siguiente;
-            }else if(actual!=primero && actual!=ultimo){
-                cont = cont +actual->carnet+"[label=\""+"Carnet: "+ actual->carnet+"\\n Nombre: "+ actual->Nombre+" \\n DPI: "+actual->DPI+"\\n";
-                cont = cont +" Carrera: "+ actual->Carrera+"\\n Password: "+actual->Password+"\\n Creditos: "+actual->Creditos+"\\n Edad: "+actual->Edad+" \\n Correo: "+actual->Correo+"\"] \\n";
-                rec = actual->atras->carnet+"<->"+actual->carnet;
-                actual = actual->siguiente;
-            }else if(actual==ultimo){
-                cont = cont +actual->carnet+"[label=\""+"Carnet: "+ actual->carnet+"\\n Nombre: "+ actual->Nombre+" \\n DPI: "+actual->DPI+"\\n";
-                cont = cont +" Carrera: "+ actual->Carrera+"\\n Password: "+actual->Password+"\\n Creditos: "+actual->Creditos+"\\n Edad: "+actual->Edad+" \\n Correo: "+actual->Correo+"\"] \\n";
-                rec = actual->carnet+"<->"+actual->siguiente->carnet;
-                actual = actual->siguiente;
-            }
-            fprintf(Archivo, cont);
-            if(rec!=""){
-                fprintf(Archivo, rec);
-                rec="";
-            }
-        }while(actual!=primero);
-        fprintf(Archivo,"}");
-        fclose(Archivo);
-        system("dot grafo.dot -o Reporte_Alumno.jpg -Tjpg -Grankdir=TB && xdg-open Reporte_Alumno.jpg");
-    }else{
-        cout<<"\n La lista se Encuentra Vacia \n";
-
-    }
-}
-*/
 bool ListaCircularDoble::buscarNodo(string& carnet){
     NodoCircularDoble* actual = new NodoCircularDoble();
     actual = primero;
@@ -160,17 +119,23 @@ void ListaCircularDoble::modificarNodo(string& carnet){
             if(actual->DPI==carnet){
                 cout<<"\n Nodo con el dato: "<<carnet<<" Encontrado\n";
                 cout<<"\n Ingrese el carnet: \n";
-                cin>>actual->carnet;
+                getline(cin>>ws, actual->carnet);
+                //cin>>actual->carnet;
                 cout<<"\n Ingrese el DPI: \n";
-                cin>>actual->DPI;
+                getline(cin>>ws, actual->DPI);
+                //cin>>actual->DPI;
                 cout<<"\n Ingrese el Nombre: \n";
-                cin>>actual->Nombre;
+                getline(cin>>ws, actual->Nombre);
+                //cin>>actual->Nombre;
                 cout<<"\n Ingrese la Carrera: \n";
-                cin>>actual->Carrera;
+                getline(cin>>ws, actual->Carrera);
+                //cin>>actual->Carrera;
                 cout<<"\n Ingrese la Contraseña: \n";
-                cin>>actual->Password;
+                getline(cin>>ws, actual->Password);
+                //cin>>actual->Password;
                 cout<<"\n Ingrese los Creditos: \n";
-                cin>>actual->Creditos;
+                getline(cin>>ws, actual->Creditos);
+                //cin>>actual->Creditos;
                 cout<<"\n Ingrese la Edad: \n";
                 cin>>actual->Edad;
                 cout<<"\n Ingrese el Correo electronico: \n";

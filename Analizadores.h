@@ -354,7 +354,8 @@ void Linealizar(){
             }
         }
     }
-    TareasLinealizadas->DesplegarListaDoble();
+    cout<<"LINEALIZACION COMPLETADA"<<endl;
+    //TareasLinealizadas->DesplegarListaDoble();
 }
 
 char Fechador(char &caracter){ // YYYY/MM/DD
