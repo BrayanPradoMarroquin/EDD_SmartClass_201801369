@@ -3,6 +3,7 @@
 //
 #include <string>
 #include <iostream>
+#include "EnlazadoDoble.h"
 using namespace std;
 
 #ifndef PROYECTO_UNICO_INTENTO_2_NODOCIRCULARDOBLE_H
@@ -18,6 +19,8 @@ public:
     string Password;
     string Creditos;
     string Edad;
+    EnlazadoDoble *ListaTareas = new EnlazadoDoble();
+    EnlazadoDoble *tareas = ListaTareas;
 
     NodoCircularDoble* siguiente;
     NodoCircularDoble* atras;

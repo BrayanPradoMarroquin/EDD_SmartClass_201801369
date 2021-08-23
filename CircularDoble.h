@@ -4,6 +4,7 @@
 #include <iostream>
 #include <String>
 #include "NodoCircularDoble.h"
+#include "NodoEnlazadoDoble.h"
 using namespace std;
 
 #ifndef PROYECTO_CIRCULARDOBLE_H
@@ -20,6 +21,10 @@ public:
     void modificarNodo(string& carnet);
     void EliminarNodo(string&);
     ListaCircularDoble();
+
+    void AgregarTarea(string &carnet, NodoEnlazadoDoble *datos);
+
+    void desplegarListaAlternativa();
 };
 
 ListaCircularDoble::ListaCircularDoble() {
@@ -110,7 +115,7 @@ bool ListaCircularDoble::buscarNodo(string& carnet){
             actual = actual->siguiente;
         }while(actual!=primero && encontrado!= true);
         if (!encontrado){
-            cout<<"\n Nodo no encontrado \n";
+            return false;
         }
     }else{
         cout<<"\n La lista se Encuentra Vacia \n";
@@ -199,4 +204,41 @@ void ListaCircularDoble::EliminarNodo(string& carnet){
     }
 }
 
+void ListaCircularDoble::AgregarTarea(string& carnet, NodoEnlazadoDoble *datos){
+    NodoCircularDoble* actual = new NodoCircularDoble();
+    actual = primero;
+    bool encontrado = false;
+    if(primero!=NULL){
+        do{
+            if(actual->carnet==carnet){
+                //cout<<"\n Nodo con el dato: "<<carnet<<" Encontrado\n";
+                actual->tareas->InsertarNodoDoble(datos->carnet, datos->Nombre, datos->Descripcion, datos->Fecha, datos->Materia, datos->Estado, datos->Id);
+            }
+            actual = actual->siguiente;
+        }while(actual!=primero && encontrado!= true);
+        if (!encontrado){
+            cout<<"\n Nodo no encontrado \n";
+        }
+    }else{
+        cout<<"\n La lista se Encuentra Vacia \n";
+
+    }
+}
+
+void ListaCircularDoble::desplegarListaAlternativa(){
+    NodoCircularDoble* actual = new NodoCircularDoble();
+    actual = primero;
+    if(primero!=NULL){
+        do{
+            cout<<"\n"<<actual->Nombre<<" con DPI "<<actual->DPI<<" y carnet "<<actual->carnet<<endl;
+            cout<<"\n Carrera: "<<actual->Carrera<<", Password: "<<actual->Password<<", Creditos: "<<actual->Creditos<<", Edad: "<<actual->Edad<<" y Correo: "<<actual->Correo<<endl;
+            actual->tareas->DesplegarListaDoble();
+            cout<<"\n \n \n";
+            actual = actual->siguiente;
+        }while(actual!=primero);
+    }else{
+        cout<<"\n La lista se Encuentra Vacia \n";
+
+    }
+}
 #endif //PROYECTO_CIRCULARDOBLE_H

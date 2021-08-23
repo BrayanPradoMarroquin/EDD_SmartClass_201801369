@@ -229,7 +229,8 @@ int Reportes(){
         cout<<"**** 3- Busqueda Linealizada *********"<<endl;
         cout<<"**** 4- Busqueda de Posicion *********"<<endl;
         cout<<"**** 5- Generar Archivo **************"<<endl;
-        cout<<"**** 6- Salir ************************"<<endl;
+        cout<<"**** 6- Lista de Erroes **************"<<endl;
+        cout<<"**** 7- Salir ************************"<<endl;
         cout<<"Ingrese un una opcion: "; cin>>eleccion;
         switch (eleccion)
         {
@@ -270,10 +271,10 @@ int Reportes(){
                             TareasLinealizadas->BuscarListaDoble(identificador, Actividad);
                             Menu_Usuario = false;
                             break;
-            case 5:
+            case 6:
                 Errores->DesplegarListaDoble();
                 break;
-                            case 6:
+                            case 5:
                                 if (Errores->vacio()){
                                     cout<<"SE GENERO UN ARCHIVO"<<endl;
                                 } else{

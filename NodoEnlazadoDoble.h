@@ -18,6 +18,7 @@ public:
     string Materia; //Materia -> ""
     string Estado; //""
 
+
     NodoEnlazadoDoble* siguiente;
     NodoEnlazadoDoble* atras;
 

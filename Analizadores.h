@@ -16,6 +16,7 @@ EnlazadoDoble *Errores = new EnlazadoDoble();
 
 string Cont = "", Tipo="", Descripcion="", vacio="";
 int Estado=0, EstadoTarea=0, EstadoTareaAuxiliar=0;
+bool encontrarCarnet = false;
 int contador = 0, ContadorErrores = 0; //activa el contador
 string Datos[8], DatoTarea[9];
 NodoEnlazadoDoble* Matriz[5][30][9];
@@ -47,10 +48,11 @@ void Analisis_Alumno(char &caracter) {
             if (contador<=9){ //concatena y aumenta 1
                 Cont = Cont + caracter;
             }else{
+                Cont = Cont + " - " + caracter;
                 Tipo="Alumno";
                 Descripcion = "carnet no valido";
                 ContadorErrores++;
-                Errores->InsertarNodoDoble(vacio, Tipo, Descripcion, vacio, vacio,vacio, ContadorErrores);
+                Errores->InsertarNodoDoble(Cont, Tipo, Descripcion, vacio, vacio,vacio, ContadorErrores);
                 Estado = 0;
                 Cont = "";
             }
@@ -59,13 +61,6 @@ void Analisis_Alumno(char &caracter) {
             contador = 0;
             Cont = "";
             Estado=2;
-        } else{
-            Tipo="Alumno";
-            Descripcion = "carnet no valido";
-            ContadorErrores++;
-            Errores->InsertarNodoDoble(vacio, Tipo, Descripcion, vacio, vacio,vacio, ContadorErrores);
-            Estado = 0;
-            Cont = "";
         }
     }else if(Estado==2){ // para el DPI
         int Assci = caracter; //pasar a Ascci
@@ -74,10 +69,11 @@ void Analisis_Alumno(char &caracter) {
             if (contador<=13){ //concatena y aumenta 1
                 Cont = Cont + caracter;
             }else{
+                Cont = Cont + " - " + caracter;
                 Tipo="Alumno";
                 Descripcion = "DPI no valido";
                 ContadorErrores++;
-                Errores->InsertarNodoDoble(vacio, Tipo, Descripcion, vacio, vacio,vacio, ContadorErrores);
+                Errores->InsertarNodoDoble(Cont, Tipo, Descripcion, vacio, vacio,vacio, ContadorErrores);
                 Estado = 0;
                 Cont = "";
                 contador = 0;
@@ -88,10 +84,11 @@ void Analisis_Alumno(char &caracter) {
             contador = 0;
             Estado=3;
         }else{
+            Cont = Cont + " - " + caracter;
             Tipo="Alumno";
             Descripcion = "DPI no valido";
             ContadorErrores++;
-            Errores->InsertarNodoDoble(vacio, Tipo, Descripcion, vacio, vacio,vacio, ContadorErrores);
+            Errores->InsertarNodoDoble(Cont, Tipo, Descripcion, vacio, vacio,vacio, ContadorErrores);
             Estado = 0;
             Cont = "";
             contador = 0;
@@ -106,10 +103,11 @@ void Analisis_Alumno(char &caracter) {
             contador = 0;
             Estado=4;
         }else{
+            Cont = Cont + " - " + caracter;
             Tipo="Alumno";
             Descripcion = "Nombre no valido";
             ContadorErrores++;
-            Errores->InsertarNodoDoble(vacio, Tipo, Descripcion, vacio, vacio,vacio, ContadorErrores);
+            Errores->InsertarNodoDoble(Cont, Tipo, Descripcion, vacio, vacio,vacio, ContadorErrores);
             Estado = 0;
             Cont = "";
             contador = 0;
@@ -124,10 +122,11 @@ void Analisis_Alumno(char &caracter) {
             contador = 0;
             Estado=5;
         }else{
+            Cont = Cont + " - " + caracter;
             Tipo="Alumno";
             Descripcion = "la Carrera contiene simbolos anormales";
             ContadorErrores++;
-            Errores->InsertarNodoDoble(vacio, Tipo, Descripcion, vacio, vacio,vacio, ContadorErrores);
+            Errores->InsertarNodoDoble(Cont, Tipo, Descripcion, vacio, vacio,vacio, ContadorErrores);
             Estado = 0;
             Cont = "";
             contador = 0;
@@ -152,10 +151,11 @@ void Analisis_Alumno(char &caracter) {
             contador = 0;
             Estado=7;
         }else{
+            Cont = Cont + " - " + caracter;
             Tipo="Alumno";
             Descripcion = "Los creditos solo aceptan solo digitos";
             ContadorErrores++;
-            Errores->InsertarNodoDoble(vacio, Tipo, Descripcion, vacio, vacio,vacio, ContadorErrores);
+            Errores->InsertarNodoDoble(Cont, Tipo, Descripcion, vacio, vacio,vacio, ContadorErrores);
             Estado = 0;
             Cont = "";
             contador = 0;
@@ -170,10 +170,11 @@ void Analisis_Alumno(char &caracter) {
             contador = 0;
             Estado=8;
         }else{
+            Cont = Cont + " - " + caracter;
             Tipo="Alumno";
             Descripcion = "Las edades solo aceptan solo digitos";
             ContadorErrores++;
-            Errores->InsertarNodoDoble(vacio, Tipo, Descripcion, vacio, vacio,vacio, ContadorErrores);
+            Errores->InsertarNodoDoble(Cont, Tipo, Descripcion, vacio, vacio,vacio, ContadorErrores);
             Estado = 0;
             Cont = "";
             contador = 0;
@@ -195,6 +196,7 @@ void Analisis_Alumno(char &caracter) {
 //ANALIZADOR DE LAS TAREAS
 void Analizador_Tarea(string entrada){
     int contadorID = 0;
+    contador=0;
     for (int i=0; i<entrada.size(); i++){
         int Assci = entrada[i];
         if(Assci == 10 && EstadoTarea==0){
@@ -215,6 +217,8 @@ int Analisis_Tarea(char &caracter, int& contadorID) {
             EstadoTarea = 2;
             DatoTarea[0] = Cont;
             Cont = "";
+        }else if(Assci==10){
+            EstadoTarea=0;
         }else{
             Tipo="Tarea";
             Descripcion = "Los meses no son en letras -> [7-11]";
@@ -262,17 +266,11 @@ int Analisis_Tarea(char &caracter, int& contadorID) {
                 Cont = "";
             }
         }else if(Assci==44 && contador==9){
+            encontrarCarnet = Alumnos->buscarNodo(Cont);
             DatoTarea[3] = Cont;
             contador = 0;
             Cont = "";
             EstadoTarea=5;
-        }else{
-            Tipo="Tarea";
-            Descripcion = "Los meses no son en letras -> [7-11]";
-            ContadorErrores++;
-            Errores->InsertarNodoDoble(vacio, Tipo, Descripcion, vacio, vacio,vacio, ContadorErrores);
-            EstadoTarea = 0;
-            Cont = "";
         }
     } else if(EstadoTarea==5){ //nombre
         if(Assci==44){
@@ -368,15 +366,17 @@ int Analisis_Tarea(char &caracter, int& contadorID) {
             }
 
             cout<<Posm<<" - "<<atoi(DatoTarea[1].c_str())-1<<" - "<<Posh<<endl;
-            if (Posm==-1 || Posh==-1 || Posd==-1){
+            if (Posm==-1 || Posh==-1 || Posd==-1 || encontrarCarnet==false){
                 //ListaErrores.insert();
                 cout<<"ERRORES";
                 Tipo="Tarea";
+                if (!encontrarCarnet){
+                    Descripcion = "El alumno no existe para poder asignarle la tarea";
+                }
                 ContadorErrores++;
                 Errores->InsertarNodoDoble(vacio, Tipo, Descripcion, vacio, vacio,vacio, ContadorErrores);
             }else{
                 //cout<<DatoTarea[3]<<" "<<DatoTarea[4]<<DatoTarea[5]<<" "<<DatoTarea[6]<<endl;
-                cout<<DatoTarea[7];
                 NodoEnlazadoDoble *aux = new NodoEnlazadoDoble();
                 aux->Id = contadorID++;
                 aux->carnet = DatoTarea[3];
@@ -385,6 +385,7 @@ int Analisis_Tarea(char &caracter, int& contadorID) {
                 aux->Materia = DatoTarea[6];
                 aux->Fecha = DatoTarea[7];
                 aux->Estado = DatoTarea[8];
+                Alumnos->AgregarTarea(aux->carnet, aux);
                 //remplazar el NULL por el auxiliar
                 Matriz[Posm][atoi(DatoTarea[1].c_str())-1][Posh] = aux;
             }
@@ -442,6 +443,7 @@ char Fechador(char &caracter){ // YYYY/MM/DD
             }
         } else if(Assci==47 && contador==4){
             EstadoTareaAuxiliar=1;
+            contador=0;
             return caracter;
         }
     } else if(EstadoTareaAuxiliar==1){ // MESES/
@@ -459,6 +461,7 @@ char Fechador(char &caracter){ // YYYY/MM/DD
             }
         } else if(Assci==47 && contador==2){
             EstadoTareaAuxiliar=2;
+            contador=0;
             return caracter;
         }
     } else if(EstadoTareaAuxiliar==2){
