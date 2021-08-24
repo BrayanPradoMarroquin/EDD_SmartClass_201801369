@@ -279,7 +279,7 @@ int Reportes(){
                 break;
                             case 5:
                                 if (Errores->vacio()){
-                                    GenerarArchivo(Alumnos);
+                                    Alumnos->GenerarArchivo();
                                     cout<<"SE GENERO UN ARCHIVO"<<endl;
                                 } else{
                                     cout<<"NO SE PUEDE GENERAR EL ARCHIVO, EXISTEN ERRORES"<<endl;

@@ -1,0 +1,48 @@
+NodoEstudiante{
+	EnlazadoDoble listatareas = new EnlazadoDoble();
+	tareas = listatareas;
+}
+
+
+bool BuscarEstudiante(){
+
+	return condicion;
+}
+
+void Agregartarea(string carnet, string lista[9]){
+	NodoEstudiante *actual = new NodoEstudiante();
+	actual = primero;
+	do{
+		if(actual->carnet==carnet){
+			actual->tareas->ingresarNodo(parametros lista);
+		}
+	actual = actual->siguiente;
+	}while(actual!=primero);
+}
+
+bool condicion = BuscarEstudiante();
+
+
+if (Posm==-1 || Posh==-1 || Posd==-1 || condicion==false){
+                //ListaErrores.insert();
+                cout<<"ERRORES";
+                Tipo="Tarea";
+                ContadorErrores++;
+                Errores->InsertarNodoDoble(vacio, Tipo, Descripcion, vacio, vacio,vacio, ContadorErrores);
+            }else{
+                //cout<<DatoTarea[3]<<" "<<DatoTarea[4]<<DatoTarea[5]<<" "<<DatoTarea[6]<<endl;
+                cout<<DatoTarea[7];
+		Alumnos->Agregartarea(DatoTarea[3], DatoTarea);
+                NodoEnlazadoDoble *aux = new NodoEnlazadoDoble();
+                aux->Id = contadorID++;
+                aux->carnet = DatoTarea[3];
+                aux->Nombre = DatoTarea[4];
+                aux->Descripcion = DatoTarea[5];
+                aux->Materia = DatoTarea[6];
+                aux->Fecha = DatoTarea[7];
+                aux->Estado = DatoTarea[8];
+                //remplazar el NULL por el auxiliar
+                Matriz[Posm][atoi(DatoTarea[1].c_str())-1][Posh] = aux;
+            }
+
+
