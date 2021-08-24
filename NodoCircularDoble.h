@@ -3,7 +3,7 @@
 //
 #include <string>
 #include <iostream>
-#include "EnlazadoDoble.h"
+#include "EnlazadoDoble.h" //Lista Enlazada Doble
 using namespace std;
 
 #ifndef PROYECTO_UNICO_INTENTO_2_NODOCIRCULARDOBLE_H

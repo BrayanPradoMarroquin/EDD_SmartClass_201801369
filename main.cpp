@@ -5,6 +5,7 @@
 #include <locale.h>
 #include <windows.h>
 #include "Analizadores.h"
+#include "Salida.h"
 using namespace std;
 
 //Area de Declaraciones Globales
@@ -240,7 +241,8 @@ int Reportes(){
                 cout<<"Listado Generado"<<endl;
                 break;
                 case 2:
-                    TareasLinealizadas->DesplegarListaDoble();
+                    Actividad="TAREAS";
+                    TareasLinealizadas->DesplegarListaDoble(Actividad);
                     cout<<"Tareas Creadas"<<endl;
                     Menu_Usuario = false;
                     break;
@@ -272,10 +274,12 @@ int Reportes(){
                             Menu_Usuario = false;
                             break;
             case 6:
-                Errores->DesplegarListaDoble();
+                Actividad="ERROR";
+                Errores->DesplegarListaDoble(Actividad);
                 break;
                             case 5:
                                 if (Errores->vacio()){
+                                    GenerarArchivo(Alumnos);
                                     cout<<"SE GENERO UN ARCHIVO"<<endl;
                                 } else{
                                     cout<<"NO SE PUEDE GENERAR EL ARCHIVO, EXISTEN ERRORES"<<endl;

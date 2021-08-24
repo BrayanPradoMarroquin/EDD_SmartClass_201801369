@@ -25,6 +25,8 @@ public:
     void AgregarTarea(string &carnet, NodoEnlazadoDoble *datos);
 
     void desplegarListaAlternativa();
+
+    void GenerarArchivo();
 };
 
 ListaCircularDoble::ListaCircularDoble() {
@@ -68,7 +70,7 @@ void ListaCircularDoble::desplegarLista(){
     int counter = 1;
     string graph = "digraph List {\nrankdir=LR;\nnode [shape = circle, color=black , style=filled, fillcolor=gray93];\n";
     do{
-        data += "Node" + to_string(counter) + "[label=\"" + actual->Nombre +"\"];\n";
+        data += "Node" + to_string(counter) + "[label=\" Carnet: "+ actual->carnet +"\\n DPI: "+ actual->DPI +"\\n Nombre: "+ actual->Nombre + "\\n Edad: " + actual->Edad + "\\n Carrera: " + actual->Carrera + "\\n Creditos: " + actual->Creditos + "\\n Correo Electronico: " + actual->Correo + "\\n Contrasenia: " + actual->Password + "\"];\n";
         if (actual != primero){
             pointer += "Node" + to_string(counter-1) + "->Node" + to_string(counter) + ";\n";
             pointer += "Node" + to_string(counter) + "->Node" + to_string(counter-1) + ";\n";
@@ -84,10 +86,10 @@ void ListaCircularDoble::desplegarLista(){
     graph += "\n}";
 
     try {
-        string path = "Student";
+        string path = "Estudiante";
 
         ofstream file;
-        file.open(path + "Graph.dot",std::ios::out);
+        file.open(path + "Reporte.dot",std::ios::out);
 
         if(file.fail()){
             exit(1);
@@ -95,10 +97,10 @@ void ListaCircularDoble::desplegarLista(){
 
         file<<graph;
         file.close();
-        string command = "dot -Tpng " + path + "Graph.dot -o  " + path + "Graph.png";
+        string command = "dot -Tpng " + path + "Reporte.dot -o  " + path + "Reporte.png";
         system(command.c_str());
     }catch (exception e){
-        cout << "Nel no se pudo :)";
+        cout << "Error detectado, no se pudo generar el Reporte solicitado";
     }
 }
 
@@ -232,13 +234,52 @@ void ListaCircularDoble::desplegarListaAlternativa(){
         do{
             cout<<"\n"<<actual->Nombre<<" con DPI "<<actual->DPI<<" y carnet "<<actual->carnet<<endl;
             cout<<"\n Carrera: "<<actual->Carrera<<", Password: "<<actual->Password<<", Creditos: "<<actual->Creditos<<", Edad: "<<actual->Edad<<" y Correo: "<<actual->Correo<<endl;
-            actual->tareas->DesplegarListaDoble();
+            //actual->tareas->DesplegarListaDoble();
             cout<<"\n \n \n";
             actual = actual->siguiente;
         }while(actual!=primero);
     }else{
         cout<<"\n La lista se Encuentra Vacia \n";
 
+    }
+}
+
+void ListaCircularDoble::GenerarArchivo(){
+    NodoCircularDoble *generador = new NodoCircularDoble();
+    generador = primero;
+    string data = "", pointer = "";
+    data += "¿Elements?";
+    do {
+        pointer += "¿element type=\"user\"?";
+        pointer += "¿item Carnet = \""+generador->carnet+"\" $? \n";
+        pointer += "¿item DPI = \""+generador->DPI+"\" $? \n";
+        pointer += "¿item Nombre = \""+generador->Nombre+"\" $? \n";
+        pointer += "¿item Carrera = \""+generador->Carrera+"\" $? \n";
+        pointer += "¿item Password = \""+generador->Password+"\" $? \n";
+        pointer += "¿item Creditos = \""+generador->Creditos+"\" $? \n";
+        pointer += "¿item Edad = \""+generador->Edad+"\" $? \n";
+        pointer += "¿$ element? \n";
+        if (!generador->tareas->vacio()){
+            pointer += generador->tareas->Retorno();
+        }
+        generador = generador->siguiente;
+    } while (generador == primero);
+    pointer += "¿$Elements? \n";
+    data += pointer;
+
+    try {
+
+        ofstream file;
+        file.open("Estudiante.txt",std::ios::out);
+
+        if(file.fail()){
+            exit(1);
+        }
+
+        file<<data;
+        file.close();
+    }catch (exception e){
+        cout << "Error detectado, no se pudo generar el Archivo solicitado";
     }
 }
 #endif //PROYECTO_CIRCULARDOBLE_H

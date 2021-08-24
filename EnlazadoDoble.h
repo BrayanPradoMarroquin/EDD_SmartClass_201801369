@@ -16,11 +16,13 @@ private:
 
 public:
     void InsertarNodoDoble(string&, string&, string&, string&, string&, string&, int&);
-    void DesplegarListaDoble();
+    void DesplegarListaDoble(string&);
     void BuscarListaDoble(int&, string&);
     void ModificarListaDoble(int&, string&);
     bool vacio();
     EnlazadoDoble();
+
+    string Retorno();
 };
 
 EnlazadoDoble::EnlazadoDoble(){
@@ -61,17 +63,60 @@ void EnlazadoDoble::InsertarNodoDoble(string& carnet, string& nombre, string& de
 }
 
 //GENERADOR DE REPORTE GENERAL
-void EnlazadoDoble::DesplegarListaDoble(){
+void EnlazadoDoble::DesplegarListaDoble(string& Actividad){
     NodoEnlazadoDoble* actual = new NodoEnlazadoDoble();
     actual = primero;
-    if (primero!=NULL){
-        while (actual!=NULL){
-            cout<<actual->Id<<" --> "<<actual->carnet<<" la Tarea es: "<<actual->Nombre<<" y descripcion: "<<actual->Descripcion<<endl;
-            cout<<actual->Fecha<<" del curso: "<<actual->Materia<<" y el estado es: "<<actual->Estado<<endl;
-            actual = actual->siguiente;
+    string data = "", path = "";
+    string pointer = "";
+    int counter = 1;
+    string graph = "digraph List {\nrankdir=LR;\nnode [shape = circle, color=black , style=filled, fillcolor=gray93];\n";
+    do {
+        if (Actividad=="TAREAS"){
+            path = "Tareas";
+            if(actual->carnet=="-1"){
+                cout << "Identificador: " << actual->Id << "\\nDescripcion: " << actual->carnet << '\n';
+            }else{
+                data += "Node"+ to_string(counter) + "[label=\" Id: " + to_string(actual->Id) + "\\n Carnet:" + actual->carnet + "\\n Materia: " + actual->Materia + "\\n Nombre: "+ actual->Nombre + "\\n Descripcion: " + actual->Descripcion + "\\n Estado: " + actual->Estado + "\\n Fecha: " + actual->Fecha + "\"];\n";
+                if (actual->atras != NULL){
+                    pointer += "Node" + to_string(counter-1) + "->Node" + to_string(counter) + ";\n";
+                    pointer += "Node" + to_string(counter) + "->Node" + to_string(counter-1) + ";\n";
+                }
+                counter++;
+            }
+        }else if(Actividad=="ERROR"){
+            path = "Errores";
+            if (actual->carnet==" - 2"){
+                cout << "Identificador: " << actual->Id << "\\nDescripcion: " << actual->carnet << '\n';
+            }else{
+                data += "Node"+ to_string(counter) + "[label=\" Id: " + to_string(actual->Id) + "\\n Tipo de Error:" + actual->Nombre + "\\n Descripcion: " + actual->Descripcion + "\\n Concepto: "+ actual->carnet + "\"];\n";
+                if (actual->atras != NULL){
+                    pointer += "Node" + to_string(counter-1) + "->Node" + to_string(counter) + ";\n";
+                    pointer += "Node" + to_string(counter) + "->Node" + to_string(counter-1) + ";\n";
+                }
+                counter++;
+            }
         }
-    }else{
-        cout<<"LA LISTA SE ENCUENTRA VACIA"<<endl;
+        actual = actual->siguiente;
+    }while (actual != NULL);
+    graph += data;
+    graph += pointer;
+    graph += "\n}";
+
+    try {
+
+        ofstream file;
+        file.open(path + "Reporte.dot",std::ios::out);
+
+        if(file.fail()){
+            exit(1);
+        }
+
+        file<<graph;
+        file.close();
+        string command = "dot -Tpng " + path + "Reporte.dot -o  " + path + "Reporte.png";
+        system(command.c_str());
+    }catch (exception e){
+        cout << "Error detectado, no se pudo generar el Reporte solicitado";
     }
 }
 
@@ -161,4 +206,24 @@ void EnlazadoDoble::ModificarListaDoble(int & Identificador, string& Actividad){
     }
 }
 
+
+//Retorno de Tareas
+string EnlazadoDoble::Retorno(){
+    NodoEnlazadoDoble *task = new NodoEnlazadoDoble();
+    task = primero;
+    string data = "";
+    do {
+        data += "¿element type=\"task\"? \n";
+        data += "¿item Carnet  =\"" + task->carnet + "\" $? \n";
+        data += "¿item Nombre  =\"" + task->Nombre + "\" $? \n";
+        data += "¿item Descripcion  =\"" + task->Descripcion + "\" $? \n";
+        data += "¿item Materia  =\"" + task->Materia + "\" $? \n";
+        data += "¿item Fecha  =\"" + task->Fecha + "\" $? \n";
+        data += "¿item Estado  =\"" + task->Estado + "\" $? \n";
+        data += "¿$ element? \n";
+
+        task = task->siguiente;
+    } while (task!=NULL);
+    return data;
+}
 #endif //PROYECTO_UNICO_INTENTO_2_ENLAZADODOBLE_H
