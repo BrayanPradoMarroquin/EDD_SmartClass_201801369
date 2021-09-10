@@ -1,0 +1,9 @@
+¿Elements?¿element type="user"?¿item Carnet = "201183728" $? 
+¿item DPI = "2050740201006" $? 
+¿item Nombre = "Alvin Huckett" $? 
+¿item Carrera = "Ingenieria Quimica" $? 
+¿item Password = "DGHS2Xi" $? 
+¿item Creditos = "222" $? 
+¿item Edad = "20" $? 
+¿$ element? 
+¿$Elements? 

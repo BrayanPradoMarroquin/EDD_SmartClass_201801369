@@ -5,7 +5,7 @@
 #include <locale.h>
 #include <windows.h>
 #include "Analizadores.h"
-#include "Salida.h"
+//#include "Salida.h"
 using namespace std;
 
 //Area de Declaraciones Globales

@@ -320,11 +320,11 @@ int Analisis_Tarea(char &caracter, int& contadorID) {
             contador=0;
             EstadoTarea = 1;
 
-            if (DatoTarea[0]=="7"){ //Mes
+            if (DatoTarea[0]=="7" || DatoTarea[0]=="07"){ //Mes
                 Posm=0;
-            }else if(DatoTarea[0]=="8"){
+            }else if(DatoTarea[0]=="8" || DatoTarea[0]=="08"){
                 Posm=1;
-            }else if(DatoTarea[0]=="9"){
+            }else if(DatoTarea[0]=="9" || DatoTarea[0]=="09"){
                 Posm=2;
             }else if(DatoTarea[0]=="10"){
                 Posm=3;
@@ -335,9 +335,9 @@ int Analisis_Tarea(char &caracter, int& contadorID) {
                 Descripcion = "Se encontro un error en el mes ingresado [fuera de rango]";
             }
 
-            if (DatoTarea[2]=="8"){ //Hora
+            if (DatoTarea[2]=="8" || DatoTarea[2]=="08"){ //Hora
                 Posh=0;
-            }else if(DatoTarea[2]=="9"){
+            }else if(DatoTarea[2]=="9" || DatoTarea[2]=="09"){
                 Posh=1;
             }else if(DatoTarea[2]=="10"){
                 Posh=2;

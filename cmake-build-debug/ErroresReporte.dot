@@ -1,0 +1,27 @@
+digraph List {
+rankdir=LR;
+node [shape = circle, color=black , style=filled, fillcolor=gray93];
+Node1[label=" Id: 1\n Tipo de Error:Tarea\n Descripcion: Los meses son 2 digitos, revise\n Concepto: "];
+Node2[label=" Id: 2\n Tipo de Error:Tarea\n Descripcion: Los meses son 2 digitos, revise\n Concepto: "];
+Node3[label=" Id: 3\n Tipo de Error:Tarea\n Descripcion: El alumno no existe para poder asignarle la tarea\n Concepto: "];
+Node4[label=" Id: 4\n Tipo de Error:Tarea\n Descripcion: El alumno no existe para poder asignarle la tarea\n Concepto: "];
+Node5[label=" Id: 5\n Tipo de Error:Tarea\n Descripcion: Los meses son 2 digitos, revise\n Concepto: "];
+Node6[label=" Id: 6\n Tipo de Error:Tarea\n Descripcion: Los meses son 2 digitos, revise\n Concepto: "];
+Node7[label=" Id: 7\n Tipo de Error:Tarea\n Descripcion: El alumno no existe para poder asignarle la tarea\n Concepto: "];
+Node8[label=" Id: 8\n Tipo de Error:Tarea\n Descripcion: El alumno no existe para poder asignarle la tarea\n Concepto: "];
+Node1->Node2;
+Node2->Node1;
+Node2->Node3;
+Node3->Node2;
+Node3->Node4;
+Node4->Node3;
+Node4->Node5;
+Node5->Node4;
+Node5->Node6;
+Node6->Node5;
+Node6->Node7;
+Node7->Node6;
+Node7->Node8;
+Node8->Node7;
+
+}

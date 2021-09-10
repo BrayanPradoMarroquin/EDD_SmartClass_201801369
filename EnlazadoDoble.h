@@ -113,7 +113,7 @@ void EnlazadoDoble::DesplegarListaDoble(string& Actividad){
 
         file<<graph;
         file.close();
-        string command = "dot -Tpng " + path + "Reporte.dot -o  " + path + "Reporte.png";
+        string command = "dot -Tpdf " + path + "Reporte.dot -o  " + path + "Reporte.pdf";
         system(command.c_str());
     }catch (exception e){
         cout << "Error detectado, no se pudo generar el Reporte solicitado";

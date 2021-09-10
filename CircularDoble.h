@@ -70,7 +70,7 @@ void ListaCircularDoble::desplegarLista(){
     int counter = 1;
     string graph = "digraph List {\nrankdir=LR;\nnode [shape = circle, color=black , style=filled, fillcolor=gray93];\n";
     do{
-        data += "Node" + to_string(counter) + "[label=\" Carnet: "+ actual->carnet +"\\n DPI: "+ actual->DPI +"\\n Nombre: "+ actual->Nombre + "\\n Edad: " + actual->Edad + "\\n Carrera: " + actual->Carrera + "\\n Creditos: " + actual->Creditos + "\\n Correo Electronico: " + actual->Correo + "\\n Contrasenia: " + actual->Password + "\"];\n";
+        data += "Node" + to_string(counter) + "[label=\" Carnet: "+ actual->carnet +"\\n DPI: "+ actual->DPI +"\\n Nombre: "+ actual->Nombre + "\\n Edad: " + actual->Edad + "\\n Carrera: " + actual->Carrera + "\\n Creditos: " + actual->Creditos + "\\n Correo Electronico: " + actual->Correo + "\\n Contrasenia: " + actual->Password +" CALIFICACION \\n" +"\"];\n";
         if (actual != primero){
             pointer += "Node" + to_string(counter-1) + "->Node" + to_string(counter) + ";\n";
             pointer += "Node" + to_string(counter) + "->Node" + to_string(counter-1) + ";\n";
@@ -97,7 +97,7 @@ void ListaCircularDoble::desplegarLista(){
 
         file<<graph;
         file.close();
-        string command = "dot -Tpng " + path + "Reporte.dot -o  " + path + "Reporte.png";
+        string command = "dot -Tpdf " + path + "Reporte.dot -o  " + path + "Reporte.pdf";
         system(command.c_str());
     }catch (exception e){
         cout << "Error detectado, no se pudo generar el Reporte solicitado";
