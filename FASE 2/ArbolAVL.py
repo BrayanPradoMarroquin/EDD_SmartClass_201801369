@@ -1,12 +1,5 @@
 import NodoArbolAVL
-
-class Node:
-    def __init__(self, label):
-            self.label = label
-            self.parent = None
-            self.left = None
-            self.right = None
-            self.height = 0
+import os
 
 class ArbolAVL_:
     def __init__(self):
@@ -76,9 +69,9 @@ class ArbolAVL_:
 
     def preShow(self, curr_node):
         if curr_node is not None:
-            self.preShow(curr_node.izquierda)
+            self.preShow(curr_node.left)
             print(curr_node.Carnet, end=" ")
-            self.preShow(curr_node.derecha)
+            self.preShow(curr_node.right)
 
     def Buscar_evento(self, node, Identificacion):
         if(node==None):
@@ -86,6 +79,31 @@ class ArbolAVL_:
         elif(node.Carnet==Identificacion):
             return "El dato es: " + node.Carnet
         elif(Identificacion<node.Carnet):
-            return self.Buscar_evento(node.izquierda, Identificacion)
+            return self.Buscar_evento(node.left, Identificacion)
         elif(Identificacion>node.Carnet):
-            return self.Buscar_evento(node.derecha, Identificacion)
+            return self.Buscar_evento(node.right, Identificacion)
+    
+    def graficar(self, node):
+        file = open("ArbolAVL.dot", 'w')
+        file.write("digraph G { \n")
+        file.write("rankdir=TB; \n")
+        file.write("node [shape = circle, color=black , style=filled, fillcolor=gray93];\n")        
+        file.write(self.graficadora(node))
+        file.write("} \n")
+        file.close()
+        os.system("dot -Tpng ArbolAVL.dot -o ArbolAVL_Alumnos.png")
+        os.startfile("ArbolAVL_Alumnos.png")
+
+    def graficadora(self, node):
+        cadena=""
+        if((node.left==None) & (node.right==None)):
+            cadena = "nodo"+str(node.Carnet)+"[ label=\""+"\\n"+node.Carnet+"\\n"+node.Identificacion+"\\n "+node.Nombre+"\\n"+node.Carrera+"\\n"+"\\n"+node.Correo+"\\n"+node.Password+"\\n"+node.Creditos+"\\n"+node.Edad+"\"]; \n"
+        else:
+            cadena="nodo"+str(node.Carnet)+" [ label =\"<C0>|"+"\\n"+node.Carnet+"\\n"+node.Identificacion+"\\n "+node.Nombre+"\\n"+node.Carrera+"\\n"+"\\n"+node.Correo+"\\n"+node.Password+"\\n"+node.Creditos+"\\n"+node.Edad+"|<C1>\"];\n"
+        
+        if(node.left!=None):
+            cadena = cadena + self.graficadora(node.left)+"nodo"+str(node.Carnet)+":C0->nodo"+str(node.left.Carnet)+"\n"
+        if(node.right!=None):
+            cadena = cadena + self.graficadora(node.right)+"nodo"+str(node.Carnet)+":C1->nodo"+str(node.right.Carnet)+"\n"
+        
+        return cadena

@@ -1,0 +1,19 @@
+digraph G { 
+rankdir=TB; 
+node [shape = circle, color=black , style=filled, fillcolor=gray93];
+nodo201801603 [ label ="<C0>|\n201801603\n2995464660101\n Ricardo Javier Villatoro Bamaca\nCiencias y Sistemas\n\ninventado029@gmail.com\n123456\n127 \n23|<C1>"];
+nodo201801369 [ label ="<C0>|\n201801369\n2995454660101\n Brayan Hamllelo Estevem Prado Marroquin\nCiencias y Sistemas\n\nbrayanprado9@gmail.com\n123456\n112\n22|<C1>"];
+nodo201801146[ label="\n201801146\n2995464660101\n Daniel Enrique Coti Peñate\nCiencias y Sistemas\n\ninventado029@gmail.com\n123456\n110\n25"]; 
+nodo201801369:C0->nodo201801146
+nodo201801603:C0->nodo201801369
+nodo201801627 [ label ="<C0>|\n201801627\n2995454660101\n Eduardo Rene Agustin Mendoza\nCiencias y Sistemas\n\nbrayanprado9@gmail.com\n123456\n112\n22|<C1>"];
+nodo201801608 [ label ="<C0>|\n201801608\n2995464660101\n Aaron\nCiencias y Sistemas\n\ninventado029@gmail.com\n123456\n110\n25|<C1>"];
+nodo201801609[ label="\n201801609\n2995464660101\n Cuate del Risas\nCiencias y Sistemas\n\ninventado029@gmail.com\n123456\n110\n22"]; 
+nodo201801608:C1->nodo201801609
+nodo201801627:C0->nodo201801608
+nodo201907636 [ label ="<C0>|\n201907636\n2995464660101\n Carlos Rangel\nCiencias y Sistemas, Quimica\n\ninventado029@gmail.com\n123456\n127 y 101\n20|<C1>"];
+nodo201908402[ label="\n201908402\n2995464660101\n ex del Risas\nCiencias y Sistemas\n\ninventado029@gmail.com\n123456\n110\n22"]; 
+nodo201907636:C1->nodo201908402
+nodo201801627:C1->nodo201907636
+nodo201801603:C1->nodo201801627
+} 

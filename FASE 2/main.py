@@ -41,13 +41,14 @@ def Carga():
 def Reporte():
     tipo = request.args.get('tipo', 'no contiene este parametro')
     if(tipo=="0"):
-        alumnos.Alumnos_.preShow(alumnos.Alumnos_.raiz)
+        alumnos.Alumnos_.preShow(alumnos.Alumnos_.root)
+        alumnos.Alumnos_.graficar(alumnos.Alumnos_.root)
         return "Reporte Alumno Generado"
 
 @app.route("/buscar", methods=['POST'])
 def Buscar():
     data = request.args.get('data', 'no contiene este parametro')
-    resultado = alumnos.Alumnos_.Buscar_evento(alumnos.Alumnos_.raiz, data)
+    resultado = alumnos.Alumnos_.Buscar_evento(alumnos.Alumnos_.root, data)
     return resultado
 
 if __name__ == '__main__':
