@@ -1,5 +1,3 @@
-import NodoArbolAVL
-
 class Node:
     def __init__(self, label):
             self.label = label
@@ -8,7 +6,7 @@ class Node:
             self.right = None
             self.height = 0
 
-class ArbolAVL_:
+class AVL:
     def __init__(self):
         self.root = None
 
@@ -28,19 +26,19 @@ class ArbolAVL_:
 
     def insert_interno(self, value, root):
         if root is None:
-            return value
+            return Node(value)
         else:
-            if value.Carnet< root.Carnet:
+            if value< root.label:
                 root.left = self.insert_interno(value, root.left)
                 if self.tamaño(root.right) - self.tamaño(root.left) == -2:
-                    if value.Carnet < root.left.Carnet:
+                    if value < root.left.label:
                         root = self.RI(root)
                     else:
                         root = self.RDI(root)
-            elif value.Carnet > root.Carnet:
+            elif value > root.label:
                 root.right = self.insert_interno(value, root.right)
                 if self.tamaño(root.right) - self.tamaño(root.left) == 2:
-                    if value.Carnet > root.right.Carnet:
+                    if value > root.right.label:
                         root = self.RD(root)
                     else:
                         root = self.RDD(root)
@@ -49,6 +47,7 @@ class ArbolAVL_:
         
         root.height = self.max(self.tamaño(root.left), self.tamaño(root.right)) + 1
         return root
+
 
     def RI(self, node):
         aux = node.left
@@ -76,16 +75,17 @@ class ArbolAVL_:
 
     def preShow(self, curr_node):
         if curr_node is not None:
-            self.preShow(curr_node.izquierda)
-            print(curr_node.Carnet, end=" ")
-            self.preShow(curr_node.derecha)
+            self.preShow(curr_node.left)
+            print(curr_node.label, end=" ")
+            self.preShow(curr_node.right)
+    
 
-    def Buscar_evento(self, node, Identificacion):
-        if(node==None):
-            return "El arbol esta Vacio"
-        elif(node.Carnet==Identificacion):
-            return "El dato es: " + node.Carnet
-        elif(Identificacion<node.Carnet):
-            return self.Buscar_evento(node.izquierda, Identificacion)
-        elif(Identificacion>node.Carnet):
-            return self.Buscar_evento(node.derecha, Identificacion)
+if __name__ == '__main__':
+    t = AVL()
+    t.insert(5)
+    t.insert(9)
+    t.insert(3)
+    t.insert(8)
+    t.insert(1)
+    t.insert(6)
+    t.preShow(t.root)

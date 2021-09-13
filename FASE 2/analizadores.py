@@ -1,10 +1,5 @@
 from io import open
 import json
-from tkinter import *
-from tkinter.filedialog import askopenfilename
-root = Tk()
-root.withdraw()
-root.update()
 
 def cargar_datos_Pensum(ruta):
     archivo = open(ruta, 'r', encoding='utf-8')
@@ -18,6 +13,7 @@ def cargar_datos_Pensum(ruta):
         cursos = json.load(f)
         for curso in cursos:
             print(curso.get('Codigo') + " -> " + curso.get('Nombre'))
+    
 
 def analisis(texto):
     cadena = ""

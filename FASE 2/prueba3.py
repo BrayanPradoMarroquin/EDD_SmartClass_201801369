@@ -1,4 +1,19 @@
-import NodoArbolAVL
+class NodoArbolAVL_:
+
+    def __init__(self, Carnet, Identificacion, Nombre, Carrera, Correo, Password, Creditos, Edad):
+        self.Carnet = Carnet
+        self.Identificacion = Identificacion
+        self.Nombre = Nombre
+        self.Carrera = Carrera
+        self.Correo = Correo
+        self.Password = Password
+        self.Creditos = Creditos
+        self.años = None
+        self.Edad = Edad
+        self.padre = None
+        self.left = None
+        self.right = None
+        self.height = 0
 
 class Node:
     def __init__(self, label):
@@ -8,7 +23,7 @@ class Node:
             self.right = None
             self.height = 0
 
-class ArbolAVL_:
+class AVL:
     def __init__(self):
         self.root = None
 
@@ -50,6 +65,7 @@ class ArbolAVL_:
         root.height = self.max(self.tamaño(root.left), self.tamaño(root.right)) + 1
         return root
 
+
     def RI(self, node):
         aux = node.left
         node.left = aux.right
@@ -76,16 +92,15 @@ class ArbolAVL_:
 
     def preShow(self, curr_node):
         if curr_node is not None:
-            self.preShow(curr_node.izquierda)
-            print(curr_node.Carnet, end=" ")
-            self.preShow(curr_node.derecha)
+            self.preShow(curr_node.left)
+            print(curr_node.label, end=" ")
+            self.preShow(curr_node.right)
+    
 
-    def Buscar_evento(self, node, Identificacion):
-        if(node==None):
-            return "El arbol esta Vacio"
-        elif(node.Carnet==Identificacion):
-            return "El dato es: " + node.Carnet
-        elif(Identificacion<node.Carnet):
-            return self.Buscar_evento(node.izquierda, Identificacion)
-        elif(Identificacion>node.Carnet):
-            return self.Buscar_evento(node.derecha, Identificacion)
+if __name__ == '__main__':
+    t = AVL()
+    t.insert(NodoArbolAVL_(201801369, 2995454660101, "Brayan", "Yisus", "te quiero nene", 123650, 112, 22))
+    t.insert(NodoArbolAVL_(201801627, 2995454660101, "Risas", "Yisus", "te quiero nene", 123650, 112, 22))
+    t.insert(NodoArbolAVL_(201801603, 2995454660101, "Ricardo", "Yisus", "te quiero nene", 123650, 112, 22))
+    t.insert(NodoArbolAVL_(201801146, 2995454660101, "Coti", "Yisus", "te quiero nene", 123650, 112, 22))
+    t.preShow(t.root)

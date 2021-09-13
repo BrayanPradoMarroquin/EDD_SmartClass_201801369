@@ -49,6 +49,7 @@ class AVL:
         Operación de inserción para agregar nuevos nodos
         al árbol.
         """
+    
     def insert(self, value):
         node = Node(value)
 
@@ -75,12 +76,14 @@ class AVL:
                     if node.label < dad_node.label:
                         dad_node.left = node
                     else:
+
                         dad_node.right = node
                     self.rebalance(node)
                     self.size += 1
                     break
 
         # Operación de rotación
+    
     def rebalance(self, node):
         n = node
 
@@ -94,7 +97,7 @@ class AVL:
             if n.left is not None:
                 height_left = n.left.height
 
-            if abs(height_left - height_right) > 1:
+            if abs(height_left - height_right) == 2:
                 if height_left > height_right:
                     left_child = n.left
                     if left_child is not None:
@@ -170,7 +173,8 @@ if __name__ == '__main__':
     t = AVL()
     t.insert(5)
     t.insert(9)
-    t.insert(13)
-    t.insert(10)
-    t.insert(17)
+    t.insert(3)
+    t.insert(8)
+    t.insert(1)
+    t.insert(6)
     t.preShow(t.root)
