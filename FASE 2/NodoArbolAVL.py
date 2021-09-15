@@ -1,3 +1,5 @@
+from ListaAños import ListaAños_
+
 class NodoArbolAVL_:
 
     def __init__(self, Carnet, Identificacion, Nombre, Carrera, Correo, Password, Creditos, Edad):
@@ -8,7 +10,7 @@ class NodoArbolAVL_:
         self.Correo = Correo
         self.Password = Password
         self.Creditos = Creditos
-        self.años = None
+        self.años = ListaAños_()
         self.Edad = Edad
         self.padre = None
         self.left = None

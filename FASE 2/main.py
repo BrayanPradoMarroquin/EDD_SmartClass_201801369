@@ -2,6 +2,7 @@ import analizadores
 from flask import Flask, request
 from NodoArbolAVL import NodoArbolAVL_
 import alumnos
+import analizadoralumnos
 
 app = Flask(__name__)
 
@@ -28,7 +29,8 @@ def Carga():
     tipo = request.args.get('tipo', 'no contiene este parametro')
     ruta = request.args.get('ruta', 'no contiene este parametro')
     if(tipo=="estudiante"):
-
+        analizadoralumnos.alumno(ruta)
+        analizadoralumnos.sintac()
         return "Estudiantes" + " -> " + ruta
     elif(tipo=="recordatorio"):
         analizadores.cargar_datos_Recordatorios(ruta)

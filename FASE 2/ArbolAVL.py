@@ -82,12 +82,23 @@ class ArbolAVL_:
             return self.Buscar_evento(node.left, Identificacion)
         elif(Identificacion>node.Carnet):
             return self.Buscar_evento(node.right, Identificacion)
-    
+
+    def AñadirAño(self, carnet, anio, node):
+        if(node==None):
+            return "El arbol esta Vacio"
+        elif(node.Carnet==carnet):
+            node.años.insertar(anio)
+            return "El dato es: " + node.Carnet
+        elif(Identificacion<node.Carnet):
+            return self.Buscar_evento(node.left, Identificacion)
+        elif(Identificacion>node.Carnet):
+            return self.Buscar_evento(node.right, Identificacion)
+
     def graficar(self, node):
         file = open("ArbolAVL.dot", 'w')
         file.write("digraph G { \n")
         file.write("rankdir=TB; \n")
-        file.write("node [shape = circle, color=black , style=filled, fillcolor=gray93];\n")        
+        file.write("node [shape = record, color=black , style=filled, fillcolor=gray93];\n")        
         file.write(self.graficadora(node))
         file.write("} \n")
         file.close()
@@ -97,9 +108,9 @@ class ArbolAVL_:
     def graficadora(self, node):
         cadena=""
         if((node.left==None) & (node.right==None)):
-            cadena = "nodo"+str(node.Carnet)+"[ label=\""+"\\n"+node.Carnet+"\\n"+node.Identificacion+"\\n "+node.Nombre+"\\n"+node.Carrera+"\\n"+"\\n"+node.Correo+"\\n"+node.Password+"\\n"+node.Creditos+"\\n"+node.Edad+"\"]; \n"
+            cadena = "nodo"+str(node.Carnet)+"[ label=\""+"\\n Carnet: "+node.Carnet+"\\n DPI: "+node.Identificacion+"\\n Nombre: "+node.Nombre+"\\n Carrera: "+node.Carrera+"\\n Correo: "+node.Correo+"\\n Password: "+node.Password+"\\n Creditos: "+node.Creditos+"\\n Edad: "+node.Edad+"\"]; \n"
         else:
-            cadena="nodo"+str(node.Carnet)+" [ label =\"<C0>|"+"\\n"+node.Carnet+"\\n"+node.Identificacion+"\\n "+node.Nombre+"\\n"+node.Carrera+"\\n"+"\\n"+node.Correo+"\\n"+node.Password+"\\n"+node.Creditos+"\\n"+node.Edad+"|<C1>\"];\n"
+            cadena="nodo"+str(node.Carnet)+" [ label =\"<C0>| Carnet: "+node.Carnet+"\\n DPI: "+node.Identificacion+"\\n Nombre: "+node.Nombre+"\\n Carrera: "+node.Carrera+"\\n Correo: "+node.Correo+"\\n Password: "+node.Password+"\\n Creditos: "+node.Creditos+"\\n Edad: "+node.Edad+"|<C1>\"];\n"
         
         if(node.left!=None):
             cadena = cadena + self.graficadora(node.left)+"nodo"+str(node.Carnet)+":C0->nodo"+str(node.left.Carnet)+"\n"
