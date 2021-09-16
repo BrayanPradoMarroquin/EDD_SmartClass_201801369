@@ -1,3 +1,3 @@
-from ArbolAVL import ArbolAVL_
+from ESTRUCTURAS_.ArbolAVL import ArbolAVL_
 
 Alumnos_ = ArbolAVL_()

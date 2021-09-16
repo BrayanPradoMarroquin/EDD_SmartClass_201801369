@@ -1,5 +1,5 @@
 import re
-from NodoArbolAVL import NodoArbolAVL_ 
+from ESTRUCTURAS_.NodoArbolAVL import NodoArbolAVL_ 
 import alumnos
 from NodoTask import Tareas
 
@@ -21,8 +21,8 @@ class Simbolo:
         self.token = token 
         self.lexema = lexema 
 
-def alumno():
-    data = open("Estudiantes.txt", "r", encoding='utf-8')
+def alumno(ruta):
+    data = open(ruta, "r", encoding='utf-8')
     texto = data.read()
     data.close()
     listData = texto.split("\n")
@@ -281,6 +281,8 @@ def automataTask(li):
             temp.fecha = li.lexema
             Estado = 2
             valores = li.lexema.split('/')
+            alumnos.Alumnos_.AñadirAño(temp.carnet, valores[2], alumnos.Alumnos_.root)
+            alumnos.Alumnos_.buscarmes(temp.carnet, valores[2], valores[1], alumnos.Alumnos_.root)
             data = ""
     elif Estado==7:
         if li.token=="CADENA":
@@ -299,7 +301,3 @@ def sintacT():
         elif da.lexema=="item":
             Estado=0
             flagTask=True
-
-alumno()
-sintacT()
-print("Vamo a ver si funca :)")

@@ -1,4 +1,4 @@
-import NodoArbolAVL
+import   ESTRUCTURAS_.NodoArbolAVL
 import os
 
 class ArbolAVL_:
@@ -89,10 +89,20 @@ class ArbolAVL_:
         elif(node.Carnet==carnet):
             node.años.insertar(anio)
             return "El dato es: " + node.Carnet
-        elif(Identificacion<node.Carnet):
-            return self.Buscar_evento(node.left, Identificacion)
-        elif(Identificacion>node.Carnet):
-            return self.Buscar_evento(node.right, Identificacion)
+        elif(carnet<node.Carnet):
+            return self.AñadirAño(carnet, anio, node.left)
+        elif(carnet>node.Carnet):
+            return self.AñadirAño(carnet, anio, node.right)
+
+    def buscarmes(self, carnet, anio, mes, node):
+        if(node==None):
+            return "El arbol esta Vacio"
+        elif(node.Carnet==carnet):
+            node.años.añadirmes(anio, mes, node.años.inicio)
+        elif(carnet<node.Carnet):
+            return self.buscarmes(carnet, anio, mes, node.left)
+        elif(carnet>node.Carnet):
+            return self.buscarmes(carnet, anio, mes, node.right)
 
     def graficar(self, node):
         file = open("ArbolAVL.dot", 'w')

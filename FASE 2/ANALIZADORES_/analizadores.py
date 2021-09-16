@@ -14,7 +14,6 @@ def cargar_datos_Pensum(ruta):
         for curso in cursos:
             print(curso.get('Codigo') + " -> " + curso.get('Nombre'))
     
-
 def analisis(texto):
     cadena = ""
     condicion = False
