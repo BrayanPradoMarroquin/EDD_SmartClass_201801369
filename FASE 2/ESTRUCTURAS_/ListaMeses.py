@@ -38,8 +38,8 @@ class Meses:
             if(node.mes!=mes):
                 node = node.siguiente
             else:
-                node.matriz.filas.insertar(dia)
-                node.matriz.columna.insertar(hora)
+                node.matriz.filas.insertar(hora)
+                node.matriz.columna.insertar(dia)
                 cond=True
     
     def añadirtask(self, base, node):
@@ -48,7 +48,15 @@ class Meses:
             if(node.mes!=base.direccionamiento[1]):
                 node = node.siguiente
             else:
-                task = NodoData(+1, base.hora, base.direccionamiento[0])
-                task.tareas.insertar(base)
-                node.matriz.data.insertar(base.hora, base.direccionamiento[0], base.data.filas, base.data.columna, task)
+                task = NodoData(0, base.hora, base.direccionamiento[0])
+                node.matriz.data.insertar(base.direccionamiento[0], base.hora, node.matriz.columna, node.matriz.filas, task)
+                cond=True
+    
+    def Taskañadir(self, base, node):
+        cond = False
+        while(node!=None) & (cond==False):
+            if(node.mes!=base.direccionamiento[1]):
+                node = node.siguiente
+            else:
+                node.matriz.data.buscarTarea(node.matriz.columna, node.matriz.filas, base.direccionamiento[0], base.hora, base)
                 cond=True

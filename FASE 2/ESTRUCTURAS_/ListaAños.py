@@ -57,11 +57,17 @@ class ListaAños_():
                 node = node.siguiente
             else:
                 node.mese.añadircabeceras(mes, dia, hora, node.mese.inicio)
+                cond=True
     
-    def tasklist(self, base, node):
+    def tasklist(self, base, node, accion):
         cond=False
         while(node!=None) & (cond==False):
-            if(node.anio!=direccionamiento[2]):
+            if(node.anio!=base.direccionamiento[2]):
                 node = node.siguiente
             else:
-                node.mese.añadirtask(base, node.mese.inicio)
+                if(accion=="añadir"):
+                    node.mese.añadirtask(base, node.mese.inicio)
+                    cond=True
+                elif(accion=="tarea"):
+                    node.mese.Taskañadir(base, node.mese.inicio)
+                    cond=True

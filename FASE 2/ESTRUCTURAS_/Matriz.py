@@ -75,11 +75,11 @@ class ListaData:
         lTemporalX = listaX.inicio
         lTemporalY = listaY.inicio
 
-        while lTemporalX.num != int(posX):
+        while lTemporalX.num != posX:
             lTemporalX = lTemporalX.siguiente
         listaX = lTemporalX
 
-        while lTemporalY.num != int(posY):
+        while lTemporalY.num != posY:
             lTemporalY = lTemporalY.siguiente
         listaY = lTemporalY
 
@@ -120,6 +120,32 @@ class ListaData:
         while (temp != None) & (cond==False):
             if(temp.fila==posX) & (temp.columna==posY):
                 print(temp.data, end='->')
+                cond = True
+            else:
+                temp = temp.abajo
+
+
+    def buscarTarea(self, listaX, listaY, posX, posY, node):
+        listaCabeceraX = listaX.inicio
+        listaCabeceraY = listaY.inicio
+
+        while listaCabeceraX.num != posX:
+            listaCabeceraX = listaCabeceraX.siguiente
+        print('La cabecera en x es ', listaCabeceraX.num)
+
+        while listaCabeceraY.num != posY:
+            listaCabeceraY = listaCabeceraY.siguiente
+        print('La cabecera en y es ', listaCabeceraY.num)
+
+        temp = listaCabeceraX.abajo
+        while temp != None:
+            temp = temp.abajo
+        temp = listaCabeceraY.abajo
+        cond = False
+        while (temp != None) & (cond==False):
+            if(temp.fila==posY) & (temp.columna==posX):
+                temp.tareas.insertar(node)
+                temp.data +=1
                 cond = True
             else:
                 temp = temp.abajo

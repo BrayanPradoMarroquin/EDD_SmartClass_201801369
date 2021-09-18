@@ -114,15 +114,15 @@ class ArbolAVL_:
         elif(carnet>node.Carnet):
             return self.buscarmatriz(carnet, anio, mes, dia, hora, node.right)
 
-    def litareas(self, base, node):
+    def litareas(self, base, node, accion):
         if(node==None):
             return "El arbol esta Vacio"
         elif(node.Carnet==base.carnet):
-            node.años.buscarmes(base, node.años.inicio)
+            node.años.tasklist(base, node.años.inicio, accion)
         elif(base.carnet<node.Carnet):
-            return self.litareas(base, node.left)
-        elif(carnet>node.Carnet):
-            return self.litareas(base, node.right)
+            return self.litareas(base, node.left, accion)
+        elif(base.carnet>node.Carnet):
+            return self.litareas(base, node.right, accion)
 
     def buscarsemestre(self, carnet, anio, semestre, node):
         if(node==None):

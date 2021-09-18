@@ -261,8 +261,8 @@ def automataTask(li):
         if li.lexema=="item":
             Estado=0
         elif li.lexema=="element": 
-            listaTask.append(temp)
-            alumnos.Alumnos_.litareas(temp, alumnos.Alumnos_.root)
+            alumnos.Alumnos_.litareas(temp, alumnos.Alumnos_.root, "añadir")
+            alumnos.Alumnos_.litareas(temp, alumnos.Alumnos_.root, "tarea")
             temp=None
             flagTask=False
             ma = []
