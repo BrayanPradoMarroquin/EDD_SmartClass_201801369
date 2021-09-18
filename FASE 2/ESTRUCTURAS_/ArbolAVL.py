@@ -104,6 +104,36 @@ class ArbolAVL_:
         elif(carnet>node.Carnet):
             return self.buscarmes(carnet, anio, mes, node.right)
 
+    def buscarmatriz(self, carnet, anio, mes, dia, hora, node):
+        if(node==None):
+            return "El arbol esta Vacio"
+        elif(node.Carnet==carnet):
+            node.años.buscarmes(anio, mes, dia, hora, node.años.inicio)
+        elif(carnet<node.Carnet):
+            return self.buscarmatriz(carnet, anio, mes, dia, hora, node.left)
+        elif(carnet>node.Carnet):
+            return self.buscarmatriz(carnet, anio, mes, dia, hora, node.right)
+
+    def litareas(self, base, node):
+        if(node==None):
+            return "El arbol esta Vacio"
+        elif(node.Carnet==base.carnet):
+            node.años.buscarmes(base, node.años.inicio)
+        elif(base.carnet<node.Carnet):
+            return self.litareas(base, node.left)
+        elif(carnet>node.Carnet):
+            return self.litareas(base, node.right)
+
+    def buscarsemestre(self, carnet, anio, semestre, node):
+        if(node==None):
+            return "El arbol esta Vacio"
+        elif(node.Carnet==carnet):
+            node.años.añadirsemestre(anio, semestre, node.años.inicio)
+        elif(carnet<node.Carnet):
+            return self.buscarsemestre(carnet, anio, semestre, node.left)
+        elif(carnet>node.Carnet):
+            return self.buscarsemestre(carnet, anio, semestre, node.right)
+
     def graficar(self, node):
         file = open("ArbolAVL.dot", 'w')
         file.write("digraph G { \n")

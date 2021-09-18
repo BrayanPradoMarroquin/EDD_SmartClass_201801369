@@ -7,3 +7,5 @@ class Tareas:
         self.fecha = Fecha
         self.hora = Hora
         self.status = Estado
+        self.direccionamiento = None
+        self.siguiente = None

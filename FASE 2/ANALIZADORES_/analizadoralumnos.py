@@ -14,6 +14,7 @@ temp=None
 tablaSimbolos = []
 tablaSimbolosTask=[]
 listaTask = []
+ma = []
 
 class Simbolo:
 
@@ -235,7 +236,7 @@ def analizador_Task(c):
             pass
 
 def automataTask(li):
-    global Estado, temp, flagTask, valor
+    global Estado, temp, flagTask, valor, ma
     if Estado==0:
         if li.lexema=="Carnet":
             Estado =1
@@ -259,10 +260,12 @@ def automataTask(li):
     elif Estado==2:
         if li.lexema=="item":
             Estado=0
-        elif li.lexema=="element":
+        elif li.lexema=="element": 
             listaTask.append(temp)
+            alumnos.Alumnos_.litareas(temp, alumnos.Alumnos_.root)
             temp=None
             flagTask=False
+            ma = []
             Estado=0
     elif Estado==3:
         if li.token=="CADENA":
@@ -283,10 +286,13 @@ def automataTask(li):
             valores = li.lexema.split('/')
             alumnos.Alumnos_.AñadirAño(temp.carnet, valores[2], alumnos.Alumnos_.root)
             alumnos.Alumnos_.buscarmes(temp.carnet, valores[2], valores[1], alumnos.Alumnos_.root)
+            ma = valores
             data = ""
     elif Estado==7:
         if li.token=="CADENA":
             temp.hora = li.lexema
+            alumnos.Alumnos_.buscarmatriz(temp.carnet, ma[2], ma[1], ma[0], temp.hora, alumnos.Alumnos_.root)
+            temp.direccionamiento = ma
             Estado = 2
     elif Estado==8:
         if li.token=="CADENA":

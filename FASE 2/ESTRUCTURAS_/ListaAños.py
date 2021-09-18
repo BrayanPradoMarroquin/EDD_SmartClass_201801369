@@ -40,3 +40,28 @@ class ListaAños_():
                 node.mese.insertar(mes)
                 cond = True
         
+    def añadirsemestre(self, año, semestre, node):
+        if ((semestre==1) & (semestre==2)):
+            cond = False
+            while(node!=None) & (cond==False):
+                if(node.anio!=año):
+                    node = node.siguiente
+                else:
+                    node.semestre.insertar(semestre)
+                    cond = True
+
+    def buscarmes(self, año, mes, dia, hora, node):
+        cond=False
+        while(node!=None) & (cond==False):
+            if(node.anio!=año):
+                node = node.siguiente
+            else:
+                node.mese.añadircabeceras(mes, dia, hora, node.mese.inicio)
+    
+    def tasklist(self, base, node):
+        cond=False
+        while(node!=None) & (cond==False):
+            if(node.anio!=direccionamiento[2]):
+                node = node.siguiente
+            else:
+                node.mese.añadirtask(base, node.mese.inicio)
