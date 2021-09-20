@@ -134,6 +134,16 @@ class ArbolAVL_:
         elif(carnet>node.Carnet):
             return self.buscarsemestre(carnet, anio, semestre, node.right)
 
+    def cursosEstudiante(self, carnet, anio, semestre, codigo, curso, creditos, pre, ob, node):
+        if(node==None):
+            return "El arbol esta Vacio"
+        elif(node.Carnet==carnet):
+            node.años.añadirCurso(anio, semestre, codigo, curso, creditos, pre, ob, node.años.inicio)
+        elif(carnet<node.Carnet):
+            return self.buscarsemestre(carnet, anio, semestre, node.left)
+        elif(carnet>node.Carnet):
+            return self.buscarsemestre(carnet, anio, semestre, node.right)
+
     def graficar(self, node):
         file = open("ArbolAVL.dot", 'w')
         file.write("digraph G { \n")

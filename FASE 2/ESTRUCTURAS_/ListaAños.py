@@ -41,13 +41,23 @@ class ListaAños_():
                 cond = True
         
     def añadirsemestre(self, año, semestre, node):
-        if ((semestre==1) & (semestre==2)):
+        if ((semestre=='1') | (semestre=='2')):
             cond = False
             while(node!=None) & (cond==False):
                 if(node.anio!=año):
                     node = node.siguiente
                 else:
                     node.semestre.insertar(semestre)
+                    cond = True
+
+    def añadirCurso(self, anio, semestre, codigo, curso, creditos, pre, ob, node):
+        if ((semestre=='1') | (semestre=='2')):
+            cond = False
+            while(node!=None) & (cond==False):
+                if(node.anio!=anio):
+                    node = node.siguiente
+                else:
+                    node.semestre.insertarCurso(semestre, codigo, curso, creditos, pre, ob, node.semestre)
                     cond = True
 
     def buscarmes(self, año, mes, dia, hora, node):
