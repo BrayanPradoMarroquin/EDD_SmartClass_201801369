@@ -24,6 +24,7 @@ class ArbolAVL_:
             return value
         else:
             if value.Carnet< root.Carnet:
+                value.padre = root
                 root.left = self.insert_interno(value, root.left)
                 if self.tamaño(root.right) - self.tamaño(root.left) == -2:
                     if value.Carnet < root.left.Carnet:
@@ -31,6 +32,7 @@ class ArbolAVL_:
                     else:
                         root = self.RDI(root)
             elif value.Carnet > root.Carnet:
+                value.padre = root
                 root.right = self.insert_interno(value, root.right)
                 if self.tamaño(root.right) - self.tamaño(root.left) == 2:
                     if value.Carnet > root.right.Carnet:
@@ -77,11 +79,39 @@ class ArbolAVL_:
         if(node==None):
             return "El arbol esta Vacio"
         elif(node.Carnet==Identificacion):
-            return "El dato es: " + node.Carnet
+            data = {
+                'Carnet': node.Carnet,
+                'DPI': node.Identificacion,
+                'Nombre': node.Nombre,
+                'Carrera': node.Carrera,
+                'Correo': node.Correo,
+                'Password': node.Password,
+                'Creditos': node.Creditos,
+                'Edad': node.Edad
+            }
+
+            return data
         elif(Identificacion<node.Carnet):
             return self.Buscar_evento(node.left, Identificacion)
         elif(Identificacion>node.Carnet):
             return self.Buscar_evento(node.right, Identificacion)
+
+    def Mod_Estudiante(self, carnet, DPI, nombre, carrera, correo, password, creditos, edad ,node):
+        if(node==None):
+            return "El arbol esta Vacio"
+        elif(node.Carnet==carnet):
+            node.Carnet = carnet
+            node.Identificacion = DPI
+            node.Nombre = nombre
+            node.Carrera = carrera
+            node.Correo = correo
+            node.Password = password
+            node.Creditos = creditos
+            node.Edad = edad
+        elif(carnet<node.Carnet):
+            return self.Mod_Estudiante(carnet, DPI, nombre, carrera, correo, password, creditos, edad ,node.left)
+        elif(carnet>node.Carnet):
+            return self.Mod_Estudiante(carnet, DPI, nombre, carrera, correo, password, creditos, edad ,node.right)
 
     def AñadirAño(self, carnet, anio, node):
         if(node==None):
@@ -143,6 +173,16 @@ class ArbolAVL_:
             return self.buscarsemestre(carnet, anio, semestre, node.left)
         elif(carnet>node.Carnet):
             return self.buscarsemestre(carnet, anio, semestre, node.right)
+
+    def graphTareas(self, base, node, accion):
+        if(node==None):
+            return "El arbol esta Vacio"
+        elif(node.Carnet==base.carnet):
+            node.años.graficarTarea(base, node.años.inicio, accion)
+        elif(base.carnet<node.Carnet):
+            return self.litareas(base, node.left, accion)
+        elif(base.carnet>node.Carnet):
+            return self.litareas(base, node.right, accion)
 
     def graficar(self, node):
         file = open("ArbolAVL.dot", 'w')

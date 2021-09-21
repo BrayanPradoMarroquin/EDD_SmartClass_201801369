@@ -49,9 +49,25 @@ class Meses:
                 node = node.siguiente
             else:
                 task = NodoData(0, base.hora, base.direccionamiento[0])
-                node.matriz.data.insertar(base.direccionamiento[0], base.hora, node.matriz.columna, node.matriz.filas, task)
-                cond=True
+                if(node.matriz.filas.buscarcabecera(base.hora)==False):
+                    node.matriz.filas.insertar(base.hora)
+                    self.añadirtask(base, node)
+                elif(node.matriz.columna.buscarcabecera(base.direccionamiento[0])==False):
+                    node.matriz.columna.insertar(dia)
+                    self.añadirtask(base, node)
+                else:
+                    node.matriz.data.insertar(base.direccionamiento[0], base.hora, node.matriz.columna, node.matriz.filas, task)
+                    cond=True
     
+    def graficaTareas(self, base, node):
+        cond = False
+        while(node!=None) & (cond==False):
+            if(node.mes!=base.direccionamiento[1]):
+                node = node.siguiente
+            else:
+                node.matriz.data.graficarTareas(node.matriz.columna, node.matriz.filas, base.direccionamiento[0], base.hora, base)
+                cond=True
+
     def Taskañadir(self, base, node):
         cond = False
         while(node!=None) & (cond==False):

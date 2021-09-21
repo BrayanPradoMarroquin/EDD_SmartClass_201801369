@@ -1,5 +1,5 @@
 import ANALIZADORES_.analizadores
-from flask import Flask, request
+from flask import Flask, request, jsonify
 from ESTRUCTURAS_.NodoArbolAVL import NodoArbolAVL_
 import alumnos
 import ANALIZADORES_.analizadoralumnos
@@ -23,6 +23,25 @@ def IngresoEstudiante():
     estudiante = NodoArbolAVL_(carnet, DPI, nombre, carrera, correo, password, creditos, edad)
     alumnos.Alumnos_.insert(estudiante)
     return "Nuevo estudiante"
+
+@app.route("/estudiante", methods=['PUT'])
+def ActEstudiante():
+    carnet = request.args.get('carnet', 'no contiene este parametro')
+    DPI = request.args.get('DPI', 'no contiene este parametro')
+    nombre = request.args.get('nombre', 'no contiene este parametro')
+    carrera = request.args.get('carrera', 'no contiene este parametro')
+    correo = request.args.get('correo', 'no contiene este parametro')
+    password = request.args.get('password', 'no contiene este parametro')
+    creditos = request.args.get('creditos', 'no contiene este parametro')
+    edad = request.args.get('edad', 'no contiene este parametro')
+    alumnos.Alumnos_.Mod_Estudiante(carnet, DPI, nombre, carrera, correo, password, creditos, edad, alumnos.Alumnos_.root)
+    return "Los Datos han sido actualizados"
+
+@app.route("/estudiante", methods=['GET'])
+def EnvEstudiante():
+    carnet = request.args.get('carnet', 'no contiene este parametro')
+    datos = alumnos.Alumnos_.Buscar_evento(alumnos.Alumnos_.root, carnet)
+    return jsonify(datos)
 
 @app.route("/carga", methods=['POST'])
 def Carga():
@@ -48,6 +67,15 @@ def Reporte():
         alumnos.Alumnos_.preShow(alumnos.Alumnos_.root)
         alumnos.Alumnos_.graficar(alumnos.Alumnos_.root)
         return "Reporte Alumno Generado"
+    elif(tipo==1):
+        return "Reporte Matriz Generado"
+    elif(tipo==2):
+        return "Reporte Tareas Generado"
+    elif(tipo==3):
+        return "Reporte de Cursos del Pensum Generado"
+    elif(tipo==4):
+        return "Reporte de Cursos del semestre"
+
 
 @app.route("/buscar", methods=['POST'])
 def Buscar():

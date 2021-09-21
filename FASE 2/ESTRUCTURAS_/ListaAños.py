@@ -69,6 +69,19 @@ class ListaAños_():
                 node.mese.añadircabeceras(mes, dia, hora, node.mese.inicio)
                 cond=True
     
+    def graficarTarea(self, base, node):
+        cond=False
+        while(node!=None) & (cond==False):
+            if(node.anio!=base.direccionamiento[2]):
+                node = node.siguiente
+            else:
+                if(accion=="añadir"):
+                    node.mese.añadirtask(base, node.mese.inicio)
+                    cond=True
+                elif(accion=="tarea"):
+                    node.mese.graficaTareas(base, node.mese.inicio)
+                    cond=True
+
     def tasklist(self, base, node, accion):
         cond=False
         while(node!=None) & (cond==False):

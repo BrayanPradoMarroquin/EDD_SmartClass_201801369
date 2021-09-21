@@ -25,43 +25,60 @@ class Listacabecera:
         self.final = None
 
     def insertar(self, num):
-        nuevo = NodoCab(num)
-        if self.inicio == None:
-            self.inicio = nuevo
-            self.final = self.inicio
-        else:
-            if(self.inicio.num==self.final.num):
-                self.final.siguiente = nuevo
-                nuevo.antes = self.final
-                self.final = nuevo
+        if(self.buscarcabecera(num)==False):
+            nuevo = NodoCab(num)
+            if self.inicio == None:
+                self.inicio = nuevo
+                self.final = self.inicio
             else:
-                cond = False
-                actual = self.inicio
-                while(actual!=None) & (cond==False):
-                    if(num==1):
+                if(self.inicio.num==self.final.num):
+                    if (num>self.inicio.num):
+                        self.final.siguiente = nuevo
+                        nuevo.antes = self.final
+                        self.final = nuevo
+                    elif(num<self.inicio.num):
                         nuevo.siguiente = self.inicio
                         self.inicio.antes = nuevo
                         self.inicio = nuevo
-                        cond=True
-                    elif(num>actual.num):
-                        actual = actual.siguiente
-                    else:
-                        nuevo.antes = actual.antes
-                        actual.antes.siguiente = nuevo
-                        actual.antes = nuevo
-                        nuevo.siguiente = actual
-                        cond = True
+                else:
+                    cond = False
+                    actual = self.inicio
+                    while(actual!=None) & (cond==False):
+                        if(num==1):
+                            nuevo.siguiente = self.inicio
+                            self.inicio.antes = nuevo
+                            self.inicio = nuevo
+                            cond=True
+                        elif(num>actual.num):
+                            actual = actual.siguiente
+                        else:
+                            nuevo.antes = actual.antes
+                            actual.antes.siguiente = nuevo
+                            actual.antes = nuevo
+                            nuevo.siguiente = actual
+                            cond = True
 
-                if(actual==None) & (cond==False):
-                    self.final.siguiente = nuevo
-                    nuevo.antes = self.final
-                    self.final = nuevo
+                    if(actual==None) & (cond==False):
+                        self.final.siguiente = nuevo
+                        nuevo.antes = self.final
+                        self.final = nuevo
         
     def imprimir(self):
         actual = self.inicio
         while(actual!=None):
             print(actual.num)
             actual = actual.siguiente
+
+    def buscarcabecera(self, data):
+        actual = self.inicio
+        cond=False
+        if(self.inicio!=None):
+            while(actual!=None) & (cond==False):
+                if(actual.num==data):
+                    return True
+            return False
+        else:
+            return False
 
 class ListaData:
     def __init__(self):
@@ -72,33 +89,34 @@ class ListaData:
         self.abajo = None
 
     def insertar(self, posX, posY, listaX, listaY, nuevoNodo):
-        lTemporalX = listaX.inicio
-        lTemporalY = listaY.inicio
+        if(self.valtarea(listaX, listaY, posX, posY)==False):
+            lTemporalX = listaX.inicio
+            lTemporalY = listaY.inicio
 
-        while lTemporalX.num != posX:
-            lTemporalX = lTemporalX.siguiente
-        listaX = lTemporalX
+            while lTemporalX.num != posX:
+                lTemporalX = lTemporalX.siguiente
+            listaX = lTemporalX
 
-        while lTemporalY.num != posY:
-            lTemporalY = lTemporalY.siguiente
-        listaY = lTemporalY
+            while lTemporalY.num != posY:
+                lTemporalY = lTemporalY.siguiente
+            listaY = lTemporalY
 
-        if listaX and listaY:
-            tempUltimoX = listaX
-            tempUltimoY = listaY
-            while tempUltimoX.abajo != None:
-                tempUltimoX = tempUltimoX.abajo
-            while tempUltimoY.abajo != None:
-                tempUltimoY = tempUltimoY.abajo
-            tempUltimoX.abajo = nuevoNodo
-            tempUltimoY.abajo = nuevoNodo
-            nuevoNodo.arriba = tempUltimoX
-            nuevoNodo.izquierda = tempUltimoY
-        else:
-            listaX = nuevoNodo
-            listaX.abajo = nuevoNodo
-            listaY = nuevoNodo
-            listaY.abajo= nuevoNodo
+            if listaX and listaY:
+                tempUltimoX = listaX
+                tempUltimoY = listaY
+                while tempUltimoX.abajo != None:
+                    tempUltimoX = tempUltimoX.abajo
+                while tempUltimoY.abajo != None:
+                    tempUltimoY = tempUltimoY.abajo
+                tempUltimoX.abajo = nuevoNodo
+                tempUltimoY.abajo = nuevoNodo
+                nuevoNodo.arriba = tempUltimoX
+                nuevoNodo.izquierda = tempUltimoY
+            else:
+                listaX = nuevoNodo
+                listaX.abajo = nuevoNodo
+                listaY = nuevoNodo
+                listaY.abajo= nuevoNodo
 
     def mostrar(self, listaX, listaY, posX, posY):
         listaCabeceraX = listaX.inicio
@@ -124,7 +142,6 @@ class ListaData:
             else:
                 temp = temp.abajo
 
-
     def buscarTarea(self, listaX, listaY, posX, posY, node):
         listaCabeceraX = listaX.inicio
         listaCabeceraY = listaY.inicio
@@ -149,3 +166,49 @@ class ListaData:
                 cond = True
             else:
                 temp = temp.abajo
+
+    def graficarTareas(self, listaX, listaY, posX, posY, node):
+        listaCabeceraX = listaX.inicio
+        listaCabeceraY = listaY.inicio
+
+        while listaCabeceraX.num != posX:
+            listaCabeceraX = listaCabeceraX.siguiente
+        print('La cabecera en x es ', listaCabeceraX.num)
+
+        while listaCabeceraY.num != posY:
+            listaCabeceraY = listaCabeceraY.siguiente
+        print('La cabecera en y es ', listaCabeceraY.num)
+
+        temp = listaCabeceraX.abajo
+        while temp != None:
+            temp = temp.abajo
+        temp = listaCabeceraY.abajo
+        cond = False
+        while (temp != None) & (cond==False):
+            if(temp.fila==posY) & (temp.columna==posX):
+                temp.tareas.graficar()
+                cond = True
+            else:
+                temp = temp.abajo
+
+    def valtarea(self, listaX, listaY, posX, posY):
+        listaCabeceraX = listaX.inicio
+        listaCabeceraY = listaY.inicio
+
+        while listaCabeceraX.num != posX:
+            listaCabeceraX = listaCabeceraX.siguiente
+        print('La cabecera en x es ', listaCabeceraX.num)
+
+        while listaCabeceraY.num != posY:
+            listaCabeceraY = listaCabeceraY.siguiente
+        print('La cabecera en y es ', listaCabeceraY.num)
+
+        temp = listaCabeceraX.abajo
+        while temp != None:
+            temp = temp.abajo
+        temp = listaCabeceraY.abajo
+        cond = False
+        while (temp != None) & (cond==False):
+            if(temp.fila==posY) & (temp.columna==posX):
+                return True
+        return False
