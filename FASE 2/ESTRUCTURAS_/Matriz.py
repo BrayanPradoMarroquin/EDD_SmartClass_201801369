@@ -161,13 +161,63 @@ class ListaData:
         cond = False
         while (temp != None) & (cond==False):
             if(temp.fila==posY) & (temp.columna==posX):
-                temp.tareas.insertar(node)
                 temp.data +=1
+                node.id = temp.data
+                temp.tareas.insertar(node)
+                
                 cond = True
             else:
                 temp = temp.abajo
 
-    def graficarTareas(self, listaX, listaY, posX, posY, node):
+    def RecuTarea(self, listaX, listaY, posX, posY, id):
+        listaCabeceraX = listaX.inicio
+        listaCabeceraY = listaY.inicio
+
+        while listaCabeceraX.num != posX:
+            listaCabeceraX = listaCabeceraX.siguiente
+        print('La cabecera en x es ', listaCabeceraX.num)
+
+        while listaCabeceraY.num != posY:
+            listaCabeceraY = listaCabeceraY.siguiente
+        print('La cabecera en y es ', listaCabeceraY.num)
+
+        temp = listaCabeceraX.abajo
+        while temp != None:
+            temp = temp.abajo
+        temp = listaCabeceraY.abajo
+        cond = False
+        while (temp != None) & (cond==False):
+            if(temp.fila==posY) & (temp.columna==posX):
+                return temp.tareas.buscartarea(id)
+                cond = True
+            else:
+                temp = temp.abajo
+
+    def actualizarTarea(self, listaX, listaY, posX, posY, id, carnet, nombre, descripcion, materia, fecha, hora, status):
+        listaCabeceraX = listaX.inicio
+        listaCabeceraY = listaY.inicio
+
+        while listaCabeceraX.num != posX:
+            listaCabeceraX = listaCabeceraX.siguiente
+        print('La cabecera en x es ', listaCabeceraX.num)
+
+        while listaCabeceraY.num != posY:
+            listaCabeceraY = listaCabeceraY.siguiente
+        print('La cabecera en y es ', listaCabeceraY.num)
+
+        temp = listaCabeceraX.abajo
+        while temp != None:
+            temp = temp.abajo
+        temp = listaCabeceraY.abajo
+        cond = False
+        while (temp != None) & (cond==False):
+            if(temp.fila==posY) & (temp.columna==posX):
+                return temp.tareas.actualizarTarea(id, carnet, nombre, descripcion, materia, fecha, hora, status)
+                cond = True
+            else:
+                temp = temp.abajo
+
+    def graficarTareas(self, listaX, listaY, posX, posY):
         listaCabeceraX = listaX.inicio
         listaCabeceraY = listaY.inicio
 

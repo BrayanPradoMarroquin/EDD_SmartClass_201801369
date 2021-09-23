@@ -1,5 +1,6 @@
 class Tareas:
     def __init__(self, carnet, Nombre, Descripcion, Materia, Fecha, Hora, Estado):
+        self.id =  0
         self.carnet = carnet
         self.nombre = Nombre
         self.descripcion = Descripcion

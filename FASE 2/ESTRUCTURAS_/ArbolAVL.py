@@ -154,6 +154,40 @@ class ArbolAVL_:
         elif(base.carnet>node.Carnet):
             return self.litareas(base, node.right, accion)
 
+    def newAll(self, Tarea, node):
+        if(node==None):
+            return "El arbol esta Vacio"
+        elif(node.Carnet==Tarea.carnet):
+            self.AñadirAño(Tarea.carnet, Tarea.direccionamiento[2], node)
+            self.buscarmes(Tarea.carnet, Tarea.direccionamiento[2], Tarea.direccionamiento[1], node)
+            self.buscarmatriz(Tarea.carnet, Tarea.direccionamiento[2], Tarea.direccionamiento[1], Tarea.direccionamiento[0], Tarea.hora, node)
+            self.litareas(Tarea, node, "añadir")
+            self.litareas(Tarea, node, "tarea")
+        elif(Tarea.carnet<node.Carnet):
+            return self.newAll(Tarea, node.left)
+        elif(Tarea.carnet>node.Carnet):
+            return self.newAll(Tarea, node.right)
+
+    def RecuTarea(self, carnet, anio, mes, dia, hora, id, node):
+        if(node==None):
+            return "El arbol esta Vacio"
+        elif(node.Carnet==carnet):
+            return node.años.RecuTarea(anio, mes, dia, hora, id)
+        elif(carnet<node.Carnet):
+            return self.RecuTarea(carnet, anio, mes, dia, hora, id, node.left)
+        elif(carnet>node.Carnet):
+            return self.RecuTarea(carnet, anio, mes, dia, hora, id, node.right)
+
+    def actualizarTarea(self, carnet, anio, mes, dia, hora, id, nombre, descripcion, materia, fecha, status, node):
+        if(node==None):
+            return "El arbol esta Vacio"
+        elif(node.Carnet==carnet):
+            return node.años.actualizarTarea(anio, mes, dia, hora, id, carnet, nombre, descripcion, materia, fecha, status)
+        elif(carnet<node.Carnet):
+            return self.actualizarTarea(carnet, anio, mes, dia, hora, id, node.left)
+        elif(carnet>node.Carnet):
+            return self.actualizarTarea(carnet, anio, mes, dia, hora, id, node.right)    
+
     def buscarsemestre(self, carnet, anio, semestre, node):
         if(node==None):
             return "El arbol esta Vacio"
@@ -174,15 +208,15 @@ class ArbolAVL_:
         elif(carnet>node.Carnet):
             return self.buscarsemestre(carnet, anio, semestre, node.right)
 
-    def graphTareas(self, base, node, accion):
+    def graphTareas(self, carnet, año, mes, dia, hora, node):
         if(node==None):
             return "El arbol esta Vacio"
         elif(node.Carnet==base.carnet):
-            node.años.graficarTarea(base, node.años.inicio, accion)
+            node.años.graficarTarea(año, mes, dia, hora, node.años.inicio)
         elif(base.carnet<node.Carnet):
-            return self.litareas(base, node.left, accion)
+            return self.graphTareas(carnet, año, mes, dia, hora, node.left)
         elif(base.carnet>node.Carnet):
-            return self.litareas(base, node.right, accion)
+            return self.graphTareas(carnet, año, mes, dia, hora, node.right)
 
     def graficar(self, node):
         file = open("ArbolAVL.dot", 'w')

@@ -73,10 +73,26 @@ class BTree:
                 print("Dato repetido"+ codigo)
                 self.comparador=False
     
+    def CompareTo(self, s1, s2):
+        tamaño1 = len(s1)
+        tamaño2 = len(s2)
+        limite = min(tamaño1, tamaño2)
+        
+        v1 = list(s1)
+        v2 = list(s2)
+        
+        i = 0
+        while(i<limite):
+            if (ord(v1[i])!=ord(v2[i])):
+                return ord(v1[i])-ord(v2[i])
+            i+=1
+        
+        return tamaño1-tamaño2
+
     def BuscarNodoB(self, codigo, raiz):
         auxContador=0
 
-        if(codigo.compareTo(raiz.getCodigo(0))<0):
+        if(self.compareTo(codigo, raiz.getCodigo(0))<0):
             self.estado=False
             
             auxContador=0
@@ -87,7 +103,7 @@ class BTree:
                 auxContador+=1
             auxContador=raiz.getCuenta()
             
-            while(codigo.compareTo(raiz.getCodigo(auxContador-1))<0 & auxContador>1):
+            while(self.compareTo(codigo, raiz.getCodigo(auxContador-1))<0 & auxContador>1):
                 auxContador-=1
                 
                 if(codigo==raiz.getCodigo(auxContador-1)):
@@ -116,7 +132,7 @@ class BTree:
         raiz.setPrerequisitos(posicion, Prerequisitos)
         raiz.setObligatorio(posicion, Obligatorio)
 
-        raiz.setApuntador(posicion+1, this.Auxliar2)
+        raiz.setApuntador(posicion+1, self.Auxliar2)
         raiz.setCuenta(raiz.getCuenta()+1)
     
     def DividirPaginaB(self, raiz, posicion, codigo, pais, creditos, Prerequisitos, Obligatorio):

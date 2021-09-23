@@ -42,6 +42,22 @@ class Meses:
                 node.matriz.columna.insertar(dia)
                 cond=True
     
+    def RecuTarea(self, mes, posX, posY, id):
+        actual = self.inicio
+        while(actual!=None):
+            if(actual.mes!=mes):
+                actual = actual.siguiente
+            else:
+                return actual.matriz.data.RecuTarea(actual.matriz.columna, actual.matriz.filas, posX, posY, id)
+
+    def actualizarTarea(self, mes, posX, posY, id, carnet, nombre, descripcion, materia, fecha, hora, status):
+        actual = self.inicio
+        while(actual!=None):
+            if(actual.mes!=mes):
+                actual = actual.siguiente
+            else:
+                return actual.matriz.data.actualizarTarea(actual.matriz.columna, actual.matriz.filas, posX, posY, id, carnet, nombre, descripcion, materia, fecha, hora, status)
+
     def añadirtask(self, base, node):
         cond = False
         while(node!=None) & (cond==False):
@@ -59,13 +75,13 @@ class Meses:
                     node.matriz.data.insertar(base.direccionamiento[0], base.hora, node.matriz.columna, node.matriz.filas, task)
                     cond=True
     
-    def graficaTareas(self, base, node):
+    def graficaTareas(self, mes, dia, hora, node):
         cond = False
         while(node!=None) & (cond==False):
-            if(node.mes!=base.direccionamiento[1]):
+            if(node.mes!=mes):
                 node = node.siguiente
             else:
-                node.matriz.data.graficarTareas(node.matriz.columna, node.matriz.filas, base.direccionamiento[0], base.hora, base)
+                node.matriz.data.graficarTareas(node.matriz.columna, node.matriz.filas, dia, hora)
                 cond=True
 
     def Taskañadir(self, base, node):
@@ -76,3 +92,7 @@ class Meses:
             else:
                 node.matriz.data.buscarTarea(node.matriz.columna, node.matriz.filas, base.direccionamiento[0], base.hora, base)
                 cond=True
+
+    def NewTarea(self, base, node):
+        self.añadirtask(base, node)
+        self.Taskañadir(base, node)
