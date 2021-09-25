@@ -204,18 +204,18 @@ class ArbolAVL_:
         elif(node.Carnet==carnet):
             node.años.añadirCurso(anio, semestre, codigo, curso, creditos, pre, ob, node.años.inicio)
         elif(carnet<node.Carnet):
-            return self.buscarsemestre(carnet, anio, semestre, node.left)
+            return self.cursosEstudiante(carnet, anio, semestre, codigo, curso, creditos, pre, ob, node.left)
         elif(carnet>node.Carnet):
-            return self.buscarsemestre(carnet, anio, semestre, node.right)
+            return self.cursosEstudiante(carnet, anio, semestre, codigo, curso, creditos, pre, ob, node.right)
 
     def graphTareas(self, carnet, año, mes, dia, hora, node):
         if(node==None):
             return "El arbol esta Vacio"
-        elif(node.Carnet==base.carnet):
+        elif(node.Carnet==carnet):
             node.años.graficarTarea(año, mes, dia, hora, node.años.inicio)
-        elif(base.carnet<node.Carnet):
+        elif(carnet<node.Carnet):
             return self.graphTareas(carnet, año, mes, dia, hora, node.left)
-        elif(base.carnet>node.Carnet):
+        elif(carnet>node.Carnet):
             return self.graphTareas(carnet, año, mes, dia, hora, node.right)
 
     def graficar(self, node):

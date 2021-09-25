@@ -69,7 +69,7 @@ class Meses:
                     node.matriz.filas.insertar(base.hora)
                     self.añadirtask(base, node)
                 elif(node.matriz.columna.buscarcabecera(base.direccionamiento[0])==False):
-                    node.matriz.columna.insertar(dia)
+                    node.matriz.columna.insertar(base.direccionamiento[0])
                     self.añadirtask(base, node)
                 else:
                     node.matriz.data.insertar(base.direccionamiento[0], base.hora, node.matriz.columna, node.matriz.filas, task)

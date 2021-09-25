@@ -23,6 +23,7 @@ class ListTareas:
                 actual.fecha = fecha
                 actual.hora = hora
                 actual.status = status
+                break
             else: 
                 actual = actual.siguiente
 
@@ -52,7 +53,7 @@ class ListTareas:
         cont=0
         while(nodo!=None):
             data.write("Node"+ str(cont) + "[label=\" Carnet: " + str(nodo.carnet) + "\\n Tarea: " + nodo.nombre + "\\n Descripcion: " + nodo.descripcion + "\\n Materia: "+ nodo.materia +"\\n Fecha: "+nodo.fecha+ "\\n Hora: "+ nodo.hora +"\\n Estado: "+nodo.status+"\"];\n")
-            if(nodo.atras!=None):
+            if(nodo.siguiente!=None):
                 data.write('Node'+str(cont-1)+"->Node"+str(cont))
             cont+=1
             nodo = nodo.siguiente
