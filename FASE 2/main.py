@@ -69,7 +69,16 @@ def EnvTarea():
     Fecha = request.args.get('Fecha', 'no contiene este parametro').split("/")
     Hora = request.args.get('Hora', 'no contiene este parametro')
     Id = request.args.get('Identificador', 'no contiene este parametro')
-    datos = alumnos.Alumnos_.RecuTarea(carnet, Fecha[2], Fecha[1], Fecha[0], Hora,Id, alumnos.Alumnos_.root)
+    datos = alumnos.Alumnos_.RecuTarea(carnet, Fecha[2], Fecha[1], Fecha[0], Hora,Id, alumnos.Alumnos_.root, "Obtener")
+    return jsonify(datos)
+
+@app.route("/recordatorios", methods=['DELETE'])
+def DelTarea():
+    carnet = request.args.get('Carnet', 'no contiene este parametro')
+    Fecha = request.args.get('Fecha', 'no contiene este parametro').split("/")
+    Hora = request.args.get('Hora', 'no contiene este parametro')
+    Id = request.args.get('Identificador', 'no contiene este parametro')
+    datos = alumnos.Alumnos_.RecuTarea(carnet, Fecha[2], Fecha[1], Fecha[0], Hora,Id, alumnos.Alumnos_.root, "Eliminar")
     return jsonify(datos)
 
 @app.route("/recordatorios", methods=['PUT'])

@@ -61,3 +61,21 @@ class ListTareas:
         data.close()
         os.system("dot -Tpng ListTareas.dot -o ListTareas.png")
         os.startfile("ListTareas.png")
+
+    def Eliminar(self, id):
+        actual = self.inicio
+        previo = None
+        val = True 
+
+        while(actual!=None & val==False):
+            if(actual.id==id):
+                if(previo==None):
+                    previo=actual.siguiente
+                    actual.sigueinte=None
+                else:
+                    previo.siguiente = actual.siguiente
+                    actual.siguiente = None
+                val=True
+            else:
+                previo=actual
+                actual=actual.siguiente

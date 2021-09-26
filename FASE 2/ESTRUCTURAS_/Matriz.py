@@ -169,7 +169,7 @@ class ListaData:
             else:
                 temp = temp.abajo
 
-    def RecuTarea(self, listaX, listaY, posX, posY, id):
+    def RecuTarea(self, listaX, listaY, posX, posY, id, accion):
         listaCabeceraX = listaX.inicio
         listaCabeceraY = listaY.inicio
 
@@ -188,8 +188,12 @@ class ListaData:
         cond = False
         while (temp != None) & (cond==False):
             if(temp.fila==posY) & (temp.columna==posX):
-                return temp.tareas.buscartarea(id)
-                cond = True
+                if(accion=="Obtener"):
+                    return temp.tareas.buscartarea(id)
+                    cond = True
+                elif(accion=="Eliminar"):
+                    return temp.tareas.Eliminar(id)
+                    cond = True
             else:
                 temp = temp.abajo
 

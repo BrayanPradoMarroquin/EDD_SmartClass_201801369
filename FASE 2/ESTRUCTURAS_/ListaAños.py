@@ -69,13 +69,13 @@ class ListaAños_():
                 node.mese.añadircabeceras(mes, dia, hora, node.mese.inicio)
                 cond=True
     
-    def RecuTarea(self, año, mes, dia, hora, id):
+    def RecuTarea(self, año, mes, dia, hora, id, accion):
         actual = self.inicio
         while(actual!=None):
             if(actual.anio!=año):
                 actual = actual.siguiente
             else:
-                return actual.mese.RecuTarea(mes, dia, hora, id)
+                return actual.mese.RecuTarea(mes, dia, hora, id, accion)
 
     def actualizarTarea(self, año, mes, dia, hora, id, carnet, nombre, descripcion, materia, fecha, status):
         actual = self.inicio

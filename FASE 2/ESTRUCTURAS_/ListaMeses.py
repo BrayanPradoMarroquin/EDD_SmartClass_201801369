@@ -42,13 +42,13 @@ class Meses:
                 node.matriz.columna.insertar(dia)
                 cond=True
     
-    def RecuTarea(self, mes, posX, posY, id):
+    def RecuTarea(self, mes, posX, posY, id, accion):
         actual = self.inicio
         while(actual!=None):
             if(actual.mes!=mes):
                 actual = actual.siguiente
             else:
-                return actual.matriz.data.RecuTarea(actual.matriz.columna, actual.matriz.filas, posX, posY, id)
+                return actual.matriz.data.RecuTarea(actual.matriz.columna, actual.matriz.filas, posX, posY, id, accion)
 
     def actualizarTarea(self, mes, posX, posY, id, carnet, nombre, descripcion, materia, fecha, hora, status):
         actual = self.inicio

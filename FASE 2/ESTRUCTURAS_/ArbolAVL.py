@@ -168,15 +168,15 @@ class ArbolAVL_:
         elif(Tarea.carnet>node.Carnet):
             return self.newAll(Tarea, node.right)
 
-    def RecuTarea(self, carnet, anio, mes, dia, hora, id, node):
+    def RecuTarea(self, carnet, anio, mes, dia, hora, id, node, accion):
         if(node==None):
             return "El arbol esta Vacio"
         elif(node.Carnet==carnet):
-            return node.años.RecuTarea(anio, mes, dia, hora, id)
+            return node.años.RecuTarea(anio, mes, dia, hora, id, accion)
         elif(carnet<node.Carnet):
-            return self.RecuTarea(carnet, anio, mes, dia, hora, id, node.left)
+            return self.RecuTarea(carnet, anio, mes, dia, hora, id, node.left, accion)
         elif(carnet>node.Carnet):
-            return self.RecuTarea(carnet, anio, mes, dia, hora, id, node.right)
+            return self.RecuTarea(carnet, anio, mes, dia, hora, id, node.right, accion)
 
     def actualizarTarea(self, carnet, anio, mes, dia, hora, id, nombre, descripcion, materia, fecha, status, node):
         if(node==None):
