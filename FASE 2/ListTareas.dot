@@ -1,5 +1,5 @@
 digraph G { 
 rankdir=TB; 
 node [shape = circle, color=black , style=filled, fillcolor=gray93];
-Node0[label=" Carnet: 201801369\n Tarea: Proyecto de EDD\n Descripcion: terminar el Proyecto de EDD\n Materia: Estructura de Datos\n Fecha: 01/07/2021\n Hora: 8:00\n Estado: Incompleto"];
-Node-1->Node0} 
+Node0[label=" Carnet: 201801369\n Tarea: Proyecto de EDD\n Descripcion: terminar el Proyecto de EDD\n Materia: Estructura de Datos\n Fecha: 01/07/2021\n Hora: 8\n Estado: Incompleto"];
+} 

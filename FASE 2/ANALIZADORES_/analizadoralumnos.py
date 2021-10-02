@@ -291,6 +291,8 @@ def automataTask(li):
     elif Estado==7:
         if li.token=="CADENA":
             temp.hora = li.lexema
+            temp.hora = temp.hora.split(":")
+            temp.hora = temp.hora[0]
             alumnos.Alumnos_.buscarmatriz(temp.carnet, ma[2], ma[1], ma[0], temp.hora, alumnos.Alumnos_.root)
             temp.direccionamiento = ma
             Estado = 2

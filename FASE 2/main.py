@@ -53,12 +53,12 @@ def CreTarea():
     carnet = request.args.get('Carnet', 'no contiene este parametro')
     fech = request.args.get('Fecha', 'no contiene este parametro')
     Fecha = fech.split("/")
-    Hora = request.args.get('Hora', 'no contiene este parametro')
+    Hora = request.args.get('Hora', 'no contiene este parametro').split(":")
     nombre = request.args.get('Nombre', 'no contiene este parametro')
     descripcion = request.args.get('Descripcion', 'no contiene este parametro')
     materia = request.args.get('Materia', 'no contiene este parametro')
     status = request.args.get('Estado', 'no contiene este parametro')
-    NewTask = Tareas(carnet, nombre, descripcion, materia, fech, Hora, status)
+    NewTask = Tareas(carnet, nombre, descripcion, materia, fech, int(Hora[0]), status)
     NewTask.direccionamiento = Fecha
     datos = alumnos.Alumnos_.newAll(NewTask, alumnos.Alumnos_.root)
     return "La tarea ha sido actualizada"
@@ -67,18 +67,18 @@ def CreTarea():
 def EnvTarea():
     carnet = request.args.get('Carnet', 'no contiene este parametro')
     Fecha = request.args.get('Fecha', 'no contiene este parametro').split("/")
-    Hora = request.args.get('Hora', 'no contiene este parametro')
+    Hora = request.args.get('Hora', 'no contiene este parametro').split(":")
     Id = request.args.get('Identificador', 'no contiene este parametro')
-    datos = alumnos.Alumnos_.RecuTarea(carnet, Fecha[2], Fecha[1], Fecha[0], Hora,Id, alumnos.Alumnos_.root, "Obtener")
+    datos = alumnos.Alumnos_.RecuTarea(carnet, Fecha[2], Fecha[1], Fecha[0], int(Hora[0]),Id, alumnos.Alumnos_.root, "Obtener")
     return jsonify(datos)
 
 @app.route("/recordatorios", methods=['DELETE'])
 def DelTarea():
     carnet = request.args.get('Carnet', 'no contiene este parametro')
     Fecha = request.args.get('Fecha', 'no contiene este parametro').split("/")
-    Hora = request.args.get('Hora', 'no contiene este parametro')
+    Hora = request.args.get('Hora', 'no contiene este parametro').split(":")
     Id = request.args.get('Identificador', 'no contiene este parametro')
-    datos = alumnos.Alumnos_.RecuTarea(carnet, Fecha[2], Fecha[1], Fecha[0], Hora,Id, alumnos.Alumnos_.root, "Eliminar")
+    datos = alumnos.Alumnos_.RecuTarea(carnet, Fecha[2], Fecha[1], Fecha[0], int(Hora[0]),Id, alumnos.Alumnos_.root, "Eliminar")
     return jsonify(datos)
 
 @app.route("/recordatorios", methods=['PUT'])
@@ -86,13 +86,13 @@ def ActTarea():
     carnet = request.args.get('Carnet', 'no contiene este parametro')
     fech = request.args.get('Fecha', 'no contiene este parametro')
     Fecha = fech.split("/")
-    Hora = request.args.get('Hora', 'no contiene este parametro')
+    Hora = request.args.get('Hora', 'no contiene este parametro').split(":")
     Id = request.args.get('Identificador', 'no contiene este parametro')
     nombre = request.args.get('Nombre', 'no contiene este parametro')
     descripcion = request.args.get('Descripcion', 'no contiene este parametro')
     materia = request.args.get('Materia', 'no contiene este parametro')
     status = request.args.get('Estado', 'no contiene este parametro')
-    datos = alumnos.Alumnos_.actualizarTarea(carnet, Fecha[2], Fecha[1], Fecha[0], Hora,Id, nombre, descripcion, materia, fech, status, alumnos.Alumnos_.root)
+    datos = alumnos.Alumnos_.actualizarTarea(carnet, Fecha[2], Fecha[1], Fecha[0], int(Hora[0]),Id, nombre, descripcion, materia, fech, status, alumnos.Alumnos_.root)
     return "La tarea ha sido actualizada"
 
 ##---------------------------- Area General --------------------------------------
@@ -125,7 +125,8 @@ def Reporte():
     elif(tipo=="1"):
         return "Reporte Matriz Generado"
     elif(tipo=="2"):
-        alumnos.Alumnos_.graphTareas(obten['carnet'], obten['año'], obten['mes'], obten['dia'], obten['hora'], alumnos.Alumnos_.root)
+        hor = obten['hora'].split(":")
+        alumnos.Alumnos_.graphTareas(obten['carnet'], obten['año'], obten['mes'], obten['dia'], int(hor[0]), alumnos.Alumnos_.root)
         return "Reporte Tareas Generado"
     elif(tipo=="3"):
         alumnos.Pensum.Preorden()

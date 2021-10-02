@@ -25,6 +25,7 @@ class Listacabecera:
         self.final = None
 
     def insertar(self, num):
+        num = int(num)
         if(self.buscarcabecera(num)==False):
             nuevo = NodoCab(num)
             if self.inicio == None:
@@ -74,8 +75,10 @@ class Listacabecera:
         cond=False
         if(self.inicio!=None):
             while(actual!=None) & (cond==False):
-                if(actual.num==data):
+                if(actual.num==int(data)):
                     return True
+                else:
+                    actual = actual.siguiente
             return False
         else:
             return False
@@ -93,11 +96,11 @@ class ListaData:
             lTemporalX = listaX.inicio
             lTemporalY = listaY.inicio
 
-            while lTemporalX.num != posX:
+            while lTemporalX.num != int(posX):
                 lTemporalX = lTemporalX.siguiente
             listaX = lTemporalX
 
-            while lTemporalY.num != posY:
+            while lTemporalY.num != int(posY):
                 lTemporalY = lTemporalY.siguiente
             listaY = lTemporalY
 
@@ -146,11 +149,11 @@ class ListaData:
         listaCabeceraX = listaX.inicio
         listaCabeceraY = listaY.inicio
 
-        while listaCabeceraX.num != posX:
+        while listaCabeceraX.num != int(posX):
             listaCabeceraX = listaCabeceraX.siguiente
         print('La cabecera en x es ', listaCabeceraX.num)
 
-        while listaCabeceraY.num != posY:
+        while listaCabeceraY.num != int(posY):
             listaCabeceraY = listaCabeceraY.siguiente
         print('La cabecera en y es ', listaCabeceraY.num)
 
@@ -173,11 +176,11 @@ class ListaData:
         listaCabeceraX = listaX.inicio
         listaCabeceraY = listaY.inicio
 
-        while listaCabeceraX.num != posX:
+        while listaCabeceraX.num != int(posX):
             listaCabeceraX = listaCabeceraX.siguiente
         print('La cabecera en x es ', listaCabeceraX.num)
 
-        while listaCabeceraY.num != posY:
+        while listaCabeceraY.num != int(posY):
             listaCabeceraY = listaCabeceraY.siguiente
         print('La cabecera en y es ', listaCabeceraY.num)
 
@@ -225,11 +228,11 @@ class ListaData:
         listaCabeceraX = listaX.inicio
         listaCabeceraY = listaY.inicio
 
-        while listaCabeceraX.num != posX:
+        while listaCabeceraX.num != int(posX):
             listaCabeceraX = listaCabeceraX.siguiente
         print('La cabecera en x es ', listaCabeceraX.num)
 
-        while listaCabeceraY.num != posY:
+        while listaCabeceraY.num != int(posY):
             listaCabeceraY = listaCabeceraY.siguiente
         print('La cabecera en y es ', listaCabeceraY.num)
 
@@ -249,11 +252,11 @@ class ListaData:
         listaCabeceraX = listaX.inicio
         listaCabeceraY = listaY.inicio
 
-        while listaCabeceraX.num != posX:
+        while listaCabeceraX.num != int(posX):
             listaCabeceraX = listaCabeceraX.siguiente
         print('La cabecera en x es ', listaCabeceraX.num)
 
-        while listaCabeceraY.num != posY:
+        while listaCabeceraY.num != int(posY):
             listaCabeceraY = listaCabeceraY.siguiente
         print('La cabecera en y es ', listaCabeceraY.num)
 
