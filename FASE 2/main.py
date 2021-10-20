@@ -1,11 +1,13 @@
 import ANALIZADORES_.analizadores
 from flask import Flask, request, jsonify
-from ESTRUCTURAS_.NodoArbolAVL import NodoArbolAVL_
-import alumnos
+from flask_cors import CORS
 import ANALIZADORES_.analizadoralumnos
+import ANALIZADORES_.Conex 
 from NodoTask import Tareas
+import alumnos
 
 app = Flask(__name__)
+CORS(app)
 
 @app.route("/")
 def index():
@@ -13,38 +15,27 @@ def index():
 
 ##----------------------------- Area de Alumnos -------------------------------
 
-@app.route("/estudiante", methods=['POST'])
+@app.route("/estudiante", methods=['POST', 'PUT'])
 def IngresoEstudiante():
-    carnet = request.args.get('carnet', 'no contiene este parametro')
-    DPI = request.args.get('DPI', 'no contiene este parametro')
-    nombre = request.args.get('nombre', 'no contiene este parametro')
-    carrera = request.args.get('carrera', 'no contiene este parametro')
-    correo = request.args.get('correo', 'no contiene este parametro')
-    password = request.args.get('password', 'no contiene este parametro')
-    creditos = request.args.get('creditos', 'no contiene este parametro')
-    edad = request.args.get('edad', 'no contiene este parametro')
-    estudiante = NodoArbolAVL_(carnet, DPI, nombre, carrera, correo, password, creditos, edad)
-    alumnos.Alumnos_.insert(estudiante)
-    return "Nuevo estudiante"
-
-@app.route("/estudiante", methods=['PUT'])
-def ActEstudiante():
-    carnet = request.args.get('carnet', 'no contiene este parametro')
-    DPI = request.args.get('DPI', 'no contiene este parametro')
-    nombre = request.args.get('nombre', 'no contiene este parametro')
-    carrera = request.args.get('carrera', 'no contiene este parametro')
-    correo = request.args.get('correo', 'no contiene este parametro')
-    password = request.args.get('password', 'no contiene este parametro')
-    creditos = request.args.get('creditos', 'no contiene este parametro')
-    edad = request.args.get('edad', 'no contiene este parametro')
-    alumnos.Alumnos_.Mod_Estudiante(carnet, DPI, nombre, carrera, correo, password, creditos, edad, alumnos.Alumnos_.root)
-    return "Los Datos han sido actualizados"
-
-@app.route("/estudiante", methods=['GET'])
-def EnvEstudiante():
-    carnet = request.args.get('carnet', 'no contiene este parametro')
-    datos = alumnos.Alumnos_.Buscar_evento(alumnos.Alumnos_.root, carnet)
-    return jsonify(datos)
+    if request.method == 'POST':
+        obten = request.json
+        '''ANALIZADORES_.Conex.encryp_al( carnet, DPI, nombre, carrera, correo, password, creditos, edad)'''
+        ANALIZADORES_.Conex.encryp_al( obten['carnet'], obten['DPI'], obten['Nombre'], obten['Carrera'], obten['Correo'], obten['Contraseña'], obten['Creditos'], obten['Edad'])
+        data = {
+            'respuesta': "El usuario: " + obten['carnet'] +" se ha ingresado con Exito"
+        }
+        return data
+    elif request.method == 'PUT':
+        carnet = request.args.get('carnet', 'no contiene este parametro')
+        DPI = request.args.get('DPI', 'no contiene este parametro')
+        nombre = request.args.get('nombre', 'no contiene este parametro')
+        carrera = request.args.get('carrera', 'no contiene este parametro')
+        correo = request.args.get('correo', 'no contiene este parametro')
+        password = request.args.get('password', 'no contiene este parametro')
+        creditos = request.args.get('creditos', 'no contiene este parametro')
+        edad = request.args.get('edad', 'no contiene este parametro')
+        ANALIZADORES_.Conex.encryp_ac_al(carnet, DPI, nombre, carrera, correo, password, creditos, edad)
+        return "Los Datos han sido actualizados"
 
 ##----------------------------- Area de Tareas ----------------------------------
 
@@ -119,8 +110,8 @@ def Reporte():
     obten = request.json
     tipo = obten['tipo']
     if(tipo=="0"):
-        alumnos.Alumnos_.preShow(alumnos.Alumnos_.root)
-        alumnos.Alumnos_.graficar(alumnos.Alumnos_.root)
+        alumnos.Alumnos_.graficar("encriptado", alumnos.Alumnos_.root)
+        alumnos.Alumnos_.graficar("decriptado", alumnos.Alumnos_.root)
         return "Reporte Alumno Generado"
     elif(tipo=="1"):
         return "Reporte Matriz Generado"
@@ -134,11 +125,11 @@ def Reporte():
     elif(tipo=="4"):
         return "Reporte de Cursos del semestre"
 
-@app.route("/buscar", methods=['POST'])
-def Buscar():
-    data = request.args.get('data', 'no contiene este parametro')
-    resultado = alumnos.Alumnos_.Buscar_evento(alumnos.Alumnos_.root, data)
-    return resultado
+@app.route("/Login", methods=['POST'])
+def Login():
+    obten = request.json
+    return alumnos.Alumnos_.Buscar_evento(alumnos.Alumnos_.root, obten['usuario'], obten['password'])
+    
 
 if __name__ == '__main__':
     app.run(debug=True, port=3000)

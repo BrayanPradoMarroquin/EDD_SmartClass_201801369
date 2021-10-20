@@ -1,8 +1,9 @@
 from ESTRUCTURAS_.ListaAños import ListaAños_
 
 class NodoArbolAVL_:
-
-    def __init__(self, Carnet, Identificacion, Nombre, Carrera, Correo, Password, Creditos, Edad):
+##---------------- aqui se agrego un validador de carnet ------------------------------------------------
+    def __init__(self, val, Carnet, Identificacion, Nombre, Carrera, Correo, Password, Creditos, Edad):
+        self.Val = val
         self.Carnet = Carnet
         self.Identificacion = Identificacion
         self.Nombre = Nombre

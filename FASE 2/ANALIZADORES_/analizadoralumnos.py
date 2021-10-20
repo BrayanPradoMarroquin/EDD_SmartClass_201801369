@@ -2,6 +2,7 @@ import re
 from ESTRUCTURAS_.NodoArbolAVL import NodoArbolAVL_ 
 import alumnos
 from NodoTask import Tareas
+from cryptography.fernet import Fernet
 
 valor=""
 flagId=False
@@ -15,6 +16,10 @@ tablaSimbolos = []
 tablaSimbolosTask=[]
 listaTask = []
 ma = []
+file = open('key.key', 'rb')
+key = file.read()
+file.close()
+keygen = Fernet(key)
 
 class Simbolo:
 
@@ -119,7 +124,7 @@ def automataalumnos(li):
     global Estado, temp, flagAlumnos
     if Estado==0:
         if li.lexema=="Carnet":
-            temp = NodoArbolAVL_(0, 0, 0, 0, 0, 0, 0, 0)
+            temp = NodoArbolAVL_(0, 0, 0, 0, 0, 0, 0, 0, 0)
             Estado = 1
         elif li.lexema=="DPI":
             Estado = 3
@@ -137,7 +142,8 @@ def automataalumnos(li):
             Estado = 9
     elif Estado==1:
         if li.token=="CADENA":
-            temp.Carnet = li.lexema
+            temp.Val = li.lexema
+            temp.Carnet = keygen.encrypt(li.lexema.encode())
             Estado = 2
     elif Estado==2:
         if li.lexema=="item":
@@ -149,31 +155,31 @@ def automataalumnos(li):
             Estado=0
     elif Estado==3:
         if li.token=="CADENA":
-            temp.Identificacion = li.lexema
+            temp.Identificacion = keygen.encrypt(li.lexema.encode())
             Estado = 2
     elif Estado==4:
         if li.token=="CADENA":
-            temp.Nombre = li.lexema
+            temp.Nombre = keygen.encrypt(li.lexema.encode())
             Estado = 2
     elif Estado==5:
         if li.token=="CADENA":
-            temp.Carrera = li.lexema
+            temp.Carrera = keygen.encrypt(li.lexema.encode())
             Estado = 2
     elif Estado==6:
         if li.token=="CADENA":
-            temp.Correo = li.lexema
+            temp.Correo = keygen.encrypt(li.lexema.encode())
             Estado = 2
     elif Estado==7:
         if li.token=="CADENA":
-            temp.Password = li.lexema
+            temp.Password = keygen.encrypt(li.lexema.encode())
             Estado = 2
     elif Estado==8:
         if li.token=="NUMERO":
-            temp.Creditos = li.lexema
+            temp.Creditos = keygen.encrypt(li.lexema.encode())
             Estado = 2
     elif Estado==9:
         if li.token=="NUMERO":
-            temp.Edad = li.lexema
+            temp.Edad = keygen.encrypt(li.lexema.encode())
             Estado = 2
 
 def sintac():

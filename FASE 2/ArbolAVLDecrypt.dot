@@ -1,0 +1,7 @@
+digraph G { 
+rankdir=TB; 
+node [shape = record, color=black , style=filled, fillcolor=gray93];
+nodo201801369 [ label ="<C0>| Carnet: 201801369\n DPI: 2995464660101\n Nombre: Brayan Prado\n Carrera: Ciencias y Sistemas\n Correo: inventado029@gmail.com\n Password: 123456789\n Creditos: 112\n Edad: 22|<C1>"];
+nodo201801603[ label="\n Carnet: 201801603\n DPI: 2995464660101\n Nombre: Ricardo Villatoro\n Carrera: Ciencias y Sistemas\n Correo: inventado029@gmail.com\n Password: 123456789\n Creditos: 112\n Edad: 22"]; 
+nodo201801369:C1->nodo201801603
+} 
