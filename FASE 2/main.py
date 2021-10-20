@@ -19,7 +19,6 @@ def index():
 def IngresoEstudiante():
     if request.method == 'POST':
         obten = request.json
-        '''ANALIZADORES_.Conex.encryp_al( carnet, DPI, nombre, carrera, correo, password, creditos, edad)'''
         ANALIZADORES_.Conex.encryp_al( obten['carnet'], obten['DPI'], obten['Nombre'], obten['Carrera'], obten['Correo'], obten['Contraseña'], obten['Creditos'], obten['Edad'])
         data = {
             'respuesta': "El usuario: " + obten['carnet'] +" se ha ingresado con Exito"
