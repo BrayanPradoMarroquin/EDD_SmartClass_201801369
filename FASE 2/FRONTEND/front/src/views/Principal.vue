@@ -1,20 +1,19 @@
 <template>
-    <div>
-        <Header/>
-            
-        <Footer/>
-    </div>
+  <div>
+    <Header/>
+    <Pie/>
+  </div>
 </template>
 
-
 <script>
-    import Header from '@/components/Header.vue';
-    import Footer from '@/components/Footer.vue';
-    export default {
-        name: "Principal",
-        components:{
-            Header,
-            Footer
-        }
-    }
+import Header from '../components/Header.vue'
+import Pie from '../components/Pie.vue'
+  export default {
+    name: 'Principal',
+
+    components: {
+      Header,
+      Pie
+    },
+  }
 </script>
