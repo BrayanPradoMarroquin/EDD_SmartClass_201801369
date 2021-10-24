@@ -104,7 +104,8 @@ class ArbolAVL_:
             return data
         elif(node.Val==Identificacion) & (keygen.decrypt(node.Password).decode()==contrasenia):
             data = {
-                'status': "Yes"
+                'status': "Yes",
+                'nombre': keygen.decrypt(node.Nombre).decode()
             }
             return data
         elif(Identificacion<node.Val):

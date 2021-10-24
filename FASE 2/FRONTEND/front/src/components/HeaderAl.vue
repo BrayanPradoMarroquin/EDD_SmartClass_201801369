@@ -51,12 +51,13 @@
 
 <script>
 export default {
-   data: () => ({
-      drawer: true,
-      links :[
-          {icon: 'dashboard', text:'Cargas', route: '/Carga'},
-          {icon: 'folder', text:'Manejo de Bloques', route: '/'},
-          {icon: 'reporte', text:'Reportes', route: '/Report'}
+    data: () => ({
+    drawer: true,
+    links :[
+        {icon: 'folder', text:'Realizar Apuntes', route: '/Apuntes'},
+        {icon: 'folder', text:'Asignar Curso', route: '/'},
+        {icon: 'reporte', text:'Reporte de Prerrequisitos', route: '/'},
+        {icon: 'reporte', text:'Reporte de Curso', route: '/'}
       ]
      
     }),

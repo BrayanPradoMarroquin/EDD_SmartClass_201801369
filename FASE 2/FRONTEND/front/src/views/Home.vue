@@ -77,7 +77,8 @@ export default {
 			axios.post('http://localhost:3000/Login', data)
 			.then(dato=>{
 				if(dato.data.status=="Yes"){
-					console.log("todo correcto")
+					console.log(dato)
+					this.$router.push('PrincipalAlu')
 				}else if(dato.data.status=="admin"){
 					alert("Bienvenido usuario Admnistrador")
 					this.$router.push('Principal')

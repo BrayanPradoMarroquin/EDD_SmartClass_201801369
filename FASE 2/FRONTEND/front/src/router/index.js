@@ -5,6 +5,8 @@ import Principal from '../views/Principal.vue'
 import NewUser from '../views/NewUser.vue'
 import Carga from '../views/Carga.vue'
 import Report from '../views/Report.vue'
+import PrincipalAlu from '../views/PrincipalAlu.vue'
+import Apuntes from '../views/Apuntes.vue'
 
 Vue.use(VueRouter)
 
@@ -20,6 +22,11 @@ const routes = [
     component: Principal
   },
   {
+    path: '/PrincipalAlu',
+    name: 'PrincipalAlu',
+    component: PrincipalAlu
+  },
+  {
     path: '/NewUser',
     name: 'NewUser',
     component: NewUser
@@ -33,6 +40,11 @@ const routes = [
     path: '/Report',
     name: 'Report',
     component: Report
+  },
+  {
+    path: '/Apuntes/:carnet',
+    name: 'Apuntes',
+    component: Apuntes 
   }
 ]
 
