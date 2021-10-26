@@ -78,7 +78,7 @@ export default {
 			.then(dato=>{
 				if(dato.data.status=="Yes"){
 					console.log(dato)
-					this.$router.push('PrincipalAlu')
+					this.$router.push('PrincipalAlu/'+dato.data.carnet)
 				}else if(dato.data.status=="admin"){
 					alert("Bienvenido usuario Admnistrador")
 					this.$router.push('Principal')

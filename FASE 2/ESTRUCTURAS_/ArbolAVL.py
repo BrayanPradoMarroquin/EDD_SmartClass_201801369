@@ -105,7 +105,8 @@ class ArbolAVL_:
         elif(node.Val==Identificacion) & (keygen.decrypt(node.Password).decode()==contrasenia):
             data = {
                 'status': "Yes",
-                'nombre': keygen.decrypt(node.Nombre).decode()
+                'nombre': keygen.decrypt(node.Nombre).decode(),
+                'carnet': Identificacion
             }
             return data
         elif(Identificacion<node.Val):
@@ -223,6 +224,20 @@ class ArbolAVL_:
             return self.cursosEstudiante(carnet, anio, semestre, codigo, curso, creditos, pre, ob, node.left)
         elif(carnet>node.Val):
             return self.cursosEstudiante(carnet, anio, semestre, codigo, curso, creditos, pre, ob, node.right)
+
+    def Retornar(self, node, Identificacion):
+        if(node==None):
+            return "El arbol esta Vacio"
+        elif(node.Val==Identificacion):
+            data = {
+                'Carnet': node.Val,
+                'Nombre': keygen.decrypt(node.Nombre).decode(),
+            }
+            return data
+        elif(Identificacion<node.Val):
+            return self.Buscar_evento(node.left, Identificacion)
+        elif(Identificacion>node.Val):
+            return self.Buscar_evento(node.right, Identificacion)
 
     def graphTareas(self, carnet, año, mes, dia, hora, node):
         if(node==None):

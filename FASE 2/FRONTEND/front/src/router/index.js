@@ -22,7 +22,7 @@ const routes = [
     component: Principal
   },
   {
-    path: '/PrincipalAlu',
+    path: '/PrincipalAlu/:id',
     name: 'PrincipalAlu',
     component: PrincipalAlu
   },
@@ -42,7 +42,7 @@ const routes = [
     component: Report
   },
   {
-    path: '/Apuntes/:carnet',
+    path: '/Apuntes/:id',
     name: 'Apuntes',
     component: Apuntes 
   }

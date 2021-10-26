@@ -36,6 +36,11 @@ def IngresoEstudiante():
         ANALIZADORES_.Conex.encryp_ac_al(carnet, DPI, nombre, carrera, correo, password, creditos, edad)
         return "Los Datos han sido actualizados"
 
+@app.route("/Apunte", methods=['POST'])
+def IngresarApunte():
+    obten = request.json
+    return obten
+
 ##----------------------------- Area de Tareas ----------------------------------
 
 @app.route("/recordatorios", methods=['POST'])
@@ -129,6 +134,11 @@ def Login():
     obten = request.json
     return alumnos.Alumnos_.Buscar_evento(alumnos.Alumnos_.root, obten['usuario'], obten['password'])
     
+@app.route("/data", methods=['GET'])
+def Datos():
+    carnet = request.args.get('Carnet', 'no contiene este parametro')
+    fi = alumnos.Alumnos_.Retornar(alumnos.Alumnos_.root, carnet)
+    return fi
 
 if __name__ == '__main__':
     app.run(debug=True, port=3000)

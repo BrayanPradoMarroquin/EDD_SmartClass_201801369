@@ -8,19 +8,10 @@
                 <span class="font-weight-light">SmartClass</span>
             </v-toolbar-title>
             <v-spacer></v-spacer>
-            <v-menu offset-y>
-                <template v-slot:activator="{ on }">
-                    <v-btn text v-on="on">
-                    <v-icon left>expand_more</v-icon>
-                    <span>Menu</span>
-                </v-btn>
-                </template>
-                <v-list flat>
-                    <v-list-item v-for="link in links" :key="link.text" router :to="link.route">
-                        <v-list-title>{{link.text}}</v-list-title>
-                    </v-list-item>
-                </v-list>
-            </v-menu>
+            <v-btn text v-on:click="prin">
+                <span>regresar</span>
+                <v-icon right>exit_to_app</v-icon>
+            </v-btn>
             <v-btn text v-on:click="regresar">
                 <span>Salir</span>
                 <v-icon right>exit_to_app</v-icon>
@@ -32,7 +23,7 @@
                     <v-avatar size="100">
                         <v-img src="../assets/logo.svg"></v-img>
                     </v-avatar>
-                    <p class="white--text subheading mt-1 text-center">Usuario Administrador</p>
+                    <p class="white--text subheading mt-1 text-center">{{$route.params.id}}</p>
                 </v-flex>
             </v-layout>
             <v-list flat>
@@ -50,22 +41,40 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
     data: () => ({
     drawer: true,
     links :[
-        {icon: 'folder', text:'Realizar Apuntes', route: '/Apuntes'},
-        {icon: 'folder', text:'Asignar Curso', route: '/'},
-        {icon: 'reporte', text:'Reporte de Prerrequisitos', route: '/'},
-        {icon: 'reporte', text:'Reporte de Curso', route: '/'}
-      ]
-     
+        {icon: 'dashboard', text:'Modificar Datos', route: '/Carga'}
+      ],
     }),
+    dato(){
+        return{
+        alumno: null,
+        dat:{
+            'name' : "",
+            'Carnet' : ""
+            }
+        }  
+    },
+    mounted(){
+        this.alumno = this.$route.params.id;
+        axios.get('http://localhost:3000/data?Carnet='+this.alumno)
+        .then(datos =>{
+            this.dat.name = datos.data.Nombre;
+            this.dat.Carnet = datos.data.Carnet
+        })
+        console.log(this.dat)
+    },
     components: {
   },
    methods: {
         regresar(){
-            this.$router.push('/')
+            this.$router.push('/')   
+        },
+        prin(){
+            this.$router.push('/PrincipalAlu/'+this.$route.params.id)
         }
     }
 }
