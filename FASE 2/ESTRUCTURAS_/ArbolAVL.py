@@ -251,32 +251,32 @@ class ArbolAVL_:
 
     def graficar(self, tipo, node):
         if(tipo=="encriptado"):
-            file = open("ArbolAVLEncrypt.dot", 'w')
+            file = open("FRONTEND/front/src/assets/ArbolAVLEncrypt.dot", 'w')
             file.write("digraph G { \n")
             file.write("rankdir=TB; \n")
             file.write("node [shape = record, color=black , style=filled, fillcolor=gray93];\n")        
             file.write(self.graficadoraEncrypt(node))
             file.write("} \n")
             file.close()
-            os.system("dot -Tpng ArbolAVLEncrypt.dot -o ArbolAVLEncrypt_Alumnos.png")
-            os.startfile("ArbolAVLEncrypt_Alumnos.png")
+            os.system("dot -Tpng FRONTEND/front/src/assets/ArbolAVLEncrypt.dot -o FRONTEND/front/src/assets/ArbolAVLEncrypt_Alumnos.png")
+            #os.startfile("ArbolAVLEncrypt_Alumnos.png")
         elif(tipo=="decriptado"):
-            file = open("ArbolAVLDecrypt.dot", 'w')
+            file = open("FRONTEND/front/src/assets/ArbolAVLDecrypt.dot", 'w')
             file.write("digraph G { \n")
             file.write("rankdir=TB; \n")
             file.write("node [shape = record, color=black , style=filled, fillcolor=gray93];\n")        
             file.write(self.graficadoraDecrypt(node))
             file.write("} \n")
             file.close()
-            os.system("dot -Tpng ArbolAVLDecrypt.dot -o ArbolAVLDecrypt_Alumnos.png")
-            os.startfile("ArbolAVLDecrypt_Alumnos.png")
+            os.system("dot -Tpng FRONTEND/front/src/assets/ArbolAVLDecrypt.dot -o FRONTEND/front/src/assets/ArbolAVLDecrypt_Alumnos.png")
+            #os.startfile("FRONTEND/front/src/assets/ArbolAVLDecrypt_Alumnos.png")
 
     def graficadoraEncrypt(self, node):
         cadena=""
         if((node.left==None) & (node.right==None)):
-            cadena = "nodo"+str(node.Val)+"[ label=\""+"\\n Carnet: "+str(node.Carnet)+"\\n DPI: "+str(node.Identificacion)+"\\n Nombre: "+str(node.Nombre)+"\\n Carrera: "+str(node.Carrera)+"\\n Correo: "+str(node.Correo)+"\\n Password: "+str(node.Password)+"\\n Creditos: "+str(node.Creditos)+"\\n Edad: "+str(node.Edad)+"\"]; \n"
+            cadena = "nodo"+str(node.Val)+"[ label=\""+"\\n Carnet: "+self.recortar(str(node.Carnet))+"\\n DPI: "+self.recortar(str(node.Identificacion))+"\\n Nombre: "+self.recortar(str(node.Nombre))+"\\n Carrera: "+self.recortar(str(node.Carrera))+"\\n Correo: "+self.recortar(str(node.Correo))+"\\n Password: "+self.recortar(str(node.Password))+"\\n Creditos: "+self.recortar(str(node.Creditos))+"\\n Edad: "+self.recortar(str(node.Edad))+"\"]; \n"
         else:
-            cadena="nodo"+str(node.Val)+" [ label =\"<C0>| Carnet: "+str(node.Carnet)+"\\n DPI: "+str(node.Identificacion)+"\\n Nombre: "+str(node.Nombre)+"\\n Carrera: "+str(node.Carrera)+"\\n Correo: "+str(node.Correo)+"\\n Password: "+str(node.Password)+"\\n Creditos: "+str(node.Creditos)+"\\n Edad: "+str(node.Edad)+"|<C1>\"];\n"
+            cadena="nodo"+str(node.Val)+" [ label =\"<C0>| Carnet: "+self.recortar(str(node.Carnet))+"\\n DPI: "+self.recortar(str(node.Identificacion))+"\\n Nombre: "+self.recortar(str(node.Nombre))+"\\n Carrera: "+self.recortar(str(node.Carrera))+"\\n Correo: "+self.recortar(str(node.Correo))+"\\n Password: "+self.recortar(str(node.Password))+"\\n Creditos: "+self.recortar(str(node.Creditos))+"\\n Edad: "+self.recortar(str(node.Edad))+"|<C1>\"];\n"
         
         if(node.left!=None):
             cadena = cadena + self.graficadoraEncrypt(node.left)+"nodo"+str(node.Val)+":C0->nodo"+str(node.left.Val)+"\n"
@@ -298,3 +298,10 @@ class ArbolAVL_:
             cadena = cadena + self.graficadoraDecrypt(node.right)+"nodo"+str(node.Val)+":C1->nodo"+str(node.right.Val)+"\n"
         
         return cadena
+
+    def recortar(self, dato):
+        da = list(dato)
+        dato = ""
+        for i in range(16):
+            dato += da[i]
+        return dato

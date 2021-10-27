@@ -7,6 +7,7 @@ import Carga from '../views/Carga.vue'
 import Report from '../views/Report.vue'
 import PrincipalAlu from '../views/PrincipalAlu.vue'
 import Apuntes from '../views/Apuntes.vue'
+import ReporteAlumnos from '../views/ReporteAlumnos.vue'
 
 Vue.use(VueRouter)
 
@@ -45,6 +46,11 @@ const routes = [
     path: '/Apuntes/:id',
     name: 'Apuntes',
     component: Apuntes 
+  },
+  {
+    path: '/ReporteAlumnos',
+    name: 'ReporteAlumnos',
+    component: ReporteAlumnos
   }
 ]
 

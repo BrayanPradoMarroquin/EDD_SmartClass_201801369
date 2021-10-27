@@ -45,6 +45,9 @@ export default {
             axios.post('http://localhost:3000/Apunte', data)
             .then(dato=>{
                 console.log(dato)
+                alert('El apunte se ha registrado con Exito')
+                this.titulo=""
+                this.contenido = ""
             })
         }
     }

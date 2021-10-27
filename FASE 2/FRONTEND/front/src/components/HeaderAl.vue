@@ -41,7 +41,6 @@
 </template>
 
 <script>
-import axios from 'axios';
 export default {
     data: () => ({
     drawer: true,
@@ -49,24 +48,6 @@ export default {
         {icon: 'dashboard', text:'Modificar Datos', route: '/Carga'}
       ],
     }),
-    dato(){
-        return{
-        alumno: null,
-        dat:{
-            'name' : "",
-            'Carnet' : ""
-            }
-        }  
-    },
-    mounted(){
-        this.alumno = this.$route.params.id;
-        axios.get('http://localhost:3000/data?Carnet='+this.alumno)
-        .then(datos =>{
-            this.dat.name = datos.data.Nombre;
-            this.dat.Carnet = datos.data.Carnet
-        })
-        console.log(this.dat)
-    },
     components: {
   },
    methods: {

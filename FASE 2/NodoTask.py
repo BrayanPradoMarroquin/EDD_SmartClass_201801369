@@ -1,12 +1,5 @@
 class Tareas:
-    def __init__(self, carnet, Nombre, Descripcion, Materia, Fecha, Hora, Estado):
-        self.id =  0
-        self.carnet = carnet
-        self.nombre = Nombre
-        self.descripcion = Descripcion
-        self.materia = Materia
-        self.fecha = Fecha
-        self.hora = Hora
-        self.status = Estado
-        self.direccionamiento = None
+    def __init__(self, titulo, Descripcion):
+        self.titulo = titulo
+        self.Descripcion = Descripcion
         self.siguiente = None

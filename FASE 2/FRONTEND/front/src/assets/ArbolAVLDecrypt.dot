@@ -1,0 +1,17 @@
+digraph G { 
+rankdir=TB; 
+node [shape = record, color=black , style=filled, fillcolor=gray93];
+nodo201801603 [ label ="<C0>| Carnet: 201801603\n DPI: 2995454660101\n Nombre: Ricardo\n Carrera: Sistemas\n Correo: brayandf@gmail.com\n Password: 123456789\n Creditos: 112\n Edad: 23|<C1>"];
+nodo201801369 [ label ="<C0>| Carnet: 201801369\n DPI: 2995454660101\n Nombre: Brayan Hamllelo Estevem Prado \n Carrera: Sistemas\n Correo: brayanprado9@gmail.com\n Password: 123456789\n Creditos: 112\n Edad: 22|<C1>"];
+nodo20180146[ label="\n Carnet: 20180146\n DPI: 2995454660101\n Nombre: Daniel Enrique Coti Peñate\n Carrera: Sistemas\n Correo: brayanprado@gmail.com\n Password: 123456\n Creditos: 110\n Edad: 25"]; 
+nodo201801369:C1->nodo20180146
+nodo201801603:C0->nodo201801369
+nodo201907636 [ label ="<C0>| Carnet: 201907636\n DPI: 2995454660101\n Nombre: Carlos Roberto Rangel Castillo\n Carrera: Sistemas \n Correo: kkdfidfknfsdafidsnf@gmail.com\n Password: 1234567\n Creditos: 115\n Edad: 21|<C1>"];
+nodo201801627 [ label ="<C0>| Carnet: 201801627\n DPI: 2995454660101\n Nombre: Eduardo Rene Agustin Mendoza\n Carrera: Sistemas\n Correo: brayanprado@gmail.com\n Password: 123456789\n Creditos: 112\n Edad: 22|<C1>"];
+nodo20190114[ label="\n Carnet: 20190114\n DPI: 2995454660101\n Nombre: Ricardo\n Carrera: Sistemas\n Correo: kkmidmfiif9@gmail.com\n Password: 12547789\n Creditos: 110\n Edad: 22"]; 
+nodo201801627:C1->nodo20190114
+nodo201907636:C0->nodo201801627
+nodo202122576[ label="\n Carnet: 202122576\n DPI: 2995454660101\n Nombre: Juana de Arco\n Carrera: Sistemas\n Correo: fjdnfdfndlsfifn@gmail.com\n Password: 12345678\n Creditos: 112\n Edad: 22"]; 
+nodo201907636:C1->nodo202122576
+nodo201801603:C1->nodo201907636
+} 

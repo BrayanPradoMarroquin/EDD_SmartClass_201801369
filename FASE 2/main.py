@@ -39,6 +39,7 @@ def IngresoEstudiante():
 @app.route("/Apunte", methods=['POST'])
 def IngresarApunte():
     obten = request.json
+    ANALIZADORES_.Conex.agregarinformacion(obten['usuario'], obten['titulo'], obten['contenido'])
     return obten
 
 ##----------------------------- Area de Tareas ----------------------------------
@@ -116,7 +117,10 @@ def Reporte():
     if(tipo=="0"):
         alumnos.Alumnos_.graficar("encriptado", alumnos.Alumnos_.root)
         alumnos.Alumnos_.graficar("decriptado", alumnos.Alumnos_.root)
-        return "Reporte Alumno Generado"
+        data = {
+            'respuesta': "Reporte Alumno Generado"
+        }
+        return data
     elif(tipo=="1"):
         return "Reporte Matriz Generado"
     elif(tipo=="2"):

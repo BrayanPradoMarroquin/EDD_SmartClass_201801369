@@ -1,6 +1,5 @@
 from ESTRUCTURAS_.ListaTareas import ListTareas
 from NodoTask import Tareas
-import os
 
 primos = [7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127, 131, 137, 139, 149, 151, 157, 163, 167, 173, 179, 181, 191, 193, 197, 199, 211, 223, 227, 229, 233, 239, 241, 251, 257, 263, 269, 271, 277, 281, 283, 293, 307, 311, 313, 317, 331, 337, 347, 349, 353, 359, 367, 373, 379, 383, 389, 397, 401, 409, 419, 421, 431, 433, 439, 443, 449, 457, 461, 463, 467, 479, 487, 491, 499]
 
@@ -53,7 +52,7 @@ class TablaHash:
         return False
 
     def agregar(self, data):
-        if(data!=None) & (self.BsucarId(data)==False):
+        if(data!=None) & (self.BsucarId(data.carnet)==False):
             posicion = self.FunHash(data.carnet)
             it1 = 0
             it2 = 0
@@ -75,7 +74,7 @@ class TablaHash:
             self.rehashing()
 
     def FunHash(self,data):
-        return data % self.tamaño
+        return int(data) % self.tamaño
 
     def ColsicionHash(self, data, i):
         return (data +(i*i)) % self.tamaño
@@ -107,37 +106,3 @@ class TablaHash:
                 print(str(i)+" -> " + str(self.Hash[i].carnet))
             else:
                 print(str(i)+" -> " + "No hay informacion")
-
-    def graficar(self):
-        cadena = ""
-        file = open("TablaHash.dot", 'w')
-        file.write("digraph G { \n")
-        file.write("rankdir=TB; \n")
-        file.write("node [shape = circle, color=black , style=filled, fillcolor=gray93];\n")        
-        for ap in range(len(self.Hash)):
-            if(self.Hash[ap]!=None):
-                cadena = cadena +"nodo"+str(ap)+"[ label=\""+str(self.Hash[ap].carnet)+"\"]; \n"
-            else:
-                cadena = cadena +"nodo"+str(ap)+"[ label=\""+"N - A - I "+"\"]; \n"
-            if(ap!=0):
-                cadena = cadena +"nodo"+str(ap-1)+"->nodo"+str(ap)+"\n"
-        file.write(cadena)
-        file.write("} \n")
-        file.close()
-        os.system("dot -Tpng TablaHash.dot -o TablaHash.png")
-
-
-if __name__ == '__main__':
-    Ha = TablaHash(7)
-    Ha.agregar(NodoCont(201755064))
-    Ha.agregar(NodoCont(201800918))
-    Ha.agregar(NodoCont(201908359))
-    Ha.agregar(NodoCont(201801369))
-    Ha.cargarInf(201801145, "Hola que hace", "Nada bueno y vos")
-    Ha.cargarInf(201800918, "Hola que hace", "Nada bueno y vos")
-    Ha.cargarInf(201755064, "Hola que hace", "Nada bueno y vos")
-    Ha.cargarInf(201801369, "Hola que hace", "Nada bueno y vos")
-    Ha.cargarInf(201908359, "Hola que hace", "Nada bueno y vos")
-    Ha.cargarInf(201800914, "Hola que hace", "Nada bueno y vos")
-    Ha.imprimir()
-    Ha.graficar()

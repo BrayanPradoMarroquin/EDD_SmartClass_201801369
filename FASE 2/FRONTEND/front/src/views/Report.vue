@@ -9,7 +9,7 @@
             <br>
             <center><p><strong>Reporte generado para observar los datos de los alumnos registrados en la plataforma.</strong></p></center>
             <br>
-            <center><v-btn color="blue" large>Generar Alumnos</v-btn></center>
+            <center><v-btn color="blue" large v-on:click="Alumnos">Generar Alumnos</v-btn></center>
         </div>
         <div class="Pensum_car">
             <center><h3>Prerrequisitos de Cursos</h3></center>
@@ -39,6 +39,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 import Header from '../components/Header.vue'
 import Pie from '../components/Pie.vue'
 export default {
@@ -47,6 +48,19 @@ export default {
       Header,
       Pie
     },
+    methods:{
+        Alumnos(){
+            let data = {
+                'tipo': "0"
+            };
+            axios.post('http://localhost:3000/reporte', data)
+            .then(data=>{
+                console.log(data)
+                this.$router.push('/ReporteAlumnos')
+            })
+            
+        }
+    }
 }
 </script>
 
