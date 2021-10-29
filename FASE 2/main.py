@@ -122,7 +122,11 @@ def Reporte():
         }
         return data
     elif(tipo=="1"):
-        return "Reporte Matriz Generado"
+        alumnos.Apuntes.graficar()
+        data = {
+            'respuesta': "Reporte de Apuntes Generado"
+        }
+        return data
     elif(tipo=="2"):
         hor = obten['hora'].split(":")
         alumnos.Alumnos_.graphTareas(obten['carnet'], obten['año'], obten['mes'], obten['dia'], int(hor[0]), alumnos.Alumnos_.root)

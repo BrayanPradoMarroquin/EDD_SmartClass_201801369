@@ -8,6 +8,7 @@ import Report from '../views/Report.vue'
 import PrincipalAlu from '../views/PrincipalAlu.vue'
 import Apuntes from '../views/Apuntes.vue'
 import ReporteAlumnos from '../views/ReporteAlumnos.vue'
+import ReporteHash from '../views/ReporteHash.vue'
 
 Vue.use(VueRouter)
 
@@ -51,6 +52,11 @@ const routes = [
     path: '/ReporteAlumnos',
     name: 'ReporteAlumnos',
     component: ReporteAlumnos
+  },
+  {
+    path: '/ReporteHash',
+    name: 'ReporteHash',
+    component: ReporteHash
   }
 ]
 

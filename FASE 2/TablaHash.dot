@@ -1,25 +1,14 @@
 digraph G { 
-rankdir=TB; 
-node [shape = circle, color=black , style=filled, fillcolor=gray93];
-nodo0[ label="201801369"]; 
-nodo1[ label="201800918"]; 
-nodo0->nodo1
-nodo2[ label="N - A - I "]; 
-nodo1->nodo2
-nodo3[ label="N - A - I "]; 
-nodo2->nodo3
-nodo4[ label="201908359"]; 
-nodo3->nodo4
-nodo5[ label="201755064"]; 
-nodo4->nodo5
-nodo6[ label="N - A - I "]; 
-nodo5->nodo6
-nodo7[ label="N - A - I "]; 
-nodo6->nodo7
-nodo8[ label="N - A - I "]; 
-nodo7->nodo8
-nodo9[ label="N - A - I "]; 
-nodo8->nodo9
-nodo10[ label="N - A - I "]; 
-nodo9->nodo10
+rankdir=LR; 
+struct1 [label="<f0>201801369|<f1>201800918|<f2>   |<f3>   |<f4>201908359|<f5>201755064|<f6>   |<f7>   |<f8>   |<f9>   |<f10>   " shape=record fontsize="40"]; 
+node0A0[label="Hola otra vez\nNada bueno y vos" shape="box"] 
+struct1:f0->node0A0
+node0A1[label="Hola que hace\nNada bueno y vos" shape="box"] 
+node0A0->node0A1
+node1A0[label="Hola que hace\nNada bueno y vos" shape="box"] 
+struct1:f1->node1A0
+node4A0[label="Hola que hace\nNada bueno y vos" shape="box"] 
+struct1:f4->node4A0
+node5A0[label="Hola que hace\nNada bueno y vos" shape="box"] 
+struct1:f5->node5A0
 } 

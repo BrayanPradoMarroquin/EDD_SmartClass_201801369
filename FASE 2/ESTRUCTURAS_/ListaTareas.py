@@ -29,6 +29,22 @@ class ListTareas:
             else:
                 actual = actual.siguiente
 
+    def graficar(self, car):
+        actual = self.inicio
+        cont =0
+        cadena = ""
+        while(actual!=None):
+            cadena += 'node'+ str(car) + 'A' + str(cont) +'[label="'+ actual.titulo + "\\n" + actual.Descripcion +'" shape="box"] \n'
+            if(actual==self.inicio):
+                cadena += 'struct1:f' + str(car) +'->node' + str(car) + 'A' + str(cont) + '\n'
+                cont +=1
+                actual = actual.siguiente
+            else:
+                cadena += 'node' + str(car) + 'A' + str(cont-1) + '->node' + str(car) + 'A' + str(cont) +'\n'
+                cont +=1
+                actual = actual.siguiente
+        return cadena
+
 
     def Eliminar(self, id):
         actual = self.inicio

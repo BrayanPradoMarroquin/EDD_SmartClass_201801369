@@ -1,17 +1,13 @@
 digraph G { 
 rankdir=TB; 
 node [shape = record, color=black , style=filled, fillcolor=gray93];
-nodo201801603 [ label ="<C0>| Carnet: b'gAAAAABheRPI4t\n DPI: b'gAAAAABheRPIlx\n Nombre: b'gAAAAABheRPIuf\n Carrera: b'gAAAAABheRPInv\n Correo: b'gAAAAABheRPIw8\n Password: b'gAAAAABheRPIyl\n Creditos: b'gAAAAABheRPIoo\n Edad: b'gAAAAABheRPIrR|<C1>"];
-nodo201801369 [ label ="<C0>| Carnet: b'gAAAAABheRKDNg\n DPI: b'gAAAAABheRKDcV\n Nombre: b'gAAAAABheRKDOi\n Carrera: b'gAAAAABheRKDBb\n Correo: b'gAAAAABheRKDSB\n Password: b'gAAAAABheRKDaK\n Creditos: b'gAAAAABheRKDII\n Edad: b'gAAAAABheRKD2Q|<C1>"];
-nodo20180146[ label="\n Carnet: b'gAAAAABheRQ2Oz\n DPI: b'gAAAAABheRQ25R\n Nombre: b'gAAAAABheRQ2Qz\n Carrera: b'gAAAAABheRQ2aT\n Correo: b'gAAAAABheRQ2m1\n Password: b'gAAAAABheRQ2eN\n Creditos: b'gAAAAABheRQ2p4\n Edad: b'gAAAAABheRQ2m2"]; 
-nodo201801369:C1->nodo20180146
+nodo201801603 [ label ="<C0>| Carnet: b'gAAAAABhe5PQ2a\n DPI: b'gAAAAABhe5PQ72\n Nombre: b'gAAAAABhe5PQRt\n Carrera: b'gAAAAABhe5PQY0\n Correo: b'gAAAAABhe5PQnj\n Password: b'gAAAAABhe5PQFH\n Creditos: b'gAAAAABhe5PQWb\n Edad: b'gAAAAABhe5PQLM|<C1>"];
+nodo201801369 [ label ="<C0>| Carnet: b'gAAAAABhe5KjIA\n DPI: b'gAAAAABhe5KjKL\n Nombre: b'gAAAAABhe5Kjy4\n Carrera: b'gAAAAABhe5KjMH\n Correo: b'gAAAAABhe5Kj_Z\n Password: b'gAAAAABhe5Kjfz\n Creditos: b'gAAAAABhe5KjQA\n Edad: b'gAAAAABhe5KjdA|<C1>"];
+nodo201801146[ label="\n Carnet: b'gAAAAABhe5TwgH\n DPI: b'gAAAAABhe5Twxj\n Nombre: b'gAAAAABhe5TwdW\n Carrera: b'gAAAAABhe5Twn5\n Correo: b'gAAAAABhe5TwB0\n Password: b'gAAAAABhe5TwLu\n Creditos: b'gAAAAABhe5TwfZ\n Edad: b'gAAAAABhe5Tw5I"]; 
+nodo201801369:C0->nodo201801146
 nodo201801603:C0->nodo201801369
-nodo201907636 [ label ="<C0>| Carnet: b'gAAAAABheRRofe\n DPI: b'gAAAAABheRRoV_\n Nombre: b'gAAAAABheRRovu\n Carrera: b'gAAAAABheRRoXA\n Correo: b'gAAAAABheRRowM\n Password: b'gAAAAABheRRovB\n Creditos: b'gAAAAABheRRoLT\n Edad: b'gAAAAABheRRo54|<C1>"];
-nodo201801627 [ label ="<C0>| Carnet: b'gAAAAABheRLyrZ\n DPI: b'gAAAAABheRLyAQ\n Nombre: b'gAAAAABheRLyaE\n Carrera: b'gAAAAABheRLyMX\n Correo: b'gAAAAABheRLySa\n Password: b'gAAAAABheRLyAt\n Creditos: b'gAAAAABheRLyjM\n Edad: b'gAAAAABheRLybB|<C1>"];
-nodo20190114[ label="\n Carnet: b'gAAAAABheRWWyJ\n DPI: b'gAAAAABheRWWRD\n Nombre: b'gAAAAABheRWWkb\n Carrera: b'gAAAAABheRWW1K\n Correo: b'gAAAAABheRWWIy\n Password: b'gAAAAABheRWWH1\n Creditos: b'gAAAAABheRWW-S\n Edad: b'gAAAAABheRWWGW"]; 
-nodo201801627:C1->nodo20190114
-nodo201907636:C0->nodo201801627
-nodo202122576[ label="\n Carnet: b'gAAAAABheRVsul\n DPI: b'gAAAAABheRVsYi\n Nombre: b'gAAAAABheRVsAV\n Carrera: b'gAAAAABheRVsZ2\n Correo: b'gAAAAABheRVsbL\n Password: b'gAAAAABheRVslN\n Creditos: b'gAAAAABheRVs4z\n Edad: b'gAAAAABheRVs1d"]; 
-nodo201907636:C1->nodo202122576
-nodo201801603:C1->nodo201907636
+nodo201801627 [ label ="<C0>| Carnet: b'gAAAAABhe5L1g0\n DPI: b'gAAAAABhe5L1Oh\n Nombre: b'gAAAAABhe5L1vT\n Carrera: b'gAAAAABhe5L1eu\n Correo: b'gAAAAABhe5L1iB\n Password: b'gAAAAABhe5L17Y\n Creditos: b'gAAAAABhe5L1xi\n Edad: b'gAAAAABhe5L13W|<C1>"];
+nodo20180596[ label="\n Carnet: b'gAAAAABhe5hgsA\n DPI: b'gAAAAABhe5hgZg\n Nombre: b'gAAAAABhe5hgo0\n Carrera: b'gAAAAABhe5hgpz\n Correo: b'gAAAAABhe5hgMg\n Password: b'gAAAAABhe5hgey\n Creditos: b'gAAAAABhe5hg6C\n Edad: b'gAAAAABhe5hg9U"]; 
+nodo201801627:C1->nodo20180596
+nodo201801603:C1->nodo201801627
 } 

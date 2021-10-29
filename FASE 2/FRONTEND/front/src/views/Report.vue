@@ -30,7 +30,7 @@
             <br>
             <center><p><strong>Reporte generado para observar los apuntes de los alumnos registrados.</strong></p></center>
             <br>
-            <center><v-btn color="blue" large>Generar Apuntes</v-btn></center>
+            <center><v-btn color="blue" large v-on:click="Apuntes">Generar Apuntes</v-btn></center>
         </div>        
         <br>
         
@@ -58,7 +58,16 @@ export default {
                 console.log(data)
                 this.$router.push('/ReporteAlumnos')
             })
-            
+        },
+        Apuntes(){
+            let data = {
+                'tipo': "1"
+            };
+            axios.post('http://localhost:3000/reporte', data)
+            .then(data=>{
+                console.log(data)
+                this.$router.push('/ReporteHash')
+            })
         }
     }
 }

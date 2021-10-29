@@ -112,15 +112,23 @@ class TablaHash:
         cadena = ""
         file = open("TablaHash.dot", 'w')
         file.write("digraph G { \n")
-        file.write("rankdir=TB; \n")
-        file.write("node [shape = circle, color=black , style=filled, fillcolor=gray93];\n")        
+        file.write("rankdir=LR; \n")
+        cadena = 'struct1 [label=\"'        
+        for ap in range(len(self.Hash)):
+            if(self.Hash[ap]!=None) & (ap!=(self.tamaño-1)):
+                cadena = cadena +"<f"+str(ap)+">"+str(self.Hash[ap].carnet)+"|"
+            elif(ap==(self.tamaño-1)):
+                if(self.Hash[ap]!=None):
+                    cadena = cadena +"<f"+str(ap)+">"+str(self.Hash[ap].carnet)
+                else:
+                    cadena = cadena +"<f"+str(ap)+">"+"   "    
+            else:
+                cadena = cadena +"<f"+str(ap)+">"+"   "+"|"
+        cadena = cadena + '\" shape=record fontsize=\"40\"]; \n'
         for ap in range(len(self.Hash)):
             if(self.Hash[ap]!=None):
-                cadena = cadena +"nodo"+str(ap)+"[ label=\""+str(self.Hash[ap].carnet)+"\"]; \n"
-            else:
-                cadena = cadena +"nodo"+str(ap)+"[ label=\""+"N - A - I "+"\"]; \n"
-            if(ap!=0):
-                cadena = cadena +"nodo"+str(ap-1)+"->nodo"+str(ap)+"\n"
+                cadena += self.Hash[ap].anotaciones.graficar(ap)
+
         file.write(cadena)
         file.write("} \n")
         file.close()
@@ -137,6 +145,7 @@ if __name__ == '__main__':
     Ha.cargarInf(201800918, "Hola que hace", "Nada bueno y vos")
     Ha.cargarInf(201755064, "Hola que hace", "Nada bueno y vos")
     Ha.cargarInf(201801369, "Hola que hace", "Nada bueno y vos")
+    Ha.cargarInf(201801369, "Hola otra vez", "Nada bueno y vos")
     Ha.cargarInf(201908359, "Hola que hace", "Nada bueno y vos")
     Ha.cargarInf(201800914, "Hola que hace", "Nada bueno y vos")
     Ha.imprimir()
