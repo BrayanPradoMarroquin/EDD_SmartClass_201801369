@@ -1,4 +1,4 @@
-import   ESTRUCTURAS_.NodoArbolAVL
+import ESTRUCTURAS_.NodoArbolAVL
 from cryptography.fernet import Fernet
 import os
 
@@ -135,7 +135,7 @@ class ArbolAVL_:
             return "El arbol esta Vacio"
         elif(node.Val==carnet):
             node.años.insertar(anio)
-            return "El dato es: " + node.Carnet
+            return "El dato es: " + node.Val
         elif(carnet<node.Val):
             return self.AñadirAño(carnet, anio, node.left)
         elif(carnet>node.Val):
@@ -195,16 +195,6 @@ class ArbolAVL_:
         elif(carnet>node.Val):
             return self.RecuTarea(carnet, anio, mes, dia, hora, id, node.right, accion)
 
-    def actualizarTarea(self, carnet, anio, mes, dia, hora, id, nombre, descripcion, materia, fecha, status, node):
-        if(node==None):
-            return "El arbol esta Vacio"
-        elif(node.Val==carnet):
-            return node.años.actualizarTarea(anio, mes, dia, hora, id, carnet, nombre, descripcion, materia, fecha, status)
-        elif(carnet<node.Val):
-            return self.actualizarTarea(carnet, anio, mes, dia, hora, id, node.left)
-        elif(carnet>node.Val):
-            return self.actualizarTarea(carnet, anio, mes, dia, hora, id, node.right)    
-
     def buscarsemestre(self, carnet, anio, semestre, node):
         if(node==None):
             return "El arbol esta Vacio"
@@ -224,20 +214,6 @@ class ArbolAVL_:
             return self.cursosEstudiante(carnet, anio, semestre, codigo, curso, creditos, pre, ob, node.left)
         elif(carnet>node.Val):
             return self.cursosEstudiante(carnet, anio, semestre, codigo, curso, creditos, pre, ob, node.right)
-
-    def Retornar(self, node, Identificacion):
-        if(node==None):
-            return "El arbol esta Vacio"
-        elif(node.Val==Identificacion):
-            data = {
-                'Carnet': node.Val,
-                'Nombre': keygen.decrypt(node.Nombre).decode(),
-            }
-            return data
-        elif(Identificacion<node.Val):
-            return self.Buscar_evento(node.left, Identificacion)
-        elif(Identificacion>node.Val):
-            return self.Buscar_evento(node.right, Identificacion)
 
     def graphTareas(self, carnet, año, mes, dia, hora, node):
         if(node==None):

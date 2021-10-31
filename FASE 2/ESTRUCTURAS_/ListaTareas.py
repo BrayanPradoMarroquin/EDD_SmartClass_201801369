@@ -45,7 +45,6 @@ class ListTareas:
                 actual = actual.siguiente
         return cadena
 
-
     def Eliminar(self, id):
         actual = self.inicio
         previo = None

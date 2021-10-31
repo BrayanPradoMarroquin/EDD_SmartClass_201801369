@@ -15,7 +15,7 @@ class ListSemestre:
             if cont==False:
                 self.final.siguiente = nuevo
                 nuevo.atras = self.final
-                ultimo = nuevo
+                self.final = nuevo
     
     def insertarCurso(self, semestre, codigo, curso, creditos, pre, ob, node):
         actual = self.inicio
@@ -24,7 +24,7 @@ class ListSemestre:
             if (actual.semestre!=semestre):
                 actual = actual.siguiente
             else:
-                node.cursos.InsertarDatos(codigo, curso, creditos, pre, ob)
+                actual.cursos.agregar(codigo, curso, creditos, pre, ob)
                 cond = True
 
     def buscarsemestre(self, data):

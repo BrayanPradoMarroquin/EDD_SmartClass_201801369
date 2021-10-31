@@ -1,7 +1,7 @@
 from io import open
 import alumnos
 import json
-
+import ANALIZADORES_.Conex 
 
 def cargar_datos_Pensum(ruta):
     archivo = open(ruta, 'r', encoding='utf-8')
@@ -15,8 +15,7 @@ def cargar_datos_Pensum(ruta):
         cursos = json.load(f)
         for curso in cursos:
             print(curso.get('Codigo') + " -> " + curso.get('Nombre')+" -> "+str(curso.get("Creditos"))+" -> "+ curso.get("Prerequisitos")+" -> "+ str(curso.get("Obligatorio")))
-            alumnos.Pensum.InsertarDatos(curso.get('Codigo'), curso.get('Nombre'), curso.get("Creditos"), curso.get("Prerequisitos"), curso.get("Obligatorio"))
-    alumnos.Pensum.Preorden()
+            alumnos.Pensum.agregar(curso.get('Codigo'), curso.get('Nombre'), curso.get("Creditos"), curso.get("Prerequisitos"), curso.get("Obligatorio"))
 
 def analisis(texto):
     cadena = ""
@@ -54,3 +53,18 @@ def cargar_datos_Recordatorios(ruta):
                         print("Obligatorio", str(curso['Obligatorio']))
                         alumnos.Alumnos_.cursosEstudiante(inf['Carnet'], ag['Año'], s['Semestre'], curso['Codigo'], curso['Nombre'], curso['Creditos'], curso['Prerequisitos'], curso['Obligatorio'], alumnos.Alumnos_.root)
                         print("")
+
+def cargar_datos_Alumnos(ruta):
+    with open(ruta, "r", encoding='utf-8') as informacion:
+        info = json.load(informacion)
+        for i in info['estudiantes']:
+            print(i)
+            print(str(i['carnet']))
+            print(str(i['DPI']))
+            print(i['nombre'])
+            print(i['carrera'])
+            print(i['correo'])
+            print(i['password'])
+            print(str(i['creditos']))
+            print(str(i['edad'])+'\n')
+            ANALIZADORES_.Conex.encryp_al( str(i['carnet']), str(i['DPI']), i['nombre'], i['carrera'], i['correo'], i['password'], str(i['creditos']), str(i['edad']))

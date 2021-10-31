@@ -19,7 +19,7 @@ class TablaHash:
 
     def iniciar(self):
         self.agregados = 0
-        self.minimo = (self.tamaño/2)+0.5
+        self.minimo = int(round(self.tamaño*0.4))
         Newtable = [None]*self.tamaño
 
         self.Hash = Newtable
@@ -55,20 +55,8 @@ class TablaHash:
     def agregar(self, data):
         if(data!=None) & (self.BsucarId(data)==False):
             posicion = self.FunHash(data.carnet)
-            it1 = 0
-            it2 = 0
-            if(posicion<self.tamaño):
-                while(self.Hash[posicion] != None):
-                    if(it1<4):
-                        it1+=1    
-                        posicion = self.ColsicionHash(data.carnet, posicion)
-                        it2+=1
-                    elif(posicion<self.tamaño-1) & (it1>=4):
-                        posicion +=1
-                    elif(posicion==self.tamaño-1):
-                        posicion = 0
-            else:
-                posicion = 0
+            while(self.Hash[posicion] != None):
+                posicion = self.ColsicionHash(data.carnet, posicion)
 
             self.Hash[posicion] = data
             self.agregados+=1
@@ -78,7 +66,7 @@ class TablaHash:
         return data % self.tamaño
 
     def ColsicionHash(self, data, i):
-        return (data +(i*i)) % self.tamaño
+        return (data +(1)) % self.tamaño
 
     def Divisibilidad(self, ta):
         for i in range(0,len(primos)):
@@ -141,12 +129,5 @@ if __name__ == '__main__':
     Ha.agregar(NodoCont(201800918))
     Ha.agregar(NodoCont(201908359))
     Ha.agregar(NodoCont(201801369))
-    Ha.cargarInf(201801145, "Hola que hace", "Nada bueno y vos")
-    Ha.cargarInf(201800918, "Hola que hace", "Nada bueno y vos")
-    Ha.cargarInf(201755064, "Hola que hace", "Nada bueno y vos")
-    Ha.cargarInf(201801369, "Hola que hace", "Nada bueno y vos")
-    Ha.cargarInf(201801369, "Hola otra vez", "Nada bueno y vos")
-    Ha.cargarInf(201908359, "Hola que hace", "Nada bueno y vos")
-    Ha.cargarInf(201800914, "Hola que hace", "Nada bueno y vos")
+    Ha.agregar(NodoCont(201801603))
     Ha.imprimir()
-    Ha.graficar()

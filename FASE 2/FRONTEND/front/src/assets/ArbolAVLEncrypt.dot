@@ -1,13 +1,13 @@
 digraph G { 
 rankdir=TB; 
 node [shape = record, color=black , style=filled, fillcolor=gray93];
-nodo201801603 [ label ="<C0>| Carnet: b'gAAAAABhe5PQ2a\n DPI: b'gAAAAABhe5PQ72\n Nombre: b'gAAAAABhe5PQRt\n Carrera: b'gAAAAABhe5PQY0\n Correo: b'gAAAAABhe5PQnj\n Password: b'gAAAAABhe5PQFH\n Creditos: b'gAAAAABhe5PQWb\n Edad: b'gAAAAABhe5PQLM|<C1>"];
-nodo201801369 [ label ="<C0>| Carnet: b'gAAAAABhe5KjIA\n DPI: b'gAAAAABhe5KjKL\n Nombre: b'gAAAAABhe5Kjy4\n Carrera: b'gAAAAABhe5KjMH\n Correo: b'gAAAAABhe5Kj_Z\n Password: b'gAAAAABhe5Kjfz\n Creditos: b'gAAAAABhe5KjQA\n Edad: b'gAAAAABhe5KjdA|<C1>"];
-nodo201801146[ label="\n Carnet: b'gAAAAABhe5TwgH\n DPI: b'gAAAAABhe5Twxj\n Nombre: b'gAAAAABhe5TwdW\n Carrera: b'gAAAAABhe5Twn5\n Correo: b'gAAAAABhe5TwB0\n Password: b'gAAAAABhe5TwLu\n Creditos: b'gAAAAABhe5TwfZ\n Edad: b'gAAAAABhe5Tw5I"]; 
-nodo201801369:C0->nodo201801146
-nodo201801603:C0->nodo201801369
-nodo201801627 [ label ="<C0>| Carnet: b'gAAAAABhe5L1g0\n DPI: b'gAAAAABhe5L1Oh\n Nombre: b'gAAAAABhe5L1vT\n Carrera: b'gAAAAABhe5L1eu\n Correo: b'gAAAAABhe5L1iB\n Password: b'gAAAAABhe5L17Y\n Creditos: b'gAAAAABhe5L1xi\n Edad: b'gAAAAABhe5L13W|<C1>"];
-nodo20180596[ label="\n Carnet: b'gAAAAABhe5hgsA\n DPI: b'gAAAAABhe5hgZg\n Nombre: b'gAAAAABhe5hgo0\n Carrera: b'gAAAAABhe5hgpz\n Correo: b'gAAAAABhe5hgMg\n Password: b'gAAAAABhe5hgey\n Creditos: b'gAAAAABhe5hg6C\n Edad: b'gAAAAABhe5hg9U"]; 
-nodo201801627:C1->nodo20180596
-nodo201801603:C1->nodo201801627
+nodo201822186 [ label ="<C0>| Carnet: b'gAAAAABhfkZ_I1\n DPI: b'gAAAAABhfkZ_dv\n Nombre: b'gAAAAABhfkZ_fO\n Carrera: b'gAAAAABhfkZ_JV\n Correo: b'gAAAAABhfkZ_T4\n Password: b'gAAAAABhfkZ_Ly\n Creditos: b'gAAAAABhfkZ_3d\n Edad: b'gAAAAABhfkZ_Wi|<C1>"];
+nodo201722412 [ label ="<C0>| Carnet: b'gAAAAABhfkaE4A\n DPI: b'gAAAAABhfkaEpT\n Nombre: b'gAAAAABhfkaEOr\n Carrera: b'gAAAAABhfkaEDd\n Correo: b'gAAAAABhfkaEQ2\n Password: b'gAAAAABhfkaEuR\n Creditos: b'gAAAAABhfkaEAD\n Edad: b'gAAAAABhfkaEtq|<C1>"];
+nodo201801369[ label="\n Carnet: b'gAAAAABhfkgftG\n DPI: b'gAAAAABhfkgf3k\n Nombre: b'gAAAAABhfkgfQp\n Carrera: b'gAAAAABhfkgf2a\n Correo: b'gAAAAABhfkgf_z\n Password: b'gAAAAABhfkgfoQ\n Creditos: b'gAAAAABhfkgfjk\n Edad: b'gAAAAABhfkgfHX"]; 
+nodo201722412:C1->nodo201801369
+nodo201822186:C0->nodo201722412
+nodo20210000003 [ label ="<C0>| Carnet: b'gAAAAABhfkaHdj\n DPI: b'gAAAAABhfkaH5a\n Nombre: b'gAAAAABhfkaHt4\n Carrera: b'gAAAAABhfkaHCK\n Correo: b'gAAAAABhfkaH_R\n Password: b'gAAAAABhfkaH_N\n Creditos: b'gAAAAABhfkaHA1\n Edad: b'gAAAAABhfkaHed|<C1>"];
+nodo20210000004[ label="\n Carnet: b'gAAAAABhfkaJHo\n DPI: b'gAAAAABhfkaJux\n Nombre: b'gAAAAABhfkaJN1\n Carrera: b'gAAAAABhfkaJvl\n Correo: b'gAAAAABhfkaJO2\n Password: b'gAAAAABhfkaJJ0\n Creditos: b'gAAAAABhfkaJjY\n Edad: b'gAAAAABhfkaJu6"]; 
+nodo20210000003:C1->nodo20210000004
+nodo201822186:C1->nodo20210000003
 } 

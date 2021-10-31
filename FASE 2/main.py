@@ -42,72 +42,22 @@ def IngresarApunte():
     ANALIZADORES_.Conex.agregarinformacion(obten['usuario'], obten['titulo'], obten['contenido'])
     return obten
 
-##----------------------------- Area de Tareas ----------------------------------
-
-@app.route("/recordatorios", methods=['POST'])
-def CreTarea():
-    carnet = request.args.get('Carnet', 'no contiene este parametro')
-    fech = request.args.get('Fecha', 'no contiene este parametro')
-    Fecha = fech.split("/")
-    Hora = request.args.get('Hora', 'no contiene este parametro').split(":")
-    nombre = request.args.get('Nombre', 'no contiene este parametro')
-    descripcion = request.args.get('Descripcion', 'no contiene este parametro')
-    materia = request.args.get('Materia', 'no contiene este parametro')
-    status = request.args.get('Estado', 'no contiene este parametro')
-    NewTask = Tareas(carnet, nombre, descripcion, materia, fech, int(Hora[0]), status)
-    NewTask.direccionamiento = Fecha
-    datos = alumnos.Alumnos_.newAll(NewTask, alumnos.Alumnos_.root)
-    return "La tarea ha sido actualizada"
-
-@app.route("/recordatorios", methods=['GET'])
-def EnvTarea():
-    carnet = request.args.get('Carnet', 'no contiene este parametro')
-    Fecha = request.args.get('Fecha', 'no contiene este parametro').split("/")
-    Hora = request.args.get('Hora', 'no contiene este parametro').split(":")
-    Id = request.args.get('Identificador', 'no contiene este parametro')
-    datos = alumnos.Alumnos_.RecuTarea(carnet, Fecha[2], Fecha[1], Fecha[0], int(Hora[0]),Id, alumnos.Alumnos_.root, "Obtener")
-    return jsonify(datos)
-
-@app.route("/recordatorios", methods=['DELETE'])
-def DelTarea():
-    carnet = request.args.get('Carnet', 'no contiene este parametro')
-    Fecha = request.args.get('Fecha', 'no contiene este parametro').split("/")
-    Hora = request.args.get('Hora', 'no contiene este parametro').split(":")
-    Id = request.args.get('Identificador', 'no contiene este parametro')
-    datos = alumnos.Alumnos_.RecuTarea(carnet, Fecha[2], Fecha[1], Fecha[0], int(Hora[0]),Id, alumnos.Alumnos_.root, "Eliminar")
-    return jsonify(datos)
-
-@app.route("/recordatorios", methods=['PUT'])
-def ActTarea():
-    carnet = request.args.get('Carnet', 'no contiene este parametro')
-    fech = request.args.get('Fecha', 'no contiene este parametro')
-    Fecha = fech.split("/")
-    Hora = request.args.get('Hora', 'no contiene este parametro').split(":")
-    Id = request.args.get('Identificador', 'no contiene este parametro')
-    nombre = request.args.get('Nombre', 'no contiene este parametro')
-    descripcion = request.args.get('Descripcion', 'no contiene este parametro')
-    materia = request.args.get('Materia', 'no contiene este parametro')
-    status = request.args.get('Estado', 'no contiene este parametro')
-    datos = alumnos.Alumnos_.actualizarTarea(carnet, Fecha[2], Fecha[1], Fecha[0], int(Hora[0]),Id, nombre, descripcion, materia, fech, status, alumnos.Alumnos_.root)
-    return "La tarea ha sido actualizada"
-
 ##---------------------------- Area General --------------------------------------
 
 @app.route("/carga", methods=['POST'])
 def Carga():
-    tipo = request.args.get('tipo', 'no contiene este parametro')
-    ruta = request.args.get('ruta', 'no contiene este parametro')
+    obten = request.json
+    tipo = obten['tipo']
+    ruta = obten['ruta'].split('\\')
     if(tipo=="estudiante"):
-        ANALIZADORES_.analizadoralumnos.alumno(ruta)
-        ANALIZADORES_.analizadoralumnos.sintac()
-        ANALIZADORES_.analizadoralumnos.sintacT()
+        ANALIZADORES_.analizadores.cargar_datos_Alumnos(ruta[2])
         print("vamo a ver si lleno los años")
-        return "Estudiantes" + " -> " + ruta
+        return "Estudiantes" + " -> " + ruta[2]
     elif(tipo=="recordatorio"):
-        ANALIZADORES_.analizadores.cargar_datos_Recordatorios(ruta)
-        return "Recordatorio" + " -> " + ruta
+        ANALIZADORES_.analizadores.cargar_datos_Recordatorios(ruta[2])
+        return "Recordatorio" + " -> " + ruta[2]
     elif(tipo=="curso"):
-        ANALIZADORES_.analizadores.cargar_datos_Pensum(ruta)
+        ANALIZADORES_.analizadores.cargar_datos_Pensum(ruta[2])
         return "datos llenados correctamente"
 
 @app.route("/reporte", methods=['POST'])
@@ -132,7 +82,7 @@ def Reporte():
         alumnos.Alumnos_.graphTareas(obten['carnet'], obten['año'], obten['mes'], obten['dia'], int(hor[0]), alumnos.Alumnos_.root)
         return "Reporte Tareas Generado"
     elif(tipo=="3"):
-        alumnos.Pensum.Preorden()
+        #alumnos.Pensum.Preorden()
         return "Reporte de Cursos del Pensum Generado"
     elif(tipo=="4"):
         return "Reporte de Cursos del semestre"
@@ -142,11 +92,6 @@ def Login():
     obten = request.json
     return alumnos.Alumnos_.Buscar_evento(alumnos.Alumnos_.root, obten['usuario'], obten['password'])
     
-@app.route("/data", methods=['GET'])
-def Datos():
-    carnet = request.args.get('Carnet', 'no contiene este parametro')
-    fi = alumnos.Alumnos_.Retornar(alumnos.Alumnos_.root, carnet)
-    return fi
 
 if __name__ == '__main__':
     app.run(debug=True, port=3000)
