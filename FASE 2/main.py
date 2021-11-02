@@ -46,9 +46,8 @@ def IngresarApunte():
 
 @app.route("/carga", methods=['POST'])
 def Carga():
-    obten = request.json
-    tipo = obten['tipo']
-    ruta = obten['ruta'].split('\\')
+    tipo = request.args.get('tipo', 'no contiene este parametro')
+    ruta = request.args.get('ruta', 'no contiene este parametro').split('\\')
     if(tipo=="estudiante"):
         ANALIZADORES_.analizadores.cargar_datos_Alumnos(ruta[2])
         print("vamo a ver si lleno los años")
@@ -58,6 +57,9 @@ def Carga():
         return "Recordatorio" + " -> " + ruta[2]
     elif(tipo=="curso"):
         ANALIZADORES_.analizadores.cargar_datos_Pensum(ruta[2])
+        return "datos llenados correctamente"
+    elif(tipo=="apunte"):
+        ANALIZADORES_.analizadores.cargar_datos_Apuntes(ruta[2])
         return "datos llenados correctamente"
 
 @app.route("/reporte", methods=['POST'])

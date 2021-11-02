@@ -10,30 +10,31 @@
             <center><p><strong>En este apartado se podra cargar a los alumnos para su posterior Registro a la Plataforma de manera independiente.</strong></p></center>
             <br>
             <input type="file" id="filechooser" hidden="hidden" /> 
-            <center><v-btn color="blue" large id="alum" v-on:click="enrutador('estudiante')">Cargar Alumnos</v-btn></center>
+            <center><v-btn color="blue" large id="alum" v-on:click="enrutadorAlumno()">Cargar Alumnos</v-btn></center>
         </div>
         <div class="Pensum_car">
             <center><h3>Carga de Pensum</h3></center>
             <br>
             <center><p><strong>En este apartado se podrán subir los cursos pertenecientes a la escuela de Ciencias y Sistemas para asignar a los alumnos.</strong></p></center>
             <br>
-            <input type="file" id="filechooser" hidden="hidden" />
-            <center><v-btn color="blue" large v-on:click="enrutador('curso')">Cargar Pensum</v-btn></center>
+            <input type="file" id="filechooserP" hidden="hidden" />
+            <center><v-btn color="blue" large v-on:click="enrutadorCursos()">Cargar Pensum</v-btn></center>
         </div>
         <div class="Cursos_car">
             <center><h3>Carga de cursos</h3></center>
             <br>
             <center><p><strong>En este apartado podra subir los cursos asignados a cada alumnos registrado.</strong></p></center>
             <br>
-            <input type="file" id="filechooser" hidden="hidden" />
-            <center><v-btn color="blue" large v-on:click="enrutador('recordatorio')">Cargar Cursos</v-btn></center>
+            <input type="file" id="filechooserC" hidden="hidden" />
+            <center><v-btn color="blue" large v-on:click="enrutadorCursosAlumnos()">Cargar Cursos</v-btn></center>
         </div>
         <div class="Apuntes_car">
             <center><h3>Carga de Apuntes</h3></center>
             <br>
             <center><p><strong>En este apartado podra subir los apuntes de cada curso asignado a los alumnos registrados</strong></p></center>
             <br>
-            <center><v-btn color="blue" large>Cargar Apuntes</v-btn></center>
+            <input type="file" id="filechooserA" hidden="hidden" />
+            <center><v-btn color="blue" large v-on:click="enrutadorApuntes()">Cargar Apuntes</v-btn></center>
         </div>        
         <br>
         
@@ -51,20 +52,59 @@ export default {
       Header,
       Pie
     },
-    data(){
-        return{
-            ruta: "",
-            tipo: ""
-        }
-    },
     methods:{
-        enrutador(tipo){
+        enrutadorAlumno(){
             let ruta = document.getElementById("filechooser");
             ruta.click();
             ruta.addEventListener("change", function(){
                 if(ruta.value){
                     console.log(ruta.value)
-                    axios.post('http://localhost:3000/carga', {'ruta': ruta.value, 'tipo': tipo})
+                    axios.post('http://localhost:3000/carga?tipo=estudiante&ruta='+ruta.value)
+                    .then(data=>{
+                        console.log(data)
+                    })
+                }else{
+                    console.log("No hay datos")
+                }
+            })
+        },
+        enrutadorCursos(){
+            let ruta = document.getElementById("filechooserP");
+            ruta.click();
+            ruta.addEventListener("change", function(){
+                if(ruta.value){
+                    console.log(ruta.value)
+                    axios.post('http://localhost:3000/carga?tipo=curso&ruta='+ruta.value)
+                    .then(data=>{
+                        console.log(data)
+                    })
+                }else{
+                    console.log("No hay datos")
+                }
+            })
+        },
+        enrutadorCursosAlumnos(){
+            let ruta = document.getElementById("filechooserC");
+            ruta.click();
+            ruta.addEventListener("change", function(){
+                if(ruta.value){
+                    console.log(ruta.value)
+                    axios.post('http://localhost:3000/carga?tipo=recordatorio&ruta='+ruta.value)
+                    .then(data=>{
+                        console.log(data)
+                    })
+                }else{
+                    console.log("No hay datos")
+                }
+            })
+        },
+        enrutadorApuntes(){
+            let ruta = document.getElementById("filechooserA");
+            ruta.click();
+            ruta.addEventListener("change", function(){
+                if(ruta.value){
+                    console.log(ruta.value)
+                    axios.post('http://localhost:3000/carga?tipo=apunte&ruta='+ruta.value)
                     .then(data=>{
                         console.log(data)
                     })

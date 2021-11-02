@@ -68,3 +68,14 @@ def cargar_datos_Alumnos(ruta):
             print(str(i['creditos']))
             print(str(i['edad'])+'\n')
             ANALIZADORES_.Conex.encryp_al( str(i['carnet']), str(i['DPI']), i['nombre'], i['carrera'], i['correo'], i['password'], str(i['creditos']), str(i['edad']))
+
+def cargar_datos_Apuntes(ruta):
+    with open(ruta, "r", encoding='utf-8') as apuntes:
+        apuntess = json.load(apuntes)
+        for apunte in apuntess['usuarios']:
+            print(apunte['carnet'])
+            ap = apunte['apuntes']
+            for data in ap:
+                print(data['Título'])
+                print(data['Contenido'])
+                ANALIZADORES_.Conex.agregarinformacion(apunte['carnet'], data['Título'], data['Contenido'])
