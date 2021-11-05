@@ -14,3 +14,12 @@ class Cursos:
             self.final.siguiente = Nuevo
             Nuevo.anterior = self.final
             self.final = Nuevo
+
+    def buscar(self, codigo):
+        actual = self.inicio
+        while(actual!=None):
+            if(codigo==actual.codigo):
+                return [actual.codigo, actual.nombre, actual.creditos, actual.requisitos]
+            else:
+                actual = actual.siguiente
+        return ""

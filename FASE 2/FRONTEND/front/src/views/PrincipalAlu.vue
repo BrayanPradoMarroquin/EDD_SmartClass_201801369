@@ -23,10 +23,10 @@
             <br>
             <center><p><strong>Reporte generado para observar los Prerrequisitos del curso solicitado.</strong></p></center>
             <br>
-            <center><v-btn color="blue" large>Generar Arbol</v-btn></center>
+            <center><v-btn color="blue" large v-on:click="Report">Generar Reporte</v-btn></center>
         </div>
         <div class="Apuntes_car">
-            <center><h3>Reporte de Cursos</h3></center>
+            <center><h3>Reporte de Cursos otro</h3></center>
             <br>
             <center><p><strong>Reporte generado de cursos asignados por el estudiante para el semestre dado.</strong></p></center>
             <br>
@@ -50,6 +50,9 @@ import Pie from '../components/Pie.vue'
     methods:{
         Apunt(){
             this.$router.push('/Apuntes/'+this.$route.params.id)
+        },
+        Report(){
+            this.$router.push('/Prerrequisitos/'+this.$route.params.id)
         }
     }
   }

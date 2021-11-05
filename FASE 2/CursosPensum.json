@@ -57,6 +57,27 @@
             "Obligatorio": true
         },
         {
+            "Codigo": "795",
+            "Nombre": "Logica de Sistemas",
+            "Creditos": 4,
+            "Prerequisitos": "103",
+            "Obligatorio": true
+        },
+        {
+            "Codigo": "771",
+            "Nombre": "Introducción a la Programación y Computación 2",
+            "Creditos": 4,
+            "Prerequisitos": "107,770,795,960",
+            "Obligatorio": true
+        },
+        {
+            "Codigo": "962",
+            "Nombre": "Matematica para Computacion 2",
+            "Creditos": 4,
+            "Prerequisitos": "960,770,795",
+            "Obligatorio": true
+        },
+        {
             "Codigo": "796",
             "Nombre": "Lenguajes Formales y de Programación",
             "Creditos": 3,

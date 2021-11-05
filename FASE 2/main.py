@@ -94,6 +94,30 @@ def Login():
     obten = request.json
     return alumnos.Alumnos_.Buscar_evento(alumnos.Alumnos_.root, obten['usuario'], obten['password'])
     
+@app.route("/cursos", methods=['POST'])
+def asig():
+    codigo = request.args.get('codigo', 'Falta un Parametro')
+    ANALIZADORES_.Conex.buscar(codigo)
+    return "Se encontraron los Prerrequisitos del curso solicitado"
+
+
+@app.route("/pruebas", methods=['POST'])
+def Cargas():
+    tipo = request.args.get('tipo', 'no contiene este parametro')
+    ruta = request.args.get('ruta', 'no contiene este parametro')
+    if(tipo=="estudiante"):
+        ANALIZADORES_.analizadores.cargar_datos_Alumnos(ruta)
+        print("vamo a ver si lleno los años")
+        return "Estudiantes" + " -> " + ruta
+    elif(tipo=="recordatorio"):
+        ANALIZADORES_.analizadores.cargar_datos_Recordatorios(ruta)
+        return "Recordatorio" + " -> " + ruta
+    elif(tipo=="curso"):
+        ANALIZADORES_.analizadores.cargar_datos_Pensum(ruta)
+        return "datos llenados correctamente"
+    elif(tipo=="apunte"):
+        ANALIZADORES_.analizadores.cargar_datos_Apuntes(ruta)
+        return "datos llenados correctamente"
 
 if __name__ == '__main__':
     app.run(debug=True, port=3000)

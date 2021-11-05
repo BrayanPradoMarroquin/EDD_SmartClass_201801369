@@ -1,11 +1,11 @@
 digraph G { 
 rankdir=TB; 
 node [shape = record, color=black , style=filled, fillcolor=gray93];
-nodo201822186 [ label ="<C0>| Carnet: b'gAAAAABhgPMnHP\n DPI: b'gAAAAABhgPMnV_\n Nombre: b'gAAAAABhgPMneT\n Carrera: b'gAAAAABhgPMnec\n Correo: b'gAAAAABhgPMnJm\n Password: b'gAAAAABhgPMnOp\n Creditos: b'gAAAAABhgPMnFe\n Edad: b'gAAAAABhgPMn8U|<C1>"];
-nodo201722412[ label="\n Carnet: b'gAAAAABhgPMnIs\n DPI: b'gAAAAABhgPMnsD\n Nombre: b'gAAAAABhgPMnwL\n Carrera: b'gAAAAABhgPMnSW\n Correo: b'gAAAAABhgPMnYg\n Password: b'gAAAAABhgPMnF6\n Creditos: b'gAAAAABhgPMne1\n Edad: b'gAAAAABhgPMny3"]; 
+nodo201822186 [ label ="<C0>| Carnet: b'gAAAAABhhM9Kv3\n DPI: b'gAAAAABhhM9LJH\n Nombre: b'gAAAAABhhM9LCM\n Carrera: b'gAAAAABhhM9LDN\n Correo: b'gAAAAABhhM9Lj_\n Password: b'gAAAAABhhM9L3C\n Creditos: b'gAAAAABhhM9L2v\n Edad: b'gAAAAABhhM9LWN|<C1>"];
+nodo201722412[ label="\n Carnet: b'gAAAAABhhM9Lnq\n DPI: b'gAAAAABhhM9LKI\n Nombre: b'gAAAAABhhM9LZI\n Carrera: b'gAAAAABhhM9L7b\n Correo: b'gAAAAABhhM9LL2\n Password: b'gAAAAABhhM9LPg\n Creditos: b'gAAAAABhhM9L8V\n Edad: b'gAAAAABhhM9LVD"]; 
 nodo201822186:C0->nodo201722412
-nodo20210000003 [ label ="<C0>| Carnet: b'gAAAAABhgPMnQz\n DPI: b'gAAAAABhgPMnGw\n Nombre: b'gAAAAABhgPMnnx\n Carrera: b'gAAAAABhgPMnP6\n Correo: b'gAAAAABhgPMn9J\n Password: b'gAAAAABhgPMnEn\n Creditos: b'gAAAAABhgPMnPx\n Edad: b'gAAAAABhgPMnGc|<C1>"];
-nodo20210000004[ label="\n Carnet: b'gAAAAABhgPMnFP\n DPI: b'gAAAAABhgPMnRe\n Nombre: b'gAAAAABhgPMnO_\n Carrera: b'gAAAAABhgPMn7e\n Correo: b'gAAAAABhgPMnxk\n Password: b'gAAAAABhgPMn97\n Creditos: b'gAAAAABhgPMnqM\n Edad: b'gAAAAABhgPMnMx"]; 
+nodo20210000003 [ label ="<C0>| Carnet: b'gAAAAABhhM9LGv\n DPI: b'gAAAAABhhM9Lk1\n Nombre: b'gAAAAABhhM9Lpo\n Carrera: b'gAAAAABhhM9L5W\n Correo: b'gAAAAABhhM9L0Z\n Password: b'gAAAAABhhM9LZ9\n Creditos: b'gAAAAABhhM9L1e\n Edad: b'gAAAAABhhM9LB9|<C1>"];
+nodo20210000004[ label="\n Carnet: b'gAAAAABhhM9LE-\n DPI: b'gAAAAABhhM9LK_\n Nombre: b'gAAAAABhhM9LI4\n Carrera: b'gAAAAABhhM9LoF\n Correo: b'gAAAAABhhM9LJJ\n Password: b'gAAAAABhhM9LL6\n Creditos: b'gAAAAABhhM9L2u\n Edad: b'gAAAAABhhM9L6E"]; 
 nodo20210000003:C1->nodo20210000004
 nodo201822186:C1->nodo20210000003
 } 

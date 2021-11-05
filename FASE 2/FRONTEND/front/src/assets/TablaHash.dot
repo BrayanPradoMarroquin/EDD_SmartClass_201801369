@@ -1,19 +1,21 @@
 digraph G { 
 rankdir=LR; 
-struct1 [label="<f0>   |<f1>   |<f2>20210000001|<f3>   |<f4>20210000003|<f5>20210000004|<f6>   " shape=record fontsize="40"]; 
-node2A0[label="tabla hash\nes una estructura de datos, en gran medida como una matriz, excepto que cada valor (objeto) se almacena mediante una clave. Se trata de un almacén básicos de clave-valor. Primero, se crea una tabla hash vacía." shape="box"] 
-struct1:f2->node2A0
-node2A1[label="block chain\n¿Que es blockchain? 
+struct1 [label="<f0>201801369|<f1>   |<f2>   |<f3>   |<f4>20210000001|<f5>   |<f6>20210000003|<f7>20210000004|<f8>   |<f9>   |<f10>   " shape=record fontsize="40"]; 
+node0A0[label="Hola\nHola como estas" shape="box"] 
+struct1:f0->node0A0
+node4A0[label="tabla hash\nes una estructura de datos, en gran medida como una matriz, excepto que cada valor (objeto) se almacena mediante una clave. Se trata de un almacén básicos de clave-valor. Primero, se crea una tabla hash vacía." shape="box"] 
+struct1:f4->node4A0
+node4A1[label="block chain\n¿Que es blockchain? 
  Blockchain es una base de datos que almacena información en bloques en lugar de tablas como las bases de datos tradicionales. Cuando el bloque alcanza su capacidad máxima de datos, se “encadena” a los bloques anteriores. Una vez que se encadenan permanecerán vinculados para siempre, creando una línea de tiempo en los datos de la “cadena de bloques” que permite una mayor transparencia de las transacciones. " shape="box"] 
-node2A0->node2A1
-node2A2[label="pendientes\n- hacer hoja de calificacion fase 3 
+node4A0->node4A1
+node4A2[label="pendientes\n- hacer hoja de calificacion fase 3 
  -calificar tareas 
  - reporte de notas estudiantes" shape="box"] 
-node2A1->node2A2
-node4A0[label="resumen primer parcial -fisica2\ncontenido referente a los temas vistos para el primer parcial" shape="box"] 
-struct1:f4->node4A0
-node4A1[label="Lab edd -18/10\ninformacion sobre lo visto en el laboratorio el dia 29 de octubre" shape="box"] 
-node4A0->node4A1
-node5A0[label="tareas pendientes\nproyecto fase 3 edd" shape="box"] 
-struct1:f5->node5A0
+node4A1->node4A2
+node6A0[label="resumen primer parcial -fisica2\ncontenido referente a los temas vistos para el primer parcial" shape="box"] 
+struct1:f6->node6A0
+node6A1[label="Lab edd -18/10\ninformacion sobre lo visto en el laboratorio el dia 29 de octubre" shape="box"] 
+node6A0->node6A1
+node7A0[label="tareas pendientes\nproyecto fase 3 edd" shape="box"] 
+struct1:f7->node7A0
 } 
