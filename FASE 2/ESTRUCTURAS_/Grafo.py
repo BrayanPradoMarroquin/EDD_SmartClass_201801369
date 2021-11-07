@@ -46,3 +46,4 @@ class Grafo():
         file.write("} \n")
         file.close()
         os.system("dot -Tpng FRONTEND/front/src/assets/Grafo.dot -o FRONTEND/front/src/assets/Grafo.png")
+        os.system("dot -Tpng FRONTEND/front/src/assets/Grafo.dot -o FRONTEND/front/src/assets/Grafo2.png")

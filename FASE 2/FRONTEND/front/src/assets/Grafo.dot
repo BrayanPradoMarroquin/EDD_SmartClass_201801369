@@ -2,37 +2,4 @@ digraph G {
 charset="UTF-8" 
 rankdir=TB; 
 node [shape = rectangle, color=black , style=filled, fillcolor=gray93];
-nodo962[label="962\n Matematica para Computacion 2" ]; 
-nodo960 -> nodo962[label="4"]
-nodo770 -> nodo962[label="4"]
-nodo795 -> nodo962[label="4"]
-nodo796[label="796\n Lenguajes Formales y de Programación" ]; 
-nodo770 -> nodo796[label="3"]
-nodo795 -> nodo796[label="3"]
-nodo960 -> nodo796[label="3"]
-nodo960[label="960\n Matemática Cómputo 1" ]; 
-nodo103 -> nodo960[label="5"]
-nodo795[label="795\n Logica de Sistemas" ]; 
-nodo103 -> nodo795[label="4"]
-nodo770[label="770\n Introducción a la Programación y Computación 1" ]; 
-nodo103 -> nodo770[label="4"]
-nodo101[label="101\n Matemática Básica 1" ]; 
-nodo103[label="103\n Matemática Básica 2" ]; 
-nodo101 -> nodo103[label="7"]
-nodo107[label="107\n Mátematica Intermedia 1" ]; 
-nodo103 -> nodo107[label="10"]
-nodo771[label="771\n Introducción a la Programación y Computación 2" ]; 
-nodo107 -> nodo771[label="4"]
-nodo770 -> nodo771[label="4"]
-nodo795 -> nodo771[label="4"]
-nodo960 -> nodo771[label="4"]
-nodo777[label="777\n Organización de Lenguajes y Compiladores 1" ]; 
-nodo771 -> nodo777[label="4"]
-nodo796 -> nodo777[label="4"]
-nodo962 -> nodo777[label="4"]
-nodo2036[label="2036\n Práctica Intermedia" ]; 
-nodo778 -> nodo2036[label="0"]
-nodo777 -> nodo2036[label="0"]
-nodo773 -> nodo2036[label="0"]
-nodo2025 -> nodo2036[label="0"]
 } 

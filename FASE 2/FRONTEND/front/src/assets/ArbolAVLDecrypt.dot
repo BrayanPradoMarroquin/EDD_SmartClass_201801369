@@ -1,11 +1,11 @@
 digraph G { 
 rankdir=TB; 
 node [shape = record, color=black , style=filled, fillcolor=gray93];
-nodo201822186 [ label ="<C0>| Carnet: 201822186\n DPI: 2097615549301\n Nombre: jorge\n Carrera: ing. ciencias y sistemas\n Correo: jorge@gmial.com\n Password: FWfo94\n Creditos: 0\n Edad: 26|<C1>"];
-nodo201722412[ label="\n Carnet: 201722412\n DPI: 9251761540101\n Nombre: Carlos\n Carrera: ing. ciencias y sistemas\n Correo: carlos@gmial.com\n Password: yuWfo94\n Creditos: 0\n Edad: 26"]; 
+nodo201822186 [ label ="<C0>| Carnet: 201822186\n DPI: 2097615549301\n Nombre: jorge\n Carrera: ing. ciencias y sistemas\n Correo: jorge@gmial.com\n Password: 69bdd540317b01f104df6a464e4b801fed074a5879c932e0cb9fcce37a007280\n Creditos: 0\n Edad: 26|<C1>"];
+nodo201722412[ label="\n Carnet: 201722412\n DPI: 9251761540101\n Nombre: Carlos\n Carrera: ing. ciencias y sistemas\n Correo: carlos@gmial.com\n Password: 45785e7fd765a7a5e023854819259421f3d481e23b80429db4e9335202f02563\n Creditos: 0\n Edad: 26"]; 
 nodo201822186:C0->nodo201722412
-nodo20210000003 [ label ="<C0>| Carnet: 20210000003\n DPI: 900000000101\n Nombre: juan\n Carrera: ing. ciencias y sistemas\n Correo: juan@gmial.com\n Password: yud5asd4\n Creditos: 0\n Edad: 20|<C1>"];
-nodo20210000004[ label="\n Carnet: 20210000004\n DPI: 920000000101\n Nombre: Luis\n Carrera: ing. ciencias y sistemas\n Correo: Luis@gmial.com\n Password: sdfadf5er1\n Creditos: 0\n Edad: 21"]; 
+nodo20210000003 [ label ="<C0>| Carnet: 20210000003\n DPI: 900000000101\n Nombre: juan\n Carrera: ing. ciencias y sistemas\n Correo: juan@gmial.com\n Password: bec03e6581580b7bf1d1c270639097b450868b98a5133f18ab3b4140fda251f7\n Creditos: 0\n Edad: 20|<C1>"];
+nodo20210000004[ label="\n Carnet: 20210000004\n DPI: 920000000101\n Nombre: Luis\n Carrera: ing. ciencias y sistemas\n Correo: Luis@gmial.com\n Password: cefb7c7a879deabca2f5532cb5693bfa8662d0a8f64b2b3e98e8c242847ff95a\n Creditos: 0\n Edad: 21"]; 
 nodo20210000003:C1->nodo20210000004
 nodo201822186:C1->nodo20210000003
 } 

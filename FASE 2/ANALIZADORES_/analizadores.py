@@ -2,6 +2,7 @@ from io import open
 import alumnos
 import json
 import ANALIZADORES_.Conex 
+import hashlib
 
 def cargar_datos_Pensum(ruta):
     archivo = open(ruta, 'r', encoding='utf-8')
@@ -65,9 +66,8 @@ def cargar_datos_Alumnos(ruta):
             print(i['carrera'])
             print(i['correo'])
             print(i['password'])
-            print(str(i['creditos']))
             print(str(i['edad'])+'\n')
-            ANALIZADORES_.Conex.encryp_al( str(i['carnet']), str(i['DPI']), i['nombre'], i['carrera'], i['correo'], i['password'], str(i['creditos']), str(i['edad']))
+            ANALIZADORES_.Conex.encryp_al( str(i['carnet']), str(i['DPI']), i['nombre'], i['carrera'], i['correo'], hashlib.sha256(i['password'].encode("utf-8")).hexdigest(), str(0), str(i['edad']))
 
 def cargar_datos_Apuntes(ruta):
     with open(ruta, "r", encoding='utf-8') as apuntes:

@@ -2,53 +2,6 @@ digraph G {
 charset="UTF-8" 
 rankdir=TB; 
 node [shape = rectangle, color=black , style=filled, fillcolor=gray93];
-nodo101[label="101\n Matemática Básica 1" ]; 
-nodo039[label="039\n Deportes 1" ]; 
-nodo348[label="348\n Quimica General 1" ]; 
-nodo103[label="103\n Matemática Básica 2" ]; 
-nodo101 -> nodo103
-nodo005[label="005\n Técnicas de Estudio e Investigación" ]; 
-nodo960[label="960\n Matemática Cómputo 1" ]; 
-nodo103 -> nodo960
-nodo107[label="107\n Mátematica Intermedia 1" ]; 
-nodo103 -> nodo107
-nodo770[label="770\n Introducción a la Programación y Computación 1" ]; 
-nodo103 -> nodo770
-nodo795[label="795\n Logica de Sistemas" ]; 
-nodo103 -> nodo795
-nodo771[label="771\n Introducción a la Programación y Computación 2" ]; 
-nodo107 -> nodo771
-nodo770 -> nodo771
-nodo795 -> nodo771
-nodo960 -> nodo771
-nodo962[label="962\n Matematica para Computacion 2" ]; 
-nodo960 -> nodo962
-nodo770 -> nodo962
-nodo795 -> nodo962
-nodo796[label="796\n Lenguajes Formales y de Programación" ]; 
-nodo770 -> nodo796
-nodo795 -> nodo796
-nodo960 -> nodo796
-nodo772[label="772\n Estructuras de Datos" ]; 
-nodo771 -> nodo772
-nodo796 -> nodo772
-nodo962 -> nodo772
-nodo777[label="777\n Organización de Lenguajes y Compiladores 1" ]; 
-nodo771 -> nodo777
-nodo796 -> nodo777
-nodo962 -> nodo777
-nodo018[label="018\n Filosofia de la Ciencia" ]; 
-nodo019 -> nodo018
-nodo774[label="774\n Sistemas de Bases de Datos 1" ]; 
-nodo773 -> nodo774
-nodo281[label="281\n Sistemas Operativos 1" ]; 
-nodo781 -> nodo281
-nodo778 -> nodo281
-nodo2036[label="2036\n Práctica Intermedia" ]; 
-nodo778 -> nodo2036
-nodo777 -> nodo2036
-nodo773 -> nodo2036
-nodo2025 -> nodo2036
 nodo0017[label="0017\n Social Humanistica 1" ]; 
 nodo0101[label="0101\n Matematica Basica 1" ]; 
 nodo0039[label="0039\n Deportes 1" ]; 

@@ -9,6 +9,9 @@
             <br>
             <button type="button" name="button" v-on:click="enviar">Analizar</button>
         </div>
+        <div v-if="imagen">
+            <v-img src="../assets/Grafo.png"></v-img>
+        </div>
         <Pie/>
     </div>
 </template>
@@ -25,14 +28,16 @@ export default {
     },
     data(){
 		return{
-			Codigo: ""
+			Codigo: "",
+            imagen: false
 		}
 	},
     methods:{
         enviar(){
             axios.post('http://localhost:3000/cursos?codigo='+this.Codigo)
             .then(data=>{
-                console.log(data)
+                console.log(data);
+                this.imagen = true
             })
         }
     }

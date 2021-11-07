@@ -5,6 +5,7 @@ import ANALIZADORES_.analizadoralumnos
 import ANALIZADORES_.Conex 
 from NodoTask import Tareas
 import alumnos
+import hashlib
 
 app = Flask(__name__)
 CORS(app)
@@ -19,7 +20,7 @@ def index():
 def IngresoEstudiante():
     if request.method == 'POST':
         obten = request.json
-        ANALIZADORES_.Conex.encryp_al( obten['carnet'], obten['DPI'], obten['Nombre'], obten['Carrera'], obten['Correo'], obten['Contraseña'], obten['Creditos'], obten['Edad'])
+        ANALIZADORES_.Conex.encryp_al( obten['carnet'], obten['DPI'], obten['Nombre'], obten['Carrera'], obten['Correo'], hashlib.sha256(obten['Contraseña'].encode("utf-8")).hexdigest(), obten['Creditos'], obten['Edad'])
         data = {
             'respuesta': "El usuario: " + obten['carnet'] +" se ha ingresado con Exito"
         }

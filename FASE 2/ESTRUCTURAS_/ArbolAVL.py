@@ -1,6 +1,7 @@
 import ESTRUCTURAS_.NodoArbolAVL
 from cryptography.fernet import Fernet
 import os
+import hashlib
 
 file = open('key.key', 'rb')
 key = file.read()
@@ -97,12 +98,12 @@ class ArbolAVL_:
                 'status': "No"
             }
             return data
-        elif(node.Val==Identificacion) & (keygen.decrypt(node.Password).decode()!=contrasenia):
+        elif(node.Val==Identificacion) & (keygen.decrypt(node.Password).decode()!=hashlib.sha256(contrasenia.encode("utf-8")).hexdigest()):
             data = {
                 'status': "Pas"
             }
             return data
-        elif(node.Val==Identificacion) & (keygen.decrypt(node.Password).decode()==contrasenia):
+        elif(node.Val==Identificacion) & (keygen.decrypt(node.Password).decode()==hashlib.sha256(contrasenia.encode("utf-8")).hexdigest()):
             data = {
                 'status': "Yes",
                 'nombre': keygen.decrypt(node.Nombre).decode(),
