@@ -10,6 +10,7 @@ import Apuntes from '../views/Apuntes.vue'
 import ReporteAlumnos from '../views/ReporteAlumnos.vue'
 import ReporteHash from '../views/ReporteHash.vue'
 import Prerrequisitos from '../views/Prerrequisitos.vue'
+import ReportePensum from '../views/ReportePensum.vue'
 
 Vue.use(VueRouter)
 
@@ -53,6 +54,11 @@ const routes = [
     path: '/ReporteAlumnos',
     name: 'ReporteAlumnos',
     component: ReporteAlumnos
+  },
+  {
+    path: '/ReportePensum',
+    name: 'ReportePensum',
+    component: ReportePensum
   },
   {
     path: '/Prerrequisitos/:id',

@@ -84,8 +84,12 @@ def Reporte():
         alumnos.Alumnos_.graphTareas(obten['carnet'], obten['año'], obten['mes'], obten['dia'], int(hor[0]), alumnos.Alumnos_.root)
         return "Reporte Tareas Generado"
     elif(tipo=="3"):
+        alumnos.Pensum.graficar()
         #alumnos.Pensum.Preorden()
-        return "Reporte de Cursos del Pensum Generado"
+        data = {
+            'respuesta': "Reporte de Cursos del Pensum Generado"
+        }
+        return data 
     elif(tipo=="4"):
         return "Reporte de Cursos del semestre"
 

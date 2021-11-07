@@ -16,7 +16,7 @@
             <br>
             <center><p><strong>Reporte generado para observar los prerrequisitos de los cursos asignados.</strong></p></center>
             <br>
-            <center><v-btn color="blue" large>Curso</v-btn></center>
+            <center><v-btn color="blue" large v-on:click="Pensum">Curso</v-btn></center>
         </div>
         <div class="Cursos_car">
             <center><h3>Arbol de Merkle</h3></center>
@@ -67,6 +67,16 @@ export default {
             .then(data=>{
                 console.log(data)
                 this.$router.push('/ReporteHash')
+            })
+        },
+        Pensum(){
+            let data = {
+                'tipo': "3"
+            };
+            axios.post('http://localhost:3000/reporte', data)
+            .then(data=>{
+                console.log(data)
+                this.$router.push('/ReportePensum')
             })
         }
     }

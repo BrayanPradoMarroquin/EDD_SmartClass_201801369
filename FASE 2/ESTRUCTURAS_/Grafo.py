@@ -1,3 +1,4 @@
+import os
 class Arista():
     def __init__(self, codigo, curso, creditos, pre):
         self.codigo = codigo
@@ -30,7 +31,7 @@ class Grafo():
     def graficar(self):
         actual = self.inicio
         cadena = ""
-        file = open("FRONTEND/front/src/assets/Grafo.dot", 'w')
+        file = open("FRONTEND/front/src/assets/Grafo.dot", 'w', encoding="utf-8")
         file.write("digraph G { \n")
         file.write("charset=\"UTF-8\" \n" )
         file.write("rankdir=TB; \n")

@@ -5,9 +5,9 @@
         <div class="datos">
             <label class="t">Ingrese el codigo del Curso a analizar:</label><br>
             <br>
-            <input type="text" name="" class="t" placeholder="Codigo"><br>
+            <input type="text" name="" class="t" placeholder="Codigo" v-model="Codigo"><br>
             <br>
-            <button type="button" name="button" >Analizar</button>
+            <button type="button" name="button" v-on:click="enviar">Analizar</button>
         </div>
         <Pie/>
     </div>
@@ -16,11 +16,25 @@
 <script>
 import HeaderAl from '../components/HeaderAl.vue'
 import Pie from '../components/Pie.vue'
+import axios from 'axios';
 export default {
     name: "Prerrequisitos",
     components: {
       HeaderAl,
-      Pie
+      Pie,
+    },
+    data(){
+		return{
+			Codigo: ""
+		}
+	},
+    methods:{
+        enviar(){
+            axios.post('http://localhost:3000/cursos?codigo='+this.Codigo)
+            .then(data=>{
+                console.log(data)
+            })
+        }
     }
 }
 </script>
